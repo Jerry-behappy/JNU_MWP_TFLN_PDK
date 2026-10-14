@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+outputs/
+*.log
+*.err
+klayoutrc*
+# 授权白盒与仿真数据只存本地，不加入公开 Git。
+**/gds/
+**/*whitebox*/
+*.fsp
+*.h5
+*.mat
+*.xlsx
+*.zip

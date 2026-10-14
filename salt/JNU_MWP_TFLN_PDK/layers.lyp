@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-properties>
+ <properties><frame-color>#ff80a8</frame-color><fill-color>#ff80a8</fill-color><dither-pattern>I6</dither-pattern><valid>true</valid><visible>true</visible><transparent>true</transparent><width>2</width><name>Waveguide</name><source>1/0@*</source></properties>
+ <properties><frame-color>#2ca02c</frame-color><fill-color>#2ca02c</fill-color><dither-pattern>I5</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><name>SiO2_Open</name><source>3/0@*</source></properties>
+ <properties><frame-color>#ff7f0e</frame-color><fill-color>#ff7f0e</fill-color><dither-pattern>I5</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><name>NiCr (200 nm)</name><source>4/0@*</source></properties>
+ <properties><frame-color>#d4af37</frame-color><fill-color>#d4af37</fill-color><dither-pattern>I5</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><name>Au (1 um)</name><source>5/0@*</source></properties>
+ <properties><frame-color>#d62728</frame-color><fill-color>#d62728</fill-color><dither-pattern>I5</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><name>Dicing</name><source>7/0@*</source></properties>
+ <properties><frame-color>#404040</frame-color><fill-color>#404040</fill-color><dither-pattern>I0</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><name>Text</name><source>10/0@*</source></properties>
+ <properties><frame-color>#004080</frame-color><fill-color>#004080</fill-color><dither-pattern>I11</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><width>2</width><name>PinRec</name><source>1/10@*</source></properties>
+ <properties><frame-color>#004080</frame-color><fill-color>#004080</fill-color><dither-pattern>I1</dither-pattern><valid>true</valid><visible>true</visible><transparent>true</transparent><width>1</width><name>DevRec</name><source>68/0@*</source></properties>
+ <properties><frame-color>#004080</frame-color><fill-color>#004080</fill-color><dither-pattern>I11</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><width>2</width><name>PinRecM</name><source>1/11@*</source></properties>
+ <properties><frame-color>#004080</frame-color><fill-color>#004080</fill-color><dither-pattern>I9</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><name>FbrTgt</name><source>81/0@*</source></properties>
+</layer-properties>

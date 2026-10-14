@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<klayout-macro>
+ <description>JNU_MWP_TFLN_PDK V1.0 功能菜单</description>
+ <category>pymacros</category>
+ <autorun>true</autorun>
+ <autorun-early>false</autorun-early>
+ <show-in-menu>false</show-in-menu>
+ <interpreter>python</interpreter>
+ <text># -*- coding: utf-8 -*-
+# 时间: 2026-10
+from pathlib import Path
+import sys
+_directory = str(Path(__file__).resolve().parent)
+if _directory not in sys.path:
+    sys.path.insert(0, _directory)
+from tfln_library import register_all
+register_all()
+from tfln_tools.menu import register_menu
+register_menu()
+</text>
+</klayout-macro>

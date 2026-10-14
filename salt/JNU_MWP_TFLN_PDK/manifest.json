@@ -1,0 +1,1558 @@
+{
+  "pdk_name": "JNU_MWP_TFLN_PDK",
+  "technology_name": "JNU_MWP_TFLN_PDK",
+  "version": "V1.0",
+  "dbu_um": 0.0001,
+  "author": "By Songliang Chen, 2026/10/13",
+  "layers": [
+    {
+      "layer": 1,
+      "datatype": 0,
+      "name": "Waveguide",
+      "definition": "波导上表面图形",
+      "thickness_nm": null
+    },
+    {
+      "layer": 3,
+      "datatype": 0,
+      "name": "SiO2_Open",
+      "definition": "SiO2 湿法刻蚀开窗，边缘需缓坡",
+      "thickness_nm": null
+    },
+    {
+      "layer": 4,
+      "datatype": 0,
+      "name": "NiCr",
+      "definition": "NiCr 电极",
+      "thickness_nm": 200
+    },
+    {
+      "layer": 5,
+      "datatype": 0,
+      "name": "Au",
+      "definition": "Au 电极",
+      "thickness_nm": 1000
+    },
+    {
+      "layer": 7,
+      "datatype": 0,
+      "name": "Dicing",
+      "definition": "划片标记",
+      "thickness_nm": null
+    },
+    {
+      "layer": 10,
+      "datatype": 0,
+      "name": "Text",
+      "definition": "作者及器件文字标注",
+      "thickness_nm": null
+    },
+    {
+      "layer": 1,
+      "datatype": 10,
+      "name": "PinRec",
+      "definition": "光学端口路径及名称；路径总长20nm",
+      "thickness_nm": null
+    },
+    {
+      "layer": 68,
+      "datatype": 0,
+      "name": "DevRec",
+      "definition": "器件识别矩形；端口边齐平，上方外扩1um，下方容纳框内署名",
+      "thickness_nm": null
+    },
+    {
+      "layer": 1,
+      "datatype": 11,
+      "name": "PinRecM",
+      "definition": "金属端口识别辅助层；本批仅定义",
+      "thickness_nm": null
+    },
+    {
+      "layer": 81,
+      "datatype": 0,
+      "name": "FbrTgt",
+      "definition": "光纤目标识别辅助层；本批仅定义",
+      "thickness_nm": null
+    }
+  ],
+  "edition": "public-blackbox",
+  "devices": [
+    {
+      "id": "EC01",
+      "process": "300_125",
+      "library": "JNULib_TFLN_300_125",
+      "cell_name": "EC_cutUnknow_propUnknow_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFDUnknowum_SIO2_TE-TM",
+      "physical_bbox_um": [
+        -75.5,
+        -2.0500000000000003,
+        75.5,
+        2.0500000000000003
+      ],
+      "devrec_bbox_um": [
+        -75.5,
+        -8.450000000000001,
+        75.5,
+        3.0500000000000003
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -75.0,
+          -2.5500000000000003
+        ],
+        "envelope_bbox_um": [
+          -75.0,
+          -7.95,
+          7.65,
+          -2.5500000000000003
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "缺：晶向、传播方向、模斑尺寸。目录角度 63°，工程角度 70°",
+      "parameters": {
+        "category": "端面耦合器 EC",
+        "film_thickness_nm": 300.0,
+        "etch_depth_nm": 125.0,
+        "mode_spot_um": null,
+        "crystal_cut": "Unknow",
+        "propagation_axis": "Unknow",
+        "polarization_tags": "TE、TM",
+        "sidewall_angle_deg": 70.0,
+        "nominal_angle_deg": 63,
+        "cladding": "SiO₂包层",
+        "source_cladding": "SiO₂包层",
+        "differences": [
+          "目录角度 63°，工程角度 70°"
+        ],
+        "parameter_state": "待补充或核对",
+        "issues": "缺：晶向、传播方向、模斑尺寸。目录角度 63°，工程角度 70°"
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": true,
+      "gds_relative": "pymacros/tfln_blackbox_gds/300_125/EC_cutUnknow_propUnknow_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFDUnknowum_SIO2_TE-TM.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -75.5,
+            0.0
+          ],
+          "width_um": 3.25,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "multi_rail_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            75.5,
+            0.0
+          ],
+          "width_um": 2.0,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "EC02",
+      "process": "400_200",
+      "library": "JNULib_TFLN_400_200",
+      "cell_name": "EC_cutUnknow_propUnknow_thickness400nm_etchDepth200nm_sidewallAngle90deg_MFDUnknowum_SIO2",
+      "physical_bbox_um": [
+        -60.0,
+        -0.7000000000000001,
+        60.0,
+        0.7000000000000001
+      ],
+      "devrec_bbox_um": [
+        -60.0,
+        -7.1000000000000005,
+        60.0,
+        1.7000000000000002
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -59.5,
+          -1.2
+        ],
+        "envelope_bbox_um": [
+          -59.5,
+          -6.6000000000000005,
+          23.150000000000002,
+          -1.2
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "缺：晶向、传播方向、模斑尺寸。目录角度 63°，工程角度 90°",
+      "parameters": {
+        "category": "端面耦合器 EC",
+        "film_thickness_nm": 400.0,
+        "etch_depth_nm": 200.0,
+        "mode_spot_um": null,
+        "crystal_cut": "Unknow",
+        "propagation_axis": "Unknow",
+        "polarization_tags": "未明确",
+        "sidewall_angle_deg": 65.0,
+        "nominal_angle_deg": 63,
+        "cladding": "SiO₂包层",
+        "source_cladding": "SiO₂包层",
+        "differences": [
+          "目录角度 63°，工程角度 65°"
+        ],
+        "parameter_state": "待补充或核对",
+        "issues": "缺：晶向、传播方向、模斑尺寸。目录角度 63°，工程角度 65°。目录角度 63°，工程角度 90°"
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": true,
+      "gds_relative": "pymacros/tfln_blackbox_gds/400_200/EC_cutUnknow_propUnknow_thickness400nm_etchDepth200nm_sidewallAngle90deg_MFDUnknowum_SIO2.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -60.0,
+            0.0
+          ],
+          "width_um": 0.15,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            60.0,
+            0.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "EC03",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "EC_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR",
+      "physical_bbox_um": [
+        -24.282400000000003,
+        -0.7000000000000001,
+        24.282400000000003,
+        0.7000000000000001
+      ],
+      "devrec_bbox_um": [
+        -24.282400000000003,
+        -4.8075,
+        24.282400000000003,
+        1.7000000000000002
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 1.7264000000000002,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 1.7264000000000002,
+        "anchor_um": [
+          -23.782400000000003,
+          -1.2
+        ],
+        "envelope_bbox_um": [
+          -23.782400000000003,
+          -4.3075,
+          23.78,
+          -1.2
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "缺：晶向、传播方向",
+      "parameters": {
+        "category": "端面耦合器 EC",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": 3.2,
+        "crystal_cut": "Unknow",
+        "propagation_axis": "Unknow",
+        "polarization_tags": "未明确",
+        "sidewall_angle_deg": 63.0,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": "空气包层",
+        "differences": [],
+        "parameter_state": "待补充或核对",
+        "issues": "缺：晶向、传播方向"
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": true,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -24.282400000000003,
+            0.0
+          ],
+          "width_um": 0.5,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            24.282400000000003,
+            0.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "EC04",
+      "process": "600_600",
+      "library": "JNULib_TFLN_600_600",
+      "cell_name": "EC_cutUnknow_propUnknow_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_AIR_TE-TM",
+      "physical_bbox_um": [
+        -121.46010000000001,
+        -8.5189,
+        121.46000000000001,
+        8.5189
+      ],
+      "devrec_bbox_um": [
+        -121.46010000000001,
+        -14.9189,
+        121.46000000000001,
+        9.5189
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -120.96010000000001,
+          -9.0189
+        ],
+        "envelope_bbox_um": [
+          -120.96010000000001,
+          -14.4189,
+          -38.3101,
+          -9.0189
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "缺：晶向、传播方向。用户说明为空气包层，工程 h_c>0 且有 SiO₂ 包层",
+      "parameters": {
+        "category": "端面耦合器 EC",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 600.0,
+        "mode_spot_um": 3.2,
+        "crystal_cut": "Unknow",
+        "propagation_axis": "Unknow",
+        "polarization_tags": "TE、TM",
+        "sidewall_angle_deg": 63.0,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": "SiO₂包层",
+        "differences": [
+          "用户说明为空气包层，工程 h_c>0 且有 SiO₂ 包层"
+        ],
+        "parameter_state": "待补充或核对",
+        "issues": "缺：晶向、传播方向。用户说明为空气包层，工程 h_c>0 且有 SiO₂ 包层"
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_600/EC_cutUnknow_propUnknow_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_AIR_TE-TM.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -121.46010000000001,
+            0.0
+          ],
+          "width_um": 2.8842000000000003,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "multi_rail_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            121.46000000000001,
+            0.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "MMI01",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "MMI1x2_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM",
+      "physical_bbox_um": [
+        -22.0,
+        -1.9000000000000001,
+        22.0,
+        1.9000000000000001
+      ],
+      "devrec_bbox_um": [
+        -22.0,
+        -5.709300000000001,
+        22.0,
+        2.9000000000000004
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 1.5607,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 1.5607,
+        "anchor_um": [
+          -21.5,
+          -2.4
+        ],
+        "envelope_bbox_um": [
+          -21.5,
+          -5.2093,
+          21.497300000000003,
+          -2.4
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "",
+      "parameters": {
+        "category": "1×2 MMI",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": null,
+        "crystal_cut": "x切",
+        "propagation_axis": "y传",
+        "polarization_tags": "TE、TM",
+        "sidewall_angle_deg": 63.0,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": null,
+        "differences": [],
+        "parameter_state": "参数齐全",
+        "issues": ""
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x2_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -22.0,
+            0.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            22.0,
+            -1.1400000000000001
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt3",
+          "center_um": [
+            22.0,
+            1.1400000000000001
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "MMI02",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "MMI2x2_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR",
+      "physical_bbox_um": [
+        -67.25,
+        -2.9000000000000004,
+        67.25,
+        2.9000000000000004
+      ],
+      "devrec_bbox_um": [
+        -67.25,
+        -9.3,
+        67.25,
+        3.9000000000000004
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -66.75,
+          -3.4000000000000004
+        ],
+        "envelope_bbox_um": [
+          -66.75,
+          -8.8,
+          15.9,
+          -3.4000000000000004
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "缺：晶向、传播方向",
+      "parameters": {
+        "category": "2×2 MMI",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": null,
+        "crystal_cut": "Unknow",
+        "propagation_axis": "Unknow",
+        "polarization_tags": "未明确",
+        "sidewall_angle_deg": null,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": null,
+        "differences": [],
+        "parameter_state": "待补充或核对",
+        "issues": "缺：晶向、传播方向"
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI2x2_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -67.25,
+            -2.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            -67.25,
+            2.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt3",
+          "center_um": [
+            67.25,
+            -2.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt4",
+          "center_um": [
+            67.25,
+            2.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "MMI03",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "MMI1x4_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE",
+      "physical_bbox_um": [
+        -49.5,
+        -6.7586,
+        49.5,
+        6.7586
+      ],
+      "devrec_bbox_um": [
+        -49.5,
+        -13.1586,
+        49.5,
+        7.7586
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -49.0,
+          -7.2586
+        ],
+        "envelope_bbox_um": [
+          -49.0,
+          -12.6586,
+          33.65,
+          -7.2586
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "",
+      "parameters": {
+        "category": "1×4 MMI",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": null,
+        "crystal_cut": "x切",
+        "propagation_axis": "y传",
+        "polarization_tags": "TE",
+        "sidewall_angle_deg": 63.0,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": null,
+        "differences": [],
+        "parameter_state": "参数齐全",
+        "issues": ""
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -49.5,
+            0.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            49.5,
+            -5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt3",
+          "center_um": [
+            49.5,
+            -1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt4",
+          "center_um": [
+            49.5,
+            1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt5",
+          "center_um": [
+            49.5,
+            5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "MMI04",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "MMI1x4_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE",
+      "physical_bbox_um": [
+        -47.0,
+        -6.7586,
+        47.0,
+        6.7586
+      ],
+      "devrec_bbox_um": [
+        -47.0,
+        -13.1586,
+        47.0,
+        7.7586
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -46.5,
+          -7.2586
+        ],
+        "envelope_bbox_um": [
+          -46.5,
+          -12.6586,
+          36.15,
+          -7.2586
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "",
+      "parameters": {
+        "category": "1×4 MMI",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": null,
+        "crystal_cut": "x切",
+        "propagation_axis": "z传",
+        "polarization_tags": "TE",
+        "sidewall_angle_deg": 63.0,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": null,
+        "differences": [],
+        "parameter_state": "参数齐全",
+        "issues": ""
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -47.0,
+            0.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            47.0,
+            -5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt3",
+          "center_um": [
+            47.0,
+            -1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt4",
+          "center_um": [
+            47.0,
+            1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt5",
+          "center_um": [
+            47.0,
+            5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "MMI05",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "MMI4x4_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE",
+      "physical_bbox_um": [
+        -146.0,
+        -6.7586,
+        146.0,
+        6.7586
+      ],
+      "devrec_bbox_um": [
+        -146.0,
+        -13.1586,
+        146.0,
+        7.7586
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -145.5,
+          -7.2586
+        ],
+        "envelope_bbox_um": [
+          -145.5,
+          -12.6586,
+          -62.85,
+          -7.2586
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "",
+      "parameters": {
+        "category": "4×4 MMI",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": null,
+        "crystal_cut": "x切",
+        "propagation_axis": "y传",
+        "polarization_tags": "TE",
+        "sidewall_angle_deg": 63.0,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": null,
+        "differences": [],
+        "parameter_state": "参数齐全",
+        "issues": ""
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -146.0,
+            -5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            -146.0,
+            -1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt3",
+          "center_um": [
+            -146.0,
+            1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt4",
+          "center_um": [
+            -146.0,
+            5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt5",
+          "center_um": [
+            146.0,
+            -5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt6",
+          "center_um": [
+            146.0,
+            -1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt7",
+          "center_um": [
+            146.0,
+            1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt8",
+          "center_um": [
+            146.0,
+            5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "MMI06",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "MMI4x4_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM",
+      "physical_bbox_um": [
+        -132.0,
+        -6.7586,
+        132.0,
+        6.7586
+      ],
+      "devrec_bbox_um": [
+        -132.0,
+        -13.1586,
+        132.0,
+        7.7586
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -131.5,
+          -7.2586
+        ],
+        "envelope_bbox_um": [
+          -131.5,
+          -12.6586,
+          -48.85,
+          -7.2586
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "",
+      "parameters": {
+        "category": "4×4 MMI",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": null,
+        "crystal_cut": "x切",
+        "propagation_axis": "z传",
+        "polarization_tags": "TE、TM",
+        "sidewall_angle_deg": 63.0,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": null,
+        "differences": [],
+        "parameter_state": "参数齐全",
+        "issues": ""
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -132.0,
+            -5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            -132.0,
+            -1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt3",
+          "center_um": [
+            -132.0,
+            1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt4",
+          "center_um": [
+            -132.0,
+            5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt5",
+          "center_um": [
+            132.0,
+            -5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt6",
+          "center_um": [
+            132.0,
+            -1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt7",
+          "center_um": [
+            132.0,
+            1.8529
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt8",
+          "center_um": [
+            132.0,
+            5.5586
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "MMI07",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "MMI4x4_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngleUnknowdeg_cladUnknow",
+      "physical_bbox_um": [
+        -177.5,
+        -8.0,
+        177.5,
+        8.0
+      ],
+      "devrec_bbox_um": [
+        -177.5,
+        -14.4,
+        177.5,
+        9.0
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -177.0,
+          -8.5
+        ],
+        "envelope_bbox_um": [
+          -177.0,
+          -13.9,
+          -94.35000000000001,
+          -8.5
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "缺：晶向、传播方向、侧壁角",
+      "parameters": {
+        "category": "4×4 MMI（按文件名）",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": null,
+        "crystal_cut": "Unknow",
+        "propagation_axis": "Unknow",
+        "polarization_tags": "未明确",
+        "sidewall_angle_deg": null,
+        "nominal_angle_deg": null,
+        "cladding": "未明确",
+        "source_cladding": null,
+        "differences": [],
+        "parameter_state": "待补充或核对",
+        "issues": "缺：晶向、传播方向、侧壁角"
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngleUnknowdeg_cladUnknow.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -177.5,
+            -6.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            -177.5,
+            -2.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt3",
+          "center_um": [
+            -177.5,
+            2.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt4",
+          "center_um": [
+            -177.5,
+            6.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt5",
+          "center_um": [
+            177.5,
+            -6.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt6",
+          "center_um": [
+            177.5,
+            -2.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt7",
+          "center_um": [
+            177.5,
+            2.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt8",
+          "center_um": [
+            177.5,
+            6.0
+          ],
+          "width_um": 1.4000000000000001,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "POL01",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "PSR_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM",
+      "physical_bbox_um": [
+        -137.25,
+        -3.2095000000000002,
+        137.25,
+        3.2095000000000002
+      ],
+      "devrec_bbox_um": [
+        -137.25,
+        -9.6095,
+        137.25,
+        4.2095
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -136.75,
+          -3.7095000000000002
+        ],
+        "envelope_bbox_um": [
+          -136.75,
+          -9.1095,
+          -54.1,
+          -3.7095000000000002
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "目录角度 63°，工程角度 62°",
+      "parameters": {
+        "category": "PSR（偏振分束旋转器，按命名）",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": null,
+        "crystal_cut": "x切",
+        "propagation_axis": "z传",
+        "polarization_tags": "TE、TM",
+        "sidewall_angle_deg": 62.0,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": null,
+        "differences": [
+          "目录角度 63°，工程角度 62°"
+        ],
+        "parameter_state": "待补充或核对",
+        "issues": "目录角度 63°，工程角度 62°"
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/PSR_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -137.25,
+            -1.9595
+          ],
+          "width_um": 0.7000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            137.25,
+            -1.9595
+          ],
+          "width_um": 2.5,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt3",
+          "center_um": [
+            137.25,
+            2.7095000000000002
+          ],
+          "width_um": 1.0,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    },
+    {
+      "id": "POL02",
+      "process": "600_300",
+      "library": "JNULib_TFLN_600_300",
+      "cell_name": "PDMC_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM",
+      "physical_bbox_um": [
+        -253.5,
+        -2.7190000000000003,
+        253.5,
+        2.7190000000000003
+      ],
+      "devrec_bbox_um": [
+        -253.5,
+        -9.119,
+        253.5,
+        3.7190000000000003
+      ],
+      "author": "By Songliang Chen, 2026/10/13",
+      "author_text_height_um": 3.0,
+      "author_gap_um": 0.5,
+      "author_layout": {
+        "height_um": 3.0,
+        "anchor_um": [
+          -253.0,
+          -3.2190000000000003
+        ],
+        "envelope_bbox_um": [
+          -253.0,
+          -8.619,
+          -170.35,
+          -3.2190000000000003
+        ],
+        "margin_um": 0.5,
+        "placement": "inside DevRec, below waveguide"
+      },
+      "issues": "目录角度 63°，工程角度 62°",
+      "parameters": {
+        "category": "PDMC/DMPS（缩写待确认）",
+        "film_thickness_nm": 600.0,
+        "etch_depth_nm": 300.0,
+        "mode_spot_um": null,
+        "crystal_cut": "x切",
+        "propagation_axis": "z传",
+        "polarization_tags": "TE、TM",
+        "sidewall_angle_deg": 62.0,
+        "nominal_angle_deg": 63,
+        "cladding": "空气包层",
+        "source_cladding": null,
+        "differences": [
+          "目录角度 63°，工程角度 62°"
+        ],
+        "parameter_state": "待补充或核对",
+        "issues": "目录角度 63°，工程角度 62°"
+      },
+      "representation": "blackbox",
+      "geometry_status": "固定黑盒；内部轮廓未公开",
+      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
+      "low_step_deferred": false,
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/PDMC_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM.gds",
+      "pins": [
+        {
+          "name": "opt1",
+          "center_um": [
+            -253.5,
+            0.0
+          ],
+          "width_um": 0.7000000000000001,
+          "direction_deg": 180,
+          "path_length_um": 0.02,
+          "side": "left",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt2",
+          "center_um": [
+            253.5,
+            -1.3315000000000001
+          ],
+          "width_um": 1.175,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        },
+        {
+          "name": "opt3",
+          "center_um": [
+            253.5,
+            1.3315000000000001
+          ],
+          "width_um": 1.175,
+          "direction_deg": 0,
+          "path_length_um": 0.02,
+          "side": "right",
+          "kind": "waveguide_facet"
+        }
+      ]
+    }
+  ],
+  "overviews": [
+    {
+      "process": "300_125",
+      "cell_name": "JNU_MWP_TFLN_PDK_300_125_V1_0_OVERVIEW_BLACKBOX",
+      "device_count": 1,
+      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_300_125_V1.0_BLACKBOX.gds"
+    },
+    {
+      "process": "400_200",
+      "cell_name": "JNU_MWP_TFLN_PDK_400_200_V1_0_OVERVIEW_BLACKBOX",
+      "device_count": 1,
+      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_400_200_V1.0_BLACKBOX.gds"
+    },
+    {
+      "process": "600_300",
+      "cell_name": "JNU_MWP_TFLN_PDK_600_300_V1_0_OVERVIEW_BLACKBOX",
+      "device_count": 10,
+      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_600_300_V1.0_BLACKBOX.gds"
+    },
+    {
+      "process": "600_600",
+      "cell_name": "JNU_MWP_TFLN_PDK_600_600_V1_0_OVERVIEW_BLACKBOX",
+      "device_count": 1,
+      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_600_600_V1.0_BLACKBOX.gds"
+    }
+  ]
+}

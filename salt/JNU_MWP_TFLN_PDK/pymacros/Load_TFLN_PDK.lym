@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<klayout-macro>
+ <description>Load JNU_MWP_TFLN_PDK V1.0</description>
+ <category>pymacros</category>
+ <autorun>false</autorun>
+ <show-in-menu>true</show-in-menu>
+ <menu-path>tools_menu.end</menu-path>
+ <interpreter>python</interpreter>
+ <text># -*- coding: utf-8 -*-
+# 时间: 2026-10
+# 供已经打开的 KLayout 加载新安装的库，幂等且不触碰其他 PDK。
+from pathlib import Path
+import importlib
+import sys
+_directory = Path(__file__).resolve().parent
+if str(_directory) not in sys.path:
+    sys.path.insert(0, str(_directory))
+# 已打开会话可能缓存旧版函数，先更新模块再重建库与菜单。
+for _name in ("tfln_library", "tfln_tools.actions", "tfln_tools.menu"):
+    if _name in sys.modules:
+        importlib.reload(sys.modules[_name])
+from tfln_tools.actions import reload_pdk
+reload_pdk()
+</text>
+</klayout-macro>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<salt-grain>
+  <name>JNU_MWP_TFLN_PDK</name>
+  <version>1.0</version>
+  <api-version>0.30</api-version>
+  <title>JNU_MWP_TFLN_PDK V1.0 — Public Blackbox</title>
+  <doc>Four TFLN process libraries, 13 fixed blackboxes, 55 optical ports and layout tools.</doc>
+  <doc-url>https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK</doc-url>
+  <url>https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK</url>
+  <license>MIT</license>
+  <author>Songliang Chen</author>
+  <author-contact />
+</salt-grain>

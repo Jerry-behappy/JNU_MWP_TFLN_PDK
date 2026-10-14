@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<technology>
+ <name>JNU_MWP_TFLN_PDK</name>
+ <description/>
+ <group/>
+ <dbu>0.0001</dbu>
+ <base-path/>
+ <original-base-path/>
+ <layer-properties_file>layers.lyp</layer-properties_file>
+ <add-other-layers>true</add-other-layers>
+ <reader-options><common><create-other-layers>true</create-other-layers><enable-properties>true</enable-properties><enable-text-objects>true</enable-text-objects></common></reader-options>
+ <writer-options><format>GDS2</format><gds2><max-vertex-count>8000</max-vertex-count><max-cellname-length>256</max-cellname-length><libname>JNU_MWP_TFLN_PDK_V1_0</libname></gds2></writer-options>
+</technology>
