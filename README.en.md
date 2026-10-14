@@ -13,17 +13,15 @@ The public edition can be installed and used independently. Blackboxes retain re
 
 ## Installation and updates
 
-### Windows: install a Git clone
+### Windows: drag the installer into KLayout
 
-Requires KLayout 0.30.x with Python macros and [Git](https://git-scm.com/downloads).
+First installation requires KLayout 0.30.x with Python macros and [Git](https://git-scm.com/downloads).
 
-```powershell
-git clone https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git
-cd JNU_MWP_TFLN_PDK
-powershell -ExecutionPolicy Bypass -File .\Install_Cloned_PDK.ps1 -KLayoutDataPath "YOUR_KLAYOUT_USER_DIRECTORY"
-```
+1. **[Download Install_JNU_TFLN_PDK.lym](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/releases/download/installer-macro/Install_JNU_TFLN_PDK.lym)**.
+2. Drag the `.lym` into the KLayout you normally use. Select **Install JNU TFLN PDK** in **Macro Development**, click the green **Run** button, then click **安装 / 更新** (Install / Update).
+3. Restart KLayout, select `JNU_MWP_TFLN_PDK`, and check the four libraries and the `JNU_MWP_TFLN_PDK V1.0` menu.
 
-The installer links `salt/JNU_MWP_TFLN_PDK` into the KLayout user directory and preserves existing installations. Restart KLayout, select `JNU_MWP_TFLN_PDK`, and check the four libraries and the `JNU_MWP_TFLN_PDK V1.0` menu.
+The macro reads the user directory from the running KLayout, clones main in the background and creates a directory junction. No manual path entry or shared drive with KLayout is needed. Run the same macro again to safely update an existing public Git installation. AI installation prompts are provided below.
 
 ### Install or update with an AI agent
 
@@ -31,7 +29,7 @@ Copy these prompts to an agent with local file and command access.
 
 **Installation prompt**
 
-> Install https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK in the KLayout I normally use. Locate its actual user directory, clone the repository and run Install_Cloned_PDK.ps1 to create a directory junction. Preserve other PDKs, existing TFLN installations, whiteboxes and local edits. Verify the Technology, four libraries, 13 blackboxes and menu.
+> Install https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK in the KLayout I normally use. Prefer Install_JNU_TFLN_PDK.lym to read its user directory automatically and install using Git and a directory junction. Preserve other PDKs, existing TFLN installations, whiteboxes and local edits. Restart and verify the Technology, four libraries, 13 blackboxes and menu.
 
 **Update prompt**
 
@@ -39,7 +37,7 @@ Copy these prompts to an agent with local file and command access.
 
 ### Maintenance and whiteboxes
 
-- Run `git pull --ff-only origin main` from a clean clone, then restart KLayout. The **Reload TFLN PDK** menu also supports Python-only changes.
+- Run the installer macro again and click **Install / Update** to check the remote and fast-forward a clean main checkout. Alternatively, run `git pull --ff-only origin main`. Restart KLayout after updating; **Reload TFLN PDK** also supports Python-only changes.
 - Whiteboxes and original simulation projects are stored and authorized separately. This repository has no whitebox download, automatic whitebox installation or credential configuration.
 - Contributions use feature branches and pull requests. Direct pushes, force pushes and deletion of `main` are blocked.
 

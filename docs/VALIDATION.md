@@ -7,6 +7,7 @@
 - 全部 55 个光学端口保留坐标、宽度和方向；原生 SiEPIC 识别得到 13 个器件，并通过旋转、镜像验证。
 - 13 项菜单动作可加载、执行并重复重载；作者署名位于 DevRec 框内。
 - 隔离的公开安装在没有 SOI PDK、没有白盒器件库时可启动和使用。安装器重复运行会保留同一目录联接。
+- 拖入安装宏与唯一源码逐字一致；原生 KLayout 验证自动读取目录、真实 Git 后台任务和 Qt 状态更新；本地 Git 夹具验证首次安装、重复安装、快进更新及本地修改、分支、origin、超前提交和旧安装保护。
 
 Validated locally with native KLayout 0.30.9 on 2026-10-14: four libraries (1/1/10/1), 13 placeable blackboxes, 55 preserved optical ports, save/reopen, SiEPIC recognition, rotation/mirroring, 13 menu actions and author text inside DevRec. The standalone public installation runs without the SOI PDK or whitebox data.
 
@@ -15,6 +16,7 @@ Validated locally with native KLayout 0.30.9 on 2026-10-14: four libraries (1/1/
 ```shell
 python -m pip install 'klayout>=0.30,<0.31'
 python tools/verify_public_pdk.py
+python tools/verify_installer.py
 ```
 
 GitHub Actions 在 main 推送和 PR 时运行同一公开目录与黑盒接口检查；原生 GUI 与 SiEPIC 的本地验收单独完成。

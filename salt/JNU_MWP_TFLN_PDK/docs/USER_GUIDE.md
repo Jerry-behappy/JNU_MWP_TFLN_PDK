@@ -74,9 +74,12 @@ The **Libraries** submenu opens four process overviews and the blackbox GDS fold
 <a id="installation"></a>
 ## 安装与维护 / Installation and maintenance
 
-安装脚本为根目录的 `Install_Cloned_PDK.ps1`。实际 KLayout 用户目录可能与程序目录不同；通过 `-KLayoutDataPath` 明确指定。脚本遇到其他来源的同名安装会停止并保留原文件。
+下载 [Install_JNU_TFLN_PDK.lym](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/releases/download/installer-macro/Install_JNU_TFLN_PDK.lym)，拖入正在使用的 KLayout，在 Macro Development 选择 **Install JNU TFLN PDK**，点击绿色 Run，再点击“安装 / 更新”。完成后重启。
 
-Run the root `Install_Cloned_PDK.ps1` with `-KLayoutDataPath` pointing to the actual KLayout user directory. The installer stops and preserves files if another installation already occupies that location.
+Download [Install_JNU_TFLN_PDK.lym](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/releases/download/installer-macro/Install_JNU_TFLN_PDK.lym), drag it into KLayout, select **Install JNU TFLN PDK** in Macro Development, click Run, then Install / Update. Restart when complete.
+
+安装宏自动读取当前 KLayout 配置目录，Git 任务在后台运行。重复运行可安全更新干净 main；遇到本地修改、开发分支、未发布提交、错误 origin 或旧版手动安装时停止并保留原文件。手动克隆用户仍可使用根目录 `Install_Cloned_PDK.ps1`。
+The macro reads the current KLayout user directory and runs Git in a background thread. Re-running safely updates a clean main; local edits, development branches, unpublished commits, wrong remotes and legacy installations are preserved. Manual Git-clone users can still use the root `Install_Cloned_PDK.ps1`.
 
 干净的 Git 克隆可使用 `git pull --ff-only origin main` 更新。Technology、启动宏或安装路径有变更时重启 KLayout；仅 Python 运行文件变更时可尝试 **重新加载 TFLN PDK / Reload TFLN PDK**。
 

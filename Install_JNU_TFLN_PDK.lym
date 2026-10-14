@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='utf-8'?>
+<klayout-macro>
+ <description>Install JNU TFLN PDK</description>
+ <version>1.0</version>
+ <category>pymacros</category>
+ <prolog />
+ <epilog />
+ <doc />
+ <autorun>false</autorun>
+ <autorun-early>false</autorun-early>
+ <shortcut />
+ <show-in-menu>false</show-in-menu>
+ <group-name />
+ <menu-path />
+ <interpreter>python</interpreter>
+ <dsl-interpreter-name />
+ <text># -*- coding: utf-8 -*-
+# 创建者: Junyi Zhang
+# 时间: 2026-10
+"""KLayout 拖入安装宏的唯一逻辑源；Git 在后台运行，Qt 由主线程更新。"""
+import os
+from pathlib import Path
+import queue
+import shutil
+import subprocess
+import threading
+
+PUBLIC_URL = "https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git"
+PDK_RELATIVE = Path("salt/JNU_MWP_TFLN_PDK")
+
+
+def find_git():
+    candidates = [shutil.which("git")]
+    for variable in ("ProgramFiles", "ProgramFiles(x86)", "LOCALAPPDATA"):
+        base = os.environ.get(variable)
+        if base:
+            candidates.extend(str(Path(base) / suffix) for suffix in
+                              ("Git/cmd/git.exe", "Programs/Git/cmd/git.exe"))
+    for candidate in candidates:
+        if candidate and Path(candidate).is_file():
+            return str(candidate)
+    raise RuntimeError("未找到 Git。请点击 Install Git，安装后重新打开 KLayout。")
+
+
+def _run(arguments, cwd=None):
+    environment = os.environ.copy()
+    environment["GIT_TERMINAL_PROMPT"] = "0"
+    result = subprocess.run([str(a) for a in arguments], cwd=cwd, env=environment,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                            encoding="utf-8", errors="replace", timeout=600,
+                            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+    if result.returncode:
+        # 不展示可能带凭据的 Git 原始错误；失败不覆盖或删除已有安装。
+        raise RuntimeError("命令执行失败（退出码 %d）。请检查网络、Git 和目录权限；已有文件已保留。" % result.returncode)
+    return result.stdout.strip()
+
+
+def _git(git, directory, *arguments):
+    return _run([git, "-C", directory, *arguments])
+
+
+def _repo_identity(url):
+    return url.strip().removesuffix(".git").replace("git@github.com:", "https://github.com/").rstrip("/")
+
+
+def check_checkout(git, directory, url):
+    directory = Path(directory)
+    if not (directory / ".git").exists():
+        raise RuntimeError("已有目录不是 Git 克隆，保留原内容：%s" % directory)
+    if _repo_identity(_git(git, directory, "remote", "get-url", "origin")) != _repo_identity(url):
+        raise RuntimeError("已有目录的 origin 不属于 TFLN 仓库：%s" % directory)
+    if _git(git, directory, "branch", "--show-current") != "main":
+        raise RuntimeError("当前克隆不在 main 分支，请先处理工作分支：%s" % directory)
+    if _git(git, directory, "status", "--porcelain"):
+        raise RuntimeError("检测到本地修改或未跟踪文件，请先保存并处理：%s" % directory)
+
+
+def checkout(git, directory, url, notify):
+    """只克隆新目录或更新干净 main；有本地超前提交或分歧时停止。"""
+    directory = Path(directory)
+    if directory.exists():
+        check_checkout(git, directory, url)
+        notify("检查远端更新……")
+        _git(git, directory, "fetch", "origin", "main")
+        local = _git(git, directory, "rev-parse", "HEAD")
+        remote = _git(git, directory, "rev-parse", "refs/remotes/origin/main")
+        base = _git(git, directory, "merge-base", "HEAD", "refs/remotes/origin/main")
+        if base != local:
+            raise RuntimeError("本地 main 有未发布提交或已分歧，请人工处理：%s" % directory)
+        if local == remote:
+            notify("已是最新版本。")
+        else:
+            notify("正在快进更新……")
+            _git(git, directory, "merge", "--ff-only", "refs/remotes/origin/main")
+    else:
+        directory.parent.mkdir(parents=True, exist_ok=True)
+        notify("正在克隆 TFLN 仓库，请稍候……")
+        _run([git, "clone", "--branch", "main", "--single-branch", url, directory])
+        check_checkout(git, directory, url)
+    return directory
+
+
+def _existing_public_checkout(home):
+    target = Path(home) / "salt/JNU_MWP_TFLN_PDK"
+    if not os.path.lexists(target):
+        return None
+    resolved = target.resolve()
+    repository = resolved.parent.parent
+    if (repository / ".git").exists() and resolved == repository / PDK_RELATIVE:
+        return repository
+    raise RuntimeError("已有 TFLN 安装不属于本公开 Git 克隆，已保留：%s\n"
+                       "请保留授权白盒和本地修改，确认安装目录后再处理。" % target)
+
+
+def _link_directory(source, target):
+    source, target = Path(source).resolve(), Path(target)
+    if os.path.lexists(target):
+        if target.resolve() == source:
+            return
+        raise RuntimeError("安装目标已存在，原文件保留：%s" % target)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if os.name == "nt":
+        # 路径由环境变量传给 PowerShell，支持中文、空格并避免代码插值。
+        environment = os.environ.copy()
+        environment["TFLN_LINK_SOURCE"] = str(source)
+        environment["TFLN_LINK_TARGET"] = str(target)
+        result = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-Command",
+                                 "$ErrorActionPreference='Stop'; New-Item -ItemType Junction "
+                                 "-Path $env:TFLN_LINK_TARGET -Target $env:TFLN_LINK_SOURCE | Out-Null"],
+                                env=environment, capture_output=True, timeout=30,
+                                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        if result.returncode:
+            raise RuntimeError("无法创建目录联接，请检查目标目录权限：%s" % target)
+    else:
+        target.symlink_to(source, target_is_directory=True)
+    if target.resolve() != source:
+        raise RuntimeError("目录联接核验失败：%s" % target)
+
+
+def install_public(home, notify=lambda _message: None):
+    home = Path(home).resolve()
+    repository = _existing_public_checkout(home)
+    if repository is None:
+        repository = home / "jnu_repositories/JNU_MWP_TFLN_PDK"
+    repository = checkout(find_git(), repository, PUBLIC_URL, notify)
+    source = repository / PDK_RELATIVE
+    if not (source / "JNU_MWP_TFLN_PDK.lyt").is_file() or not (source / "manifest.json").is_file():
+        raise RuntimeError("克隆中缺少 TFLN Technology 或清单，未建立安装联接。")
+    _link_directory(source, home / "salt/JNU_MWP_TFLN_PDK")
+    return "安装/更新完成。请保存版图并重启 KLayout。\n源码：%s" % repository
+
+
+def show_installer(execute=True, auto_start=False):
+    import pya
+    app = pya.Application.instance()
+    home = str(app.application_data_path())
+
+    class InstallerDialog(pya.QDialog):
+        def __init__(self):
+            super().__init__(app.main_window())
+            self.busy = False
+            self.events = queue.Queue()
+            self.setWindowTitle("Install JNU TFLN PDK")
+            self.resize(680, 350)
+            layout = pya.QVBoxLayout(self)
+            layout.addWidget(pya.QLabel("安装 / 更新 JNU_MWP_TFLN_PDK", self))
+            location = pya.QLineEdit(home, self)
+            location.setReadOnly(True)
+            layout.addWidget(location)
+            self.output = pya.QPlainTextEdit(self)
+            self.output.setReadOnly(True)
+            self.output.setPlainText("自动使用当前 KLayout 用户目录。公开版包含黑盒器件；保留已有安装和白盒。")
+            layout.addWidget(self.output)
+            row = pya.QHBoxLayout()
+            self.start_button = pya.QPushButton("安装 / 更新", self)
+            self.close_button = pya.QPushButton("关闭", self)
+            git_button = pya.QPushButton("Install Git", self)
+            git_button.clicked(lambda _checked=False: pya.QDesktopServices.openUrl(pya.QUrl("https://git-scm.com/downloads")))
+            self.start_button.clicked(lambda _checked=False: self.start())
+            self.close_button.clicked(lambda _checked=False: self.reject())
+            for button in (git_button, self.start_button, self.close_button):
+                row.addWidget(button)
+            layout.addLayout(row)
+            self.timer = pya.QTimer(self)
+            self.timer.setInterval(100)
+            self.timer.timeout(self.poll)
+
+        def reject(self):
+            if not self.busy:
+                super().reject()
+
+        def closeEvent(self, event):
+            if self.busy:
+                event.ignore()
+            else:
+                super().closeEvent(event)
+
+        def start(self):
+            if self.busy:
+                return
+            self.busy = True
+            self.start_button.setEnabled(False)
+            self.close_button.setEnabled(False)
+            self.output.setPlainText("正在检查安装环境……")
+            events = self.events
+
+            def worker():
+                try:
+                    result = install_public(home, lambda message: events.put(("progress", message)))
+                    events.put(("done", result))
+                except Exception as error:
+                    events.put(("error", str(error)))
+
+            self.worker = threading.Thread(target=worker, daemon=True)
+            self.worker.start()
+            self.timer.start()
+
+        def poll(self):
+            while not self.events.empty():
+                kind, message = self.events.get_nowait()
+                self.output.appendPlainText(message)
+                if kind != "progress":
+                    self.timer.stop()
+                    self.busy = False
+                    self.close_button.setEnabled(True)
+                    self.start_button.setEnabled(kind == "error")
+
+    dialog = InstallerDialog()
+    if auto_start:
+        dialog.start()
+    if execute:
+        dialog.exec_()
+    return dialog
+
+
+if __name__ == "__main__":
+    show_installer()
+</text>
+</klayout-macro>
