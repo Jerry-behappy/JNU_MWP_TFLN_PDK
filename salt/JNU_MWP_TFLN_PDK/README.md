@@ -13,17 +13,15 @@
 
 ## 安装与更新
 
-### Windows：Git 克隆安装
+### Windows：拖入 KLayout 安装
 
-需要 KLayout 0.30.x、Python 宏支持及 [Git](https://git-scm.com/downloads)。在希望保存源码的目录运行：
+首次安装需要 KLayout 0.30.x、Python 宏支持及 [Git](https://git-scm.com/downloads)。
 
-```powershell
-git clone https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git
-cd JNU_MWP_TFLN_PDK
-powershell -ExecutionPolicy Bypass -File .\Install_Cloned_PDK.ps1 -KLayoutDataPath "你的KLayout用户目录"
-```
+1. **[下载安装宏 Install_JNU_TFLN_PDK.lym](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/releases/download/installer-macro/Install_JNU_TFLN_PDK.lym)**。
+2. 将 `.lym` 拖入平时使用的 KLayout，在 **Macro Development** 中选择 **Install JNU TFLN PDK**，点击绿色 **Run**，再点击“安装 / 更新”。
+3. 完成后重启 KLayout，选择 `JNU_MWP_TFLN_PDK` Technology，确认四个 Library 和 `JNU_MWP_TFLN_PDK V1.0` 顶部菜单出现。
 
-安装脚本将 `salt/JNU_MWP_TFLN_PDK` 联接到 KLayout 用户目录，不覆盖已有安装。重启 KLayout 后选择 `JNU_MWP_TFLN_PDK` Technology，确认四个 Library 和 `JNU_MWP_TFLN_PDK V1.0` 顶部菜单出现。
+安装宏自动从正在运行的 KLayout 读取用户配置目录，后台克隆 main 并建立目录联接，无需手动填写路径，也不要求程序与源码位于同一盘。已克隆的公开版可重新运行同一个宏进行安全更新。也可使用下方 AI 提示词安装。
 
 ### 用 AI 代理安装或更新
 
@@ -31,7 +29,7 @@ powershell -ExecutionPolicy Bypass -File .\Install_Cloned_PDK.ps1 -KLayoutDataPa
 
 **安装提示词**
 
-> 请在我平时使用的 KLayout 中安装 https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK 。确认实际使用的 KLayout 用户目录，Git 克隆后运行 Install_Cloned_PDK.ps1，通过目录联接安装。保留其他 PDK、现有 TFLN 安装、白盒和本地修改。完成后检查 Technology、四个 Library、13 个黑盒和功能菜单。
+> 请在我平时使用的 KLayout 中安装 https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK 。优先使用 Install_JNU_TFLN_PDK.lym，自动读取当前 KLayout 用户目录，通过 Git 克隆和目录联接安装。保留其他 PDK、现有 TFLN 安装、白盒和本地修改。完成后重启并检查 Technology、四个 Library、13 个黑盒和功能菜单。
 
 **更新提示词**
 
@@ -39,7 +37,7 @@ powershell -ExecutionPolicy Bypass -File .\Install_Cloned_PDK.ps1 -KLayoutDataPa
 
 ### 更新与白盒
 
-- 在干净的克隆目录执行 `git pull --ff-only origin main`，然后重启 KLayout。仅修改 Python 功能时也可运行菜单中的 **重新加载 TFLN PDK**。
+- 重新运行安装宏，点击“安装 / 更新”，检查远端并只对干净 main 做快进更新。也可在克隆目录执行 `git pull --ff-only origin main`；完成后重启 KLayout。仅修改 Python 功能时可运行菜单中的 **重新加载 TFLN PDK**。
 - 白盒与原始仿真工程单独保存和授权；公开仓库没有白盒下载、自动白盒安装或凭据配置。
 - 贡献者通过功能分支与 PR 提交更新；`main` 禁止直接推送、强推和删除。
 

@@ -2,6 +2,7 @@
 
 ## 2026-10-14 — V1.0 Public Edition
 
+- Added the standalone `Install_JNU_TFLN_PDK.lym`: drag into KLayout, detect its user directory, clone/link or safely fast-forward in the background, and preserve existing installations and local edits.
 - Published four process libraries with 13 fixed blackboxes and 55 optical ports.
 - Retained the Technology, red Waveguide style, PinRec, DevRec and 13 menu actions.
 - Blackboxes contain rectangles, interfaces, recognition frames and text. Whiteboxes, FSP projects, internal geometry and original project indexes remain local.
