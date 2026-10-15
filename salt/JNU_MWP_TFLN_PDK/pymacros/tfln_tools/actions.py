@@ -2,9 +2,11 @@
 # 时间: 2026-10
 """TFLN 版图、器件库及只读参数菜单动作。"""
 import json
+import sys
 from pathlib import Path
 import pya
 from tfln_library import PDK_ROOT, TECHNOLOGY_NAME, register_all, load_technology
+_RELOAD_TIMER = globals().get("_RELOAD_TIMER")
 
 
 def value(obj, name):
@@ -164,11 +166,16 @@ def open_local(relative):
 def about():
     data = manifest()
     total = sum(len(r["pins"]) for r in data["devices"])
-    pya.MessageBox.info("JNU_MWP_TFLN_PDK V1.0", "Public BLACKBOX edition\n4 Libraries / 13 devices / %d optical ports\nWaveguide: 1/0 (top width)\nPinRec: 1/10; DevRec: 68/0\nEC01–EC03: 低台阶待处理\nBy Songliang Chen, 2026/10/13" % total, pya.MessageBox.Ok)
+    pya.MessageBox.info("JNU_MWP_TFLN_PDK V1.0", "5 Libraries / %d fixed devices / %d optical ports\nJNULib_TFLN_pcell: 9 PCells\nWaveguide: 1/0 (top width)\nPinRec: 1/10; DevRec: 68/0\nEC01–EC03: 低台阶待处理\nBy Songliang Chen, 2026/10/13" % (len(data["devices"]), total), pya.MessageBox.Ok)
 
 
 def reload_pdk():
+    for module in list(sys.modules):
+        if module.startswith("tfln_layout_tools.actions."):
+            sys.modules.pop(module, None)
     register_all(force_reload=True)
+    from tfln_pcell_core.internal_waveguide_registry import install_internal_waveguide_registration
+    install_internal_waveguide_registration()
     window = pya.Application.instance().main_window()
     for i in range(window.views()):
         view = window.view(i)
@@ -178,3 +185,14 @@ def reload_pdk():
             cv.layout().refresh()
     from .menu import register_menu
     register_menu()
+
+
+def schedule_reload():
+    """延迟到当前菜单回调结束后重载，保留计时器和用户快捷键。"""
+    global _RELOAD_TIMER
+    if _RELOAD_TIMER is not None and _RELOAD_TIMER.isActive():
+        return
+    _RELOAD_TIMER = pya.QTimer(pya.Application.instance().main_window())
+    _RELOAD_TIMER.setSingleShot(True)
+    _RELOAD_TIMER.timeout(reload_pdk)
+    _RELOAD_TIMER.start(0)

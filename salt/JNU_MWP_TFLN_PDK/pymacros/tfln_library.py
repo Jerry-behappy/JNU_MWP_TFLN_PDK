@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # 时间: 2026-10
-"""加载公开 TFLN 固定黑盒；不包含内部制造轮廓。"""
+"""加载便携式 TFLN 固定器件库；不依赖源 FSP 或其他 PDK。"""
 import json
+import sys
 from pathlib import Path
 import pya
 
@@ -26,12 +27,13 @@ def load_technology():
 class FixedTFLNLibrary(pya.Library):
     def __init__(self, process, records):
         super().__init__()
-        self.description = "JNU_MWP_TFLN_PDK %s | BLACKBOX | thickness/etch %s nm | %d devices | By Songliang Chen" % (VERSION, process.replace("_", "/"), len(records))
+        self.description = "JNU_MWP_TFLN_PDK %s | thickness/etch %s nm | %d blackboxes" % (VERSION, process.replace("_", "/"), len(records))
         self.layout().dbu = 0.0001
         self.source_root = str(PDK_ROOT)
         for record in records:
+            from tfln_tools.authorized_gds import private_source
             source = pya.Layout()
-            source.read(str(PDK_ROOT / record["gds_relative"]))
+            source.read(str(private_source(record) or PDK_ROOT / record["gds_relative"]))
             roots = [source.cell(t) if isinstance(t, int) else t for t in source.each_top_cell()]
             if len(roots) != 1 or roots[0].name != record["cell_name"]:
                 raise RuntimeError("器件顶层与清单不一致: " + record["id"])
@@ -44,7 +46,7 @@ class FixedTFLNLibrary(pya.Library):
 
 
 def register_all(force_reload=False):
-    """幂等注册四个库，避免启动宏及手动加载产生重复条目。"""
+    """幂等注册四个固定库和独立 PCell 库。"""
     load_technology()
     manifest = json.loads((PDK_ROOT / "manifest.json").read_text(encoding="utf-8"))
     result = []
@@ -63,4 +65,11 @@ def register_all(force_reload=False):
         if force_reload:
             library.refresh()
         result.append(library)
+    if force_reload:
+        # 先刷新独立几何模块，再用相同 Library 名称替换声明并刷新已有实例。
+        for module in list(sys.modules):
+            if module == "tfln_pcell_library" or module.startswith(("tfln_pcells", "tfln_pcell_core")):
+                sys.modules.pop(module, None)
+    from tfln_pcell_library import register_pcell_library
+    result.append(register_pcell_library(force_reload=force_reload))
     return result

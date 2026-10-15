@@ -10,5 +10,7 @@ if str(_directory) not in sys.path:
     sys.path.insert(0, str(_directory))
 from tfln_library import register_all
 register_all()
+from tfln_pcell_core.internal_waveguide_registry import install_internal_waveguide_registration
+install_internal_waveguide_registration()
 from tfln_tools.menu import register_menu
 register_menu()

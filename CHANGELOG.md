@@ -1,5 +1,13 @@
 # 更新说明
 
+## 2026-10-15 — V1.0
+
+- 按补录参数更新固定器件文件名和顶层 Cell；EC01/EC02 的 MFD 继续使用 Unknow。
+- 删除 MMI07，四组固定库为 1/1/9/1，共 12 个器件与 47 个光学端口。
+- 新增独立 JNULib_TFLN_pcell，复制 9 个公开 SOI PCell；默认尺寸保留。
+- 补齐 JNU PDK 对应功能，26 项菜单中英文同时显示，结构 DRC 使用 TFLN 图层。
+- Library 说明删除 By Songliang Chen，器件框内署名保留。
+
 ## 2026-10-14 — V1.0 公开版
 
 - 新增独立安装宏 `Install_JNU_TFLN_PDK.lym`：拖入 KLayout，自动读取配置目录，在后台 Git 克隆、建立联接或安全快进更新；保留现有安装和本地修改。
