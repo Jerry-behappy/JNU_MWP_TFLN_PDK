@@ -82,7 +82,7 @@
       "id": "EC01",
       "process": "300_125",
       "library": "JNULib_TFLN_300_125",
-      "cell_name": "EC_cutUnknow_propUnknow_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFDUnknowum_SIO2_TE-TM",
+      "cell_name": "EC_Xcut_Yprop_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFDUnknowum_SIO2_TE-TM",
       "physical_bbox_um": [
         -75.5,
         -2.0500000000000003,
@@ -113,30 +113,34 @@
         "margin_um": 0.5,
         "placement": "inside DevRec, below waveguide"
       },
-      "issues": "缺：晶向、传播方向、模斑尺寸。目录角度 63°，工程角度 70°",
+      "issues": "模斑尺寸待确认；目录角度 63°，代表工程角度 70°",
       "parameters": {
         "category": "端面耦合器 EC",
-        "film_thickness_nm": 300.0,
-        "etch_depth_nm": 125.0,
+        "film_thickness_nm": 300,
+        "etch_depth_nm": 125,
         "mode_spot_um": null,
-        "crystal_cut": "Unknow",
-        "propagation_axis": "Unknow",
+        "crystal_cut": "x切",
+        "propagation_axis": "y传",
         "polarization_tags": "TE、TM",
         "sidewall_angle_deg": 70.0,
         "nominal_angle_deg": 63,
         "cladding": "SiO₂包层",
         "source_cladding": "SiO₂包层",
         "differences": [
-          "目录角度 63°，工程角度 70°"
+          "目录角度 63°，代表工程角度 70°"
         ],
-        "parameter_state": "待补充或核对",
-        "issues": "缺：晶向、传播方向、模斑尺寸。目录角度 63°，工程角度 70°"
+        "parameter_state": "参数已补录；差异保留",
+        "issues": "模斑尺寸待确认；目录角度 63°，代表工程角度 70°",
+        "confirmed_cladding": "SiO₂包层",
+        "project_angle_display": 70,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "EC_Xcut_Yprop_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFDUnknowum_SIO2_TE-TM"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
       "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
       "low_step_deferred": true,
-      "gds_relative": "pymacros/tfln_blackbox_gds/300_125/EC_cutUnknow_propUnknow_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFDUnknowum_SIO2_TE-TM.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/300_125/EC_Xcut_Yprop_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFDUnknowum_SIO2_TE-TM.gds",
       "pins": [
         {
           "name": "opt1",
@@ -168,7 +172,7 @@
       "id": "EC02",
       "process": "400_200",
       "library": "JNULib_TFLN_400_200",
-      "cell_name": "EC_cutUnknow_propUnknow_thickness400nm_etchDepth200nm_sidewallAngle90deg_MFDUnknowum_SIO2",
+      "cell_name": "EC_Xcut_Yprop_thickness400nm_etchDepth200nm_sidewallAngle90deg_MFDUnknowum_SIO2_TE-TM",
       "physical_bbox_um": [
         -60.0,
         -0.7000000000000001,
@@ -199,30 +203,35 @@
         "margin_um": 0.5,
         "placement": "inside DevRec, below waveguide"
       },
-      "issues": "缺：晶向、传播方向、模斑尺寸。目录角度 63°，工程角度 90°",
+      "issues": "模斑尺寸待确认；目录角度 63°，代表工程角度 90°；工程存在 65 / 90°；本器件沿用所选代表工程 90°",
       "parameters": {
         "category": "端面耦合器 EC",
-        "film_thickness_nm": 400.0,
-        "etch_depth_nm": 200.0,
+        "film_thickness_nm": 400,
+        "etch_depth_nm": 200,
         "mode_spot_um": null,
-        "crystal_cut": "Unknow",
-        "propagation_axis": "Unknow",
-        "polarization_tags": "未明确",
-        "sidewall_angle_deg": 65.0,
+        "crystal_cut": "x切",
+        "propagation_axis": "y传",
+        "polarization_tags": "TE、TM",
+        "sidewall_angle_deg": 90.0,
         "nominal_angle_deg": 63,
         "cladding": "SiO₂包层",
         "source_cladding": "SiO₂包层",
         "differences": [
-          "目录角度 63°，工程角度 65°"
+          "目录角度 63°，代表工程角度 90°",
+          "工程存在 65 / 90°；本器件沿用所选代表工程 90°"
         ],
-        "parameter_state": "待补充或核对",
-        "issues": "缺：晶向、传播方向、模斑尺寸。目录角度 63°，工程角度 65°。目录角度 63°，工程角度 90°"
+        "parameter_state": "参数已补录；差异保留",
+        "issues": "模斑尺寸待确认；目录角度 63°，代表工程角度 90°；工程存在 65 / 90°；本器件沿用所选代表工程 90°",
+        "confirmed_cladding": "SiO₂包层",
+        "project_angle_display": "65 / 90",
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "EC_Xcut_Yprop_thickness400nm_etchDepth200nm_sidewallAngle90deg_MFDUnknowum_SIO2_TE-TM"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
       "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
       "low_step_deferred": true,
-      "gds_relative": "pymacros/tfln_blackbox_gds/400_200/EC_cutUnknow_propUnknow_thickness400nm_etchDepth200nm_sidewallAngle90deg_MFDUnknowum_SIO2.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/400_200/EC_Xcut_Yprop_thickness400nm_etchDepth200nm_sidewallAngle90deg_MFDUnknowum_SIO2_TE-TM.gds",
       "pins": [
         {
           "name": "opt1",
@@ -254,7 +263,7 @@
       "id": "EC03",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "EC_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR",
+      "cell_name": "EC_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR_TE",
       "physical_bbox_um": [
         -24.282400000000003,
         -0.7000000000000001,
@@ -285,28 +294,32 @@
         "margin_um": 0.5,
         "placement": "inside DevRec, below waveguide"
       },
-      "issues": "缺：晶向、传播方向",
+      "issues": "",
       "parameters": {
         "category": "端面耦合器 EC",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 300,
         "mode_spot_um": 3.2,
-        "crystal_cut": "Unknow",
-        "propagation_axis": "Unknow",
-        "polarization_tags": "未明确",
+        "crystal_cut": "x切",
+        "propagation_axis": "y传",
+        "polarization_tags": "TE",
         "sidewall_angle_deg": 63.0,
         "nominal_angle_deg": 63,
         "cladding": "空气包层",
         "source_cladding": "空气包层",
         "differences": [],
-        "parameter_state": "待补充或核对",
-        "issues": "缺：晶向、传播方向"
+        "parameter_state": "参数齐全",
+        "issues": "",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": 63,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "EC_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR_TE"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
       "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
       "low_step_deferred": true,
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR_TE.gds",
       "pins": [
         {
           "name": "opt1",
@@ -338,7 +351,7 @@
       "id": "EC04",
       "process": "600_600",
       "library": "JNULib_TFLN_600_600",
-      "cell_name": "EC_cutUnknow_propUnknow_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_AIR_TE-TM",
+      "cell_name": "EC_Xcut_Yprop_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_AIR_TE-TM",
       "physical_bbox_um": [
         -121.46010000000001,
         -8.5189,
@@ -369,14 +382,14 @@
         "margin_um": 0.5,
         "placement": "inside DevRec, below waveguide"
       },
-      "issues": "缺：晶向、传播方向。用户说明为空气包层，工程 h_c>0 且有 SiO₂ 包层",
+      "issues": "用户说明为空气包层，工程 h_c>0 且有 SiO₂ 包层",
       "parameters": {
         "category": "端面耦合器 EC",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 600.0,
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 600,
         "mode_spot_um": 3.2,
-        "crystal_cut": "Unknow",
-        "propagation_axis": "Unknow",
+        "crystal_cut": "x切",
+        "propagation_axis": "y传",
         "polarization_tags": "TE、TM",
         "sidewall_angle_deg": 63.0,
         "nominal_angle_deg": 63,
@@ -385,14 +398,18 @@
         "differences": [
           "用户说明为空气包层，工程 h_c>0 且有 SiO₂ 包层"
         ],
-        "parameter_state": "待补充或核对",
-        "issues": "缺：晶向、传播方向。用户说明为空气包层，工程 h_c>0 且有 SiO₂ 包层"
+        "parameter_state": "参数已补录；差异保留",
+        "issues": "用户说明为空气包层，工程 h_c>0 且有 SiO₂ 包层",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": 63,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "EC_Xcut_Yprop_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_AIR_TE-TM"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
       "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
       "low_step_deferred": false,
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_600/EC_cutUnknow_propUnknow_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_AIR_TE-TM.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_600/EC_Xcut_Yprop_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_AIR_TE-TM.gds",
       "pins": [
         {
           "name": "opt1",
@@ -458,8 +475,8 @@
       "issues": "",
       "parameters": {
         "category": "1×2 MMI",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 300,
         "mode_spot_um": null,
         "crystal_cut": "x切",
         "propagation_axis": "y传",
@@ -470,7 +487,11 @@
         "source_cladding": null,
         "differences": [],
         "parameter_state": "参数齐全",
-        "issues": ""
+        "issues": "",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": 63,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "MMI1x2_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
@@ -520,7 +541,7 @@
       "id": "MMI02",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI2x2_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR",
+      "cell_name": "MMI2x2_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE",
       "physical_bbox_um": [
         -67.25,
         -2.9000000000000004,
@@ -551,28 +572,34 @@
         "margin_um": 0.5,
         "placement": "inside DevRec, below waveguide"
       },
-      "issues": "缺：晶向、传播方向",
+      "issues": "侧壁角 63°沿用目录标记，工程无独立角度参数",
       "parameters": {
         "category": "2×2 MMI",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 300,
         "mode_spot_um": null,
-        "crystal_cut": "Unknow",
-        "propagation_axis": "Unknow",
-        "polarization_tags": "未明确",
-        "sidewall_angle_deg": null,
+        "crystal_cut": "x切",
+        "propagation_axis": "y传",
+        "polarization_tags": "TE",
+        "sidewall_angle_deg": 63.0,
         "nominal_angle_deg": 63,
         "cladding": "空气包层",
         "source_cladding": null,
-        "differences": [],
-        "parameter_state": "待补充或核对",
-        "issues": "缺：晶向、传播方向"
+        "differences": [
+          "侧壁角 63°沿用目录标记，工程无独立角度参数"
+        ],
+        "parameter_state": "参数已补录；差异保留",
+        "issues": "侧壁角 63°沿用目录标记，工程无独立角度参数",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": null,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "MMI2x2_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
       "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
       "low_step_deferred": false,
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI2x2_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI2x2_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE.gds",
       "pins": [
         {
           "name": "opt1",
@@ -662,8 +689,8 @@
       "issues": "",
       "parameters": {
         "category": "1×4 MMI",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 300,
         "mode_spot_um": null,
         "crystal_cut": "x切",
         "propagation_axis": "y传",
@@ -674,7 +701,11 @@
         "source_cladding": null,
         "differences": [],
         "parameter_state": "参数齐全",
-        "issues": ""
+        "issues": "",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": 63,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "MMI1x4_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
@@ -782,8 +813,8 @@
       "issues": "",
       "parameters": {
         "category": "1×4 MMI",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 300,
         "mode_spot_um": null,
         "crystal_cut": "x切",
         "propagation_axis": "z传",
@@ -794,7 +825,11 @@
         "source_cladding": null,
         "differences": [],
         "parameter_state": "参数齐全",
-        "issues": ""
+        "issues": "",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": 63,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "MMI1x4_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
@@ -902,8 +937,8 @@
       "issues": "",
       "parameters": {
         "category": "4×4 MMI",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 300,
         "mode_spot_um": null,
         "crystal_cut": "x切",
         "propagation_axis": "y传",
@@ -914,7 +949,11 @@
         "source_cladding": null,
         "differences": [],
         "parameter_state": "参数齐全",
-        "issues": ""
+        "issues": "",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": 63,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "MMI4x4_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
@@ -1058,8 +1097,8 @@
       "issues": "",
       "parameters": {
         "category": "4×4 MMI",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 300,
         "mode_spot_um": null,
         "crystal_cut": "x切",
         "propagation_axis": "z传",
@@ -1070,7 +1109,11 @@
         "source_cladding": null,
         "differences": [],
         "parameter_state": "参数齐全",
-        "issues": ""
+        "issues": "",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": 63,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "MMI4x4_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
@@ -1177,162 +1220,6 @@
       ]
     },
     {
-      "id": "MMI07",
-      "process": "600_300",
-      "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI4x4_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngleUnknowdeg_cladUnknow",
-      "physical_bbox_um": [
-        -177.5,
-        -8.0,
-        177.5,
-        8.0
-      ],
-      "devrec_bbox_um": [
-        -177.5,
-        -14.4,
-        177.5,
-        9.0
-      ],
-      "author": "By Songliang Chen, 2026/10/13",
-      "author_text_height_um": 3.0,
-      "author_gap_um": 0.5,
-      "author_layout": {
-        "height_um": 3.0,
-        "anchor_um": [
-          -177.0,
-          -8.5
-        ],
-        "envelope_bbox_um": [
-          -177.0,
-          -13.9,
-          -94.35000000000001,
-          -8.5
-        ],
-        "margin_um": 0.5,
-        "placement": "inside DevRec, below waveguide"
-      },
-      "issues": "缺：晶向、传播方向、侧壁角",
-      "parameters": {
-        "category": "4×4 MMI（按文件名）",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
-        "mode_spot_um": null,
-        "crystal_cut": "Unknow",
-        "propagation_axis": "Unknow",
-        "polarization_tags": "未明确",
-        "sidewall_angle_deg": null,
-        "nominal_angle_deg": null,
-        "cladding": "未明确",
-        "source_cladding": null,
-        "differences": [],
-        "parameter_state": "待补充或核对",
-        "issues": "缺：晶向、传播方向、侧壁角"
-      },
-      "representation": "blackbox",
-      "geometry_status": "固定黑盒；内部轮廓未公开",
-      "port_geometry_status": "端口位置、宽度与方向保持代表器件接口",
-      "low_step_deferred": false,
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngleUnknowdeg_cladUnknow.gds",
-      "pins": [
-        {
-          "name": "opt1",
-          "center_um": [
-            -177.5,
-            -6.0
-          ],
-          "width_um": 1.4000000000000001,
-          "direction_deg": 180,
-          "path_length_um": 0.02,
-          "side": "left",
-          "kind": "waveguide_facet"
-        },
-        {
-          "name": "opt2",
-          "center_um": [
-            -177.5,
-            -2.0
-          ],
-          "width_um": 1.4000000000000001,
-          "direction_deg": 180,
-          "path_length_um": 0.02,
-          "side": "left",
-          "kind": "waveguide_facet"
-        },
-        {
-          "name": "opt3",
-          "center_um": [
-            -177.5,
-            2.0
-          ],
-          "width_um": 1.4000000000000001,
-          "direction_deg": 180,
-          "path_length_um": 0.02,
-          "side": "left",
-          "kind": "waveguide_facet"
-        },
-        {
-          "name": "opt4",
-          "center_um": [
-            -177.5,
-            6.0
-          ],
-          "width_um": 1.4000000000000001,
-          "direction_deg": 180,
-          "path_length_um": 0.02,
-          "side": "left",
-          "kind": "waveguide_facet"
-        },
-        {
-          "name": "opt5",
-          "center_um": [
-            177.5,
-            -6.0
-          ],
-          "width_um": 1.4000000000000001,
-          "direction_deg": 0,
-          "path_length_um": 0.02,
-          "side": "right",
-          "kind": "waveguide_facet"
-        },
-        {
-          "name": "opt6",
-          "center_um": [
-            177.5,
-            -2.0
-          ],
-          "width_um": 1.4000000000000001,
-          "direction_deg": 0,
-          "path_length_um": 0.02,
-          "side": "right",
-          "kind": "waveguide_facet"
-        },
-        {
-          "name": "opt7",
-          "center_um": [
-            177.5,
-            2.0
-          ],
-          "width_um": 1.4000000000000001,
-          "direction_deg": 0,
-          "path_length_um": 0.02,
-          "side": "right",
-          "kind": "waveguide_facet"
-        },
-        {
-          "name": "opt8",
-          "center_um": [
-            177.5,
-            6.0
-          ],
-          "width_um": 1.4000000000000001,
-          "direction_deg": 0,
-          "path_length_um": 0.02,
-          "side": "right",
-          "kind": "waveguide_facet"
-        }
-      ]
-    },
-    {
       "id": "POL01",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
@@ -1367,11 +1254,11 @@
         "margin_um": 0.5,
         "placement": "inside DevRec, below waveguide"
       },
-      "issues": "目录角度 63°，工程角度 62°",
+      "issues": "目录角度 63°，代表工程角度 62°",
       "parameters": {
-        "category": "PSR（偏振分束旋转器，按命名）",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
+        "category": "PSR",
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 300,
         "mode_spot_um": null,
         "crystal_cut": "x切",
         "propagation_axis": "z传",
@@ -1381,10 +1268,14 @@
         "cladding": "空气包层",
         "source_cladding": null,
         "differences": [
-          "目录角度 63°，工程角度 62°"
+          "目录角度 63°，代表工程角度 62°"
         ],
-        "parameter_state": "待补充或核对",
-        "issues": "目录角度 63°，工程角度 62°"
+        "parameter_state": "参数已补录；差异保留",
+        "issues": "目录角度 63°，代表工程角度 62°",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": 62,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "PSR_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
@@ -1465,11 +1356,11 @@
         "margin_um": 0.5,
         "placement": "inside DevRec, below waveguide"
       },
-      "issues": "目录角度 63°，工程角度 62°",
+      "issues": "目录角度 63°，代表工程角度 62°",
       "parameters": {
-        "category": "PDMC/DMPS（缩写待确认）",
-        "film_thickness_nm": 600.0,
-        "etch_depth_nm": 300.0,
+        "category": "PDMC/DMPS",
+        "film_thickness_nm": 600,
+        "etch_depth_nm": 300,
         "mode_spot_um": null,
         "crystal_cut": "x切",
         "propagation_axis": "z传",
@@ -1479,10 +1370,14 @@
         "cladding": "空气包层",
         "source_cladding": null,
         "differences": [
-          "目录角度 63°，工程角度 62°"
+          "目录角度 63°，代表工程角度 62°"
         ],
-        "parameter_state": "待补充或核对",
-        "issues": "目录角度 63°，工程角度 62°"
+        "parameter_state": "参数已补录；差异保留",
+        "issues": "目录角度 63°，代表工程角度 62°",
+        "confirmed_cladding": "空气包层",
+        "project_angle_display": 62,
+        "parameter_source": "器件清单主表，2026-10-15 用户补录",
+        "standard_prefix": "PDMC_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM"
       },
       "representation": "blackbox",
       "geometry_status": "固定黑盒；内部轮廓未公开",
@@ -1534,25 +1429,136 @@
       "process": "300_125",
       "cell_name": "JNU_MWP_TFLN_PDK_300_125_V1_0_OVERVIEW_BLACKBOX",
       "device_count": 1,
-      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_300_125_V1.0_BLACKBOX.gds"
+      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_300_125_V1.0_BLACKBOX.gds",
+      "placements": [
+        {
+          "id": "EC01",
+          "offset_um": [
+            75.51,
+            -3.0500000000000003
+          ],
+          "label": "EC01  EC [upper only; step pending]"
+        }
+      ]
     },
     {
       "process": "400_200",
       "cell_name": "JNU_MWP_TFLN_PDK_400_200_V1_0_OVERVIEW_BLACKBOX",
       "device_count": 1,
-      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_400_200_V1.0_BLACKBOX.gds"
+      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_400_200_V1.0_BLACKBOX.gds",
+      "placements": [
+        {
+          "id": "EC02",
+          "offset_um": [
+            60.010000000000005,
+            -1.7000000000000002
+          ],
+          "label": "EC02  EC [upper only; step pending]"
+        }
+      ]
     },
     {
       "process": "600_300",
       "cell_name": "JNU_MWP_TFLN_PDK_600_300_V1_0_OVERVIEW_BLACKBOX",
-      "device_count": 10,
-      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_600_300_V1.0_BLACKBOX.gds"
+      "device_count": 9,
+      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_600_300_V1.0_BLACKBOX.gds",
+      "placements": [
+        {
+          "id": "EC03",
+          "offset_um": [
+            24.2924,
+            -1.7000000000000002
+          ],
+          "label": "EC03  EC [upper only; step pending]"
+        },
+        {
+          "id": "MMI01",
+          "offset_um": [
+            579.03,
+            -2.9000000000000004
+          ],
+          "label": "MMI01  MMI1x2"
+        },
+        {
+          "id": "MMI02",
+          "offset_um": [
+            1181.3,
+            -3.9000000000000004
+          ],
+          "label": "MMI02  MMI2x2"
+        },
+        {
+          "id": "MMI03",
+          "offset_um": [
+            49.510000000000005,
+            -83.67580000000001
+          ],
+          "label": "MMI03  MMI1x4"
+        },
+        {
+          "id": "MMI04",
+          "offset_um": [
+            604.03,
+            -83.67580000000001
+          ],
+          "label": "MMI04  MMI1x4"
+        },
+        {
+          "id": "MMI05",
+          "offset_um": [
+            1260.05,
+            -83.67580000000001
+          ],
+          "label": "MMI05  MMI4x4"
+        },
+        {
+          "id": "MMI06",
+          "offset_um": [
+            132.01000000000002,
+            -159.59300000000002
+          ],
+          "label": "MMI06  MMI4x4"
+        },
+        {
+          "id": "POL01",
+          "offset_um": [
+            694.2800000000001,
+            -156.0439
+          ],
+          "label": "POL01  PSR"
+        },
+        {
+          "id": "POL02",
+          "offset_um": [
+            1367.55,
+            -155.5534
+          ],
+          "label": "POL02  PDMC"
+        }
+      ]
     },
     {
       "process": "600_600",
       "cell_name": "JNU_MWP_TFLN_PDK_600_600_V1_0_OVERVIEW_BLACKBOX",
       "device_count": 1,
-      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_600_600_V1.0_BLACKBOX.gds"
+      "gds_relative": "overviews/JNU_MWP_TFLN_PDK_600_600_V1.0_BLACKBOX.gds",
+      "placements": [
+        {
+          "id": "EC04",
+          "offset_um": [
+            121.4701,
+            -9.5189
+          ],
+          "label": "EC04  EC"
+        }
+      ]
     }
-  ]
+  ],
+  "pcell_library": {
+    "name": "JNULib_TFLN_pcell",
+    "count": 9,
+    "source": "JNU-MWP-SOI-PDK public PCells, 2026-10-15 snapshot",
+    "note": "保留 SOI 原始参数和几何算法；尺寸和光学性能需按 TFLN 工艺选择并验证。"
+  },
+  "updated_date": "2026-10-15"
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<klayout-macro>
+ <description>TFLN structural DRC</description><category>drc</category>
+ <autorun>false</autorun><show-in-menu>false</show-in-menu>
+ <interpreter>dsl</interpreter><dsl-interpreter-name>drc-dsl-xml</dsl-interpreter-name>
+ <text># 时间: 2026-10
+# 在原生编辑器保存规则；运行菜单只检查当前编辑 Cell 及其子层级。
+# Structural checks only. Fabrication width, spacing and overlap limits require process approval.
+# 本文件没有将 SOI 的工艺尺寸阈值作为 TFLN 制造规则。
+report("JNU MWP TFLN 结构检查 / Structural DRC")
+Waveguide = input(1, 0)   # 波导上表面 / Waveguide top surface
+SiO2_Open = input(3, 0)   # SiO₂ 开窗 / Oxide opening
+NiCr = input(4, 0)        # NiCr 电极 200 nm / Electrode
+Au = input(5, 0)          # Au 电极 1 µm / Electrode
+Dicing = input(7, 0)      # 划片 / Dicing
+Text = input(10, 0)       # 文字 / Annotation
+PinRec = input(1, 10)     # 光学端口 / Optical ports
+DevRec = input(68, 0)     # 器件识别 / Device recognition
+PinRecM = input(1, 11)    # 金属端口 / Metal ports
+FbrTgt = input(81, 0)     # 光纤目标 / Fiber target
+PinRec.not_interacting(Waveguide).output("端口未连接 / Disconnected pin", "光学端口必须与波导相交 / Optical pins must intersect waveguides")
+Waveguide.outside(DevRec).output("识别框缺失 / Missing DevRec", "波导必须位于器件识别框内 / Waveguides must be inside DevRec")
+ </text>
+</klayout-macro>

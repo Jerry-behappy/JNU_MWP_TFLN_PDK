@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-15 — V1.0
+
+- Update fixed-device filenames and top cells from the completed parameter sheet; EC01/EC02 keep unknown MFD.
+- Remove MMI07: fixed groups are 1/1/9/1, totaling 12 devices and 47 optical ports.
+- Add independent JNULib_TFLN_pcell with nine public SOI PCells and original default dimensions.
+- Add matching JNU PDK tools with 26 simultaneous Chinese/English actions and TFLN structural DRC.
+- Remove By Songliang Chen from Library descriptions; preserve author text inside fixed-device frames.
+
 ## 2026-10-14 — V1.0 Public Edition
 
 - Added the standalone `Install_JNU_TFLN_PDK.lym`: drag into KLayout, detect its user directory, clone/link or safely fast-forward in the background, and preserve existing installations and local edits.

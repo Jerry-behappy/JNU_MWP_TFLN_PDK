@@ -19,5 +19,9 @@ jobs:
         run: python -m pip install 'klayout>=0.30,<0.31'
       - name: Verify blackboxes and public files
         run: python tools/verify_public_pdk.py
+      - name: Verify independent PCells
+        run: python tools/verify_pcell_library.py
+      - name: Verify local authorized-library import
+        run: python tools/verify_authorized_gds.py
       - name: Verify installer and local-file guards
         run: python tools/verify_installer.py

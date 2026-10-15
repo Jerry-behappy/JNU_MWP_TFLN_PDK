@@ -36,14 +36,16 @@ def verify():
         if path.suffix == ".lym":
             compile(ET.parse(path).getroot().findtext("text"), str(path), "exec")
     assert DATA["edition"] == "public-blackbox"
-    assert len(DATA["devices"]) == 13 and sum(len(d["pins"]) for d in DATA["devices"]) == 55
-    assert len(list(PACKAGE.rglob("*.gds"))) == 17
-    assert len(list((PACKAGE / "previews").glob("*.png"))) == 17
+    assert len(DATA["devices"]) == 12 and sum(len(d["pins"]) for d in DATA["devices"]) == 47
+    assert all(d["id"] != "MMI07" for d in DATA["devices"])
+    assert len(list(PACKAGE.rglob("*.gds"))) == 16
+    assert len(list((PACKAGE / "previews").glob("*.png"))) == 16
     tfln_library.register_all()
     total = 0
-    for process, count in zip(tfln_library.PROCESSES, (1, 1, 10, 1)):
+    for process, count in zip(tfln_library.PROCESSES, (1, 1, 9, 1)):
         library = pya.Library.library_by_name("JNULib_TFLN_" + process)
         assert library is not None and library.layout().cells() == count
+        assert "By Songliang Chen" not in library.description
         layout = pya.Layout()
         layout.dbu = DATA["dbu_um"]
         top = layout.create_cell("PUBLIC_PLACEMENT_" + process)
@@ -110,7 +112,8 @@ def verify():
                 continue
             file = target.split("#", 1)[0]
             assert (document.parent / file).exists(), "文档文件链接失效: " + str(document) + " -> " + file
-    print("PUBLIC_VERIFY_PASS: 4 libraries (1/1/10/1), 13 rectangles, 55 ports, native instances/save-reopen, 17 GDS; no whitebox source")
+    assert len(pya.Library.library_by_name("JNULib_TFLN_pcell").layout().pcell_names()) == 9
+    print("PUBLIC_VERIFY_PASS: fixed libraries (1/1/9/1), 12 rectangles, 47 ports, 9 PCells, instances/save-reopen, 16 GDS; no fixed whitebox source")
 
 
 if __name__ == "__main__":
