@@ -1,7 +1,7 @@
 name: Public PDK
 on:
   push:
-    branches: [main, V1.2]
+    branches: [main, 'V[0-9]*.[0-9]*']
   pull_request:
     branches: [main]
 permissions:
@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Verify automatic version-branch lifecycle
+        run: node tools/verify_version_branch.js
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

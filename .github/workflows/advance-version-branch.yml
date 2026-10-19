@@ -1,0 +1,27 @@
+name: Advance version branch after merge
+on:
+  pull_request_target:
+    types: [closed]
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: version-branch-${{ github.event.pull_request.head.ref }}
+  cancel-in-progress: false
+jobs:
+  advance:
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # 只运行稳定分支上的受信任代码，不检出 PR 源分支。
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const { advanceVersionBranch } = require('./tools/advance_version_branch.js');
+            return await advanceVersionBranch({ github, context, core });

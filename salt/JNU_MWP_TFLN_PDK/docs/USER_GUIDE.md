@@ -31,5 +31,5 @@ PCell geometry/defaults retain the previous implementation. The [device index](D
 
 ## 安装与更新 / Installation and updates
 
-稳定版 V1.1 通过 main 安装和更新，参见仓库 README；拖入式安装宏同样跟踪 main。后续开发分支为 V1.2，已有开发克隆的重命名及上游调整步骤见 README。更新前先保留本地修改，稳定版执行 git pull --ff-only origin main，开发版执行 git pull --ff-only origin V1.2，然后重启 KLayout。
-Install stable V1.1 from main as described in the README. The drag-in installer also follows main; development continues on V1.2. The README explains how to rename an existing development checkout and update its upstream. Preserve local changes before fast-forwarding the chosen branch and restarting KLayout.
+稳定版 V1.1 通过 main 安装和更新，参见仓库 README；拖入式安装宏同样跟踪 main。版本开发分支每次合入 main 后自动递增小版本号，当前名称及本地重命名、上游调整步骤见 README。更新前先保留本地修改，稳定版执行 git pull --ff-only origin main，开发版更新当前版本分支，然后重启 KLayout。
+Install stable V1.1 from main as described in the README. The drag-in installer also follows main. Version branches advance their minor number automatically after merging into main; the README explains how to find the current branch, rename a local checkout and update its upstream. Preserve local changes before fast-forwarding the chosen branch and restarting KLayout.

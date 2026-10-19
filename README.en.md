@@ -15,7 +15,7 @@ powershell -ExecutionPolicy Bypass -File .\JNU_MWP_TFLN_PDK\Install_Cloned_PDK.p
 
 Restart KLayout and select JNU_MWP_TFLN_PDK. The installer preserves an existing installation instead of replacing it. Both stable installs and the drag-in macro follow `main`. To update a clean stable checkout, run `git pull --ff-only origin main`.
 
-Development continues on `V1.2`. Preserve local changes, then update an existing development checkout with `git fetch origin --prune`, `git branch -m V1.1 V1.2`, and `git branch --set-upstream-to=origin/V1.2 V1.2`. New development checkouts use `--branch V1.2`.
+After a version branch merges into `main` through a PR, its minor number advances automatically, for example `V1.4 → V1.5` or `V1.9 → V1.10`. Find the current development branch in the [branch list](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/branches). Preserve local changes, run `git fetch origin --prune`, then use the actual names in `git branch -m OLD_BRANCH NEW_BRANCH` and `git branch --set-upstream-to=origin/NEW_BRANCH NEW_BRANCH`. New development checkouts use the current name with `--branch`.
 
 [Stable branch commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/main) · [V1.2 development commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/V1.2)
 
