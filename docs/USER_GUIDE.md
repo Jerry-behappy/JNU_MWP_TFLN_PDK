@@ -2,8 +2,8 @@
 
 ## 器件与 Library / Devices
 
-V1.1 提供五组固定 Library，数量为 1/2/1/49/2，以及 JNULib_TFLN_pcell 的九个公开 PCell。Technology 保持 JNU_MWP_TFLN_PDK。菜单保留中英文并列，共 27 个动作。
-V1.1 provides five fixed libraries with 1/2/1/49/2 devices and nine independent PCells. The technology name stays stable and the 27 menu actions show Chinese and English together.
+V1.1 提供五组固定 Library，数量为 1/2/1/49/2，独立 JNULib_TFLN_BlackBox 汇总同一批 55 个固定黑盒，JNULib_TFLN_pcell 提供九个公开 PCell。七个库仅在选择 JNU_MWP_TFLN_PDK Technology 时显示。菜单保留中英文并列，共 27 个动作。
+V1.1 provides five process libraries with 1/2/1/49/2 devices, an independent blackbox library aggregating the same 55 fixed devices, and nine PCells. All seven libraries are scoped to JNU_MWP_TFLN_PDK; the 27 menu actions show Chinese and English together.
 
 通过 Instance 选择工艺 Library 和器件，或使用“插入 TFLN 器件 / Insert Device”。固定器件带 PinRec 1/10、DevRec 68/0 和框内作者署名。交叉器件包含四向端口；偏振器件的交错终端保留实际坐标。
 Place fixed cells from Instance or Insert Device. PinRec, DevRec, in-frame attribution and staggered/polarization interfaces are preserved.
@@ -31,5 +31,5 @@ PCell geometry/defaults retain the previous implementation. The [device index](D
 
 ## 安装与更新 / Installation and updates
 
-V1.1 通过其 Git 分支安装和更新，参见仓库 README。拖入式安装宏继续跟踪稳定 main，不会自动切换到开发分支。更新开发分支时先保留本地修改，再运行 git pull --ff-only origin V1.1，重启 KLayout。
-Install the V1.1 Git branch as described in the README. The existing drag-in installer follows stable main. Preserve local changes before fast-forwarding the development branch and restarting KLayout.
+稳定版 V1.1 通过 main 安装和更新，参见仓库 README；拖入式安装宏同样跟踪 main。后续开发分支为 V1.2，已有开发克隆的重命名及上游调整步骤见 README。更新前先保留本地修改，稳定版执行 git pull --ff-only origin main，开发版执行 git pull --ff-only origin V1.2，然后重启 KLayout。
+Install stable V1.1 from main as described in the README. The drag-in installer also follows main; development continues on V1.2. The README explains how to rename an existing development checkout and update its upstream. Preserve local changes before fast-forwarding the chosen branch and restarting KLayout.

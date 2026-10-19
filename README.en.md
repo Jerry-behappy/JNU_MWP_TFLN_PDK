@@ -6,14 +6,18 @@ KLayout thin-film lithium-niobate PDK. This branch registers 55 fixed blackboxes
 
 [简体中文](README.md) · [Device index](docs/DEVICE_INDEX.md) · [User guide](docs/USER_GUIDE.md) · [Changes](CHANGELOG.en.md)
 
-## Install the V1.1 branch
+## Install stable V1.1
 
 ```powershell
-git clone --branch V1.1 https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git JNU_MWP_TFLN_PDK
+git clone --branch main https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git JNU_MWP_TFLN_PDK
 powershell -ExecutionPolicy Bypass -File .\JNU_MWP_TFLN_PDK\Install_Cloned_PDK.ps1
 ```
 
-Restart KLayout and select JNU_MWP_TFLN_PDK. The installer preserves an existing installation instead of replacing it. The drag-in macro follows stable main; use this branch checkout for V1.1. To update a clean checkout, run `git pull --ff-only origin V1.1`.
+Restart KLayout and select JNU_MWP_TFLN_PDK. The installer preserves an existing installation instead of replacing it. Both stable installs and the drag-in macro follow `main`. To update a clean stable checkout, run `git pull --ff-only origin main`.
+
+Development continues on `V1.2`. Preserve local changes, then update an existing development checkout with `git fetch origin --prune`, `git branch -m V1.1 V1.2`, and `git branch --set-upstream-to=origin/V1.2 V1.2`. New development checkouts use `--branch V1.2`.
+
+[Stable branch commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/main) · [V1.2 development commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/V1.2)
 
 ## Libraries
 
@@ -24,6 +28,7 @@ Restart KLayout and select JNU_MWP_TFLN_PDK. The installer preserves an existing
 | `JNULib_TFLN_400_200` | 400/200 | EC-09 | 1 |
 | `JNULib_TFLN_600_300` | 600/300 | EC / MMI / PSR / PDMC / PBS / DC / CROSS / GC | 49 |
 | `JNULib_TFLN_600_600` | 600/600 | EC-02, EC-02-TM | 2 |
+| `JNULib_TFLN_BlackBox` | 全部工艺 / All processes | Aggregate of the same 55 fixed blackboxes | 55 |
 | `JNULib_TFLN_pcell` | 参数化 / Parametric | TFLN 公开 PCell / Public TFLN PCells | 9 |
 
 ## Geometry and pending fields

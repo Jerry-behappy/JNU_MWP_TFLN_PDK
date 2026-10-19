@@ -6,14 +6,18 @@
 
 [English](README.en.md) · [器件参数与文件索引](docs/DEVICE_INDEX.md) · [使用说明](docs/USER_GUIDE.md) · [更新说明](CHANGELOG.md)
 
-## 安装 V1.1 分支
+## 安装稳定版 V1.1
 
 ```powershell
-git clone --branch V1.1 https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git JNU_MWP_TFLN_PDK
+git clone --branch main https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git JNU_MWP_TFLN_PDK
 powershell -ExecutionPolicy Bypass -File .\JNU_MWP_TFLN_PDK\Install_Cloned_PDK.ps1
 ```
 
-完成后重启 KLayout，选择 JNU_MWP_TFLN_PDK。若已有安装，脚本会保留原目录并提示。拖入式安装宏继续跟踪稳定 main；V1.1 使用上述分支安装。干净的分支克隆可执行 `git pull --ff-only origin V1.1` 更新。
+完成后重启 KLayout，选择 JNU_MWP_TFLN_PDK。若已有安装，脚本会保留原目录并提示。稳定版及拖入式安装宏均跟踪 `main`；干净的稳定版克隆可执行 `git pull --ff-only origin main` 更新。
+
+后续开发分支为 `V1.2`。已有开发克隆可执行 `git fetch origin --prune`、`git branch -m V1.1 V1.2`、`git branch --set-upstream-to=origin/V1.2 V1.2` 更新分支名称，操作前先保留本地修改。新开发克隆使用 `--branch V1.2`。
+
+[稳定分支完整提交记录](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/main) · [V1.2 开发分支完整提交记录](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/V1.2)
 
 ## 器件库
 
@@ -24,6 +28,7 @@ powershell -ExecutionPolicy Bypass -File .\JNU_MWP_TFLN_PDK\Install_Cloned_PDK.p
 | `JNULib_TFLN_400_200` | 400/200 | EC-09 | 1 |
 | `JNULib_TFLN_600_300` | 600/300 | EC / MMI / PSR / PDMC / PBS / DC / CROSS / GC | 49 |
 | `JNULib_TFLN_600_600` | 600/600 | EC-02, EC-02-TM | 2 |
+| `JNULib_TFLN_BlackBox` | 全部工艺 / All processes | 上述 55 个固定黑盒的汇总库 | 55 |
 | `JNULib_TFLN_pcell` | 参数化 / Parametric | TFLN 公开 PCell / Public TFLN PCells | 9 |
 
 ## 轮廓和待核对项

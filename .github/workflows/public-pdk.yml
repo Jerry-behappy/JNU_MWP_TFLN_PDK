@@ -1,7 +1,7 @@
 name: Public PDK
 on:
   push:
-    branches: [main, V1.1]
+    branches: [main, V1.2]
   pull_request:
     branches: [main]
 permissions:
