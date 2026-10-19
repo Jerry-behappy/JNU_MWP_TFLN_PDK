@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-19 — V1.1
+
+- Register 55 fixed devices and 216 optical ports from the completed catalog, with fixed groups 1/2/1/49/2 and nine independent PCells.
+- Keep separate TE/TM designs, four-direction crossing ports and staggered polarization interfaces.
+- Publish 998/0 placeholders and 1/0 port stubs only; keep full contours local.
+- Match current SOI blackboxes: orange diagonal hatching, centered full cell names and 0.2 um port straights. Preserve staggered facets with placeholder extensions; add interface-only export and legacy default-color migration.
+- Retain MMI-10 top-width verification, MMI-11/PSR-03 film-thickness discrepancies and four unknown parameter records.
+- Add the fifth process overview, 27 bilingual actions and V1.1 branch CI.
+
 ## 2026-10-15 — V1.0
 
 - Update fixed-device filenames and top cells from the completed parameter sheet; EC01/EC02 keep unknown MFD.

@@ -163,10 +163,15 @@ def open_local(relative):
     pya.QDesktopServices.openUrl(pya.QUrl.fromLocalFile(str(path)))
 
 
+def open_gds_folder():
+    return open_local(Path(manifest()["devices"][0]["gds_relative"]).parents[1])
+
+
 def about():
     data = manifest()
     total = sum(len(r["pins"]) for r in data["devices"])
-    pya.MessageBox.info("JNU_MWP_TFLN_PDK V1.0", "5 Libraries / %d fixed devices / %d optical ports\nJNULib_TFLN_pcell: 9 PCells\nWaveguide: 1/0 (top width)\nPinRec: 1/10; DevRec: 68/0\nEC01–EC03: 低台阶待处理\nBy Songliang Chen, 2026/10/13" % (len(data["devices"]), total), pya.MessageBox.Ok)
+    groups = len({r["process"] for r in data["devices"]})
+    pya.MessageBox.info("JNU_MWP_TFLN_PDK " + data["version"], "%d Libraries / %d fixed devices / %d optical ports\nJNULib_TFLN_pcell: 9 PCells\nWaveguide: 1/0 (top width)\nPinRec: 1/10; DevRec: 68/0\n低台阶及待核验轮廓见器件清单 / See device index for geometry limits\nBy Songliang Chen, 2026/10/13" % (groups + 1, len(data["devices"]), total), pya.MessageBox.Ok)
 
 
 def reload_pdk():

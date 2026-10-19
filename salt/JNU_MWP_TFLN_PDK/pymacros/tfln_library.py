@@ -8,8 +8,9 @@ import pya
 
 PDK_ROOT = Path(__file__).resolve().parents[1]
 TECHNOLOGY_NAME = "JNU_MWP_TFLN_PDK"
-VERSION = "V1.0"
-PROCESSES = ("300_125", "400_200", "600_300", "600_600")
+_MANIFEST = json.loads((PDK_ROOT / "manifest.json").read_text(encoding="utf-8"))
+VERSION = _MANIFEST["version"]
+PROCESSES = tuple(_MANIFEST.get("processes") or sorted({d["process"] for d in _MANIFEST["devices"]}))
 _LIBRARIES = globals().get("_LIBRARIES", [])
 
 
@@ -27,7 +28,7 @@ def load_technology():
 class FixedTFLNLibrary(pya.Library):
     def __init__(self, process, records):
         super().__init__()
-        self.description = "JNU_MWP_TFLN_PDK %s | thickness/etch %s nm | %d blackboxes" % (VERSION, process.replace("_", "/"), len(records))
+        self.description = "JNU_MWP_TFLN_PDK %s | thickness/etch %s nm | %d fixed devices" % (VERSION, process.replace("_", "/"), len(records))
         self.layout().dbu = 0.0001
         self.source_root = str(PDK_ROOT)
         for record in records:
@@ -41,12 +42,12 @@ class FixedTFLNLibrary(pya.Library):
                 raise RuntimeError("器件名称重复: " + record["cell_name"])
             target = self.layout().create_cell(record["cell_name"])
             target.copy_tree(roots[0])
-        # 保持全局可见，选用 TFLN Technology 时也能直接调用四个库。
+        # 固定库按当前清单的工艺组合注册，兼容新增的膜厚/刻蚀组合。
         self.register("JNULib_TFLN_" + process)
 
 
 def register_all(force_reload=False):
-    """幂等注册四个固定库和独立 PCell 库。"""
+    """幂等注册清单中的固定库和独立 PCell 库。"""
     load_technology()
     manifest = json.loads((PDK_ROOT / "manifest.json").read_text(encoding="utf-8"))
     result = []

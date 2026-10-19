@@ -4,9 +4,10 @@
 import importlib
 import pya
 from . import actions
+from tfln_library import PROCESSES, VERSION
 
 ROOT_MENU = "jnu_mwp_tfln_pdk_menu"
-MENU_TITLE = "JNU_MWP_TFLN_PDK V1.0"
+MENU_TITLE = "JNU_MWP_TFLN_PDK " + VERSION
 _ACTIONS = globals().get("_ACTIONS", {})
 
 
@@ -61,9 +62,9 @@ def register_menu():
              ("layout", "insert_device", "插入 TFLN 器件 / Insert Device…", actions.insert_device),
              ("layout", "apply_layers", "应用 TFLN 技术与图层 / Apply Technology & Layers", actions.apply_style),
              ("layout", "device_info", "器件参数与端口 / Device & Port Info", actions.device_information)]
-    for process in ("300_125", "400_200", "600_300", "600_600"):
+    for process in PROCESSES:
         specs.append(("libraries", "overview_" + process, process.replace("_", "/") + " nm 总览 / Overview", lambda p=process: actions.open_overview(p)))
-    specs.extend([("libraries", "open_gds", "打开器件 GDS 文件夹 / Open GDS Folder", lambda: actions.open_local("pymacros/tfln_blackbox_gds")),
+    specs.extend([("libraries", "open_gds", "打开器件 GDS 文件夹 / Open GDS Folder", actions.open_gds_folder),
                   ("help", "inventory", "器件清单 / Device Index", lambda: actions.open_local("docs/DEVICE_INDEX.md")),
                   ("help", "readme", "使用说明 / User Guide", lambda: actions.open_local("docs/USER_GUIDE.md")),
                   ("help", "about", "关于 / About", actions.about),

@@ -1,14 +1,18 @@
 # 验证记录 / Validation
 
-2026-10-15 · KLayout 0.30.9 原生执行 / Native checks
+2026-10-19 · V1.1
 
-- 四组固定库 1/1/9/1，12 个实例保存重开，47 个光学端口与 12 个 DevRec。 / Fixed libraries, native placement and save/reopen.
-- 9 个独立 PCell：非空几何、PinRec、DevRec、参数编辑、GDS 保存重开和同名重载。 / Independent PCells, geometry, ports, editing and reload.
-- 26 项中英并列菜单，重复注册、快捷键保留。 / Bilingual menu and shortcut retention.
-- 波导互转及 GDS 恢复、水平/垂直器件连接、端口生成、Basic.Text 阵列、吸附、波导长度及长度差。 / Waveguide/layout regression checks.
-- 结构 DRC 对确定违规版图连续两次检出 marker；无工艺线宽/间距阈值。 / Structural DRC detects known violations twice; no foundry thresholds.
-- SiEPIC 识别 12 个固定器件的 47 个端口，旋转/镜像后方向、位置正确；SOI 与 TFLN 的公开及内部 PCell 可同进程并存。 / SiEPIC recognition, transformed ports and SOI/TFLN coexistence.
-- 本地授权库导入保留旧版本、拒绝端口错位及越界索引。 / Local library import retains versions and rejects invalid ports and paths.
+- 55 个固定器件、216 个光学端口，五组数量 1/2/1/49/2，另有九个独立 PCell。
+- 原生 KLayout 0.30.9 与 SiEPIC 实测本地完整器件和公开黑盒：端口及 DevRec 识别、旋转/镜像、五组总览、55 项插入选择、27 项中英菜单、快捷键保留及库重载均通过。
+- 黑盒显示同步当前 SOI：998/0 橙色斜线、完整器件名居中、端口向内 0.2 µm。交错终端的占位主体延伸至直段，端口保持原位。旧默认配色迁移通过。
+- 55 组本地/公开接口一致。公开导出脚本重新生成的全部几何与交付 GDS 一致；实例化后保存重开保持接口与主体。
+- 独立 PCell 参数编辑、端口及保存重开、授权 GDS 导入与无效端口拒绝、安装器保护检查通过。55 个独立 GDS 和五个总览均已原生渲染预览。
+- 公开文件检查拒绝 FSP、源表、白盒目录和内部制造轮廓。
 
-公开文件检查验证矩形固定黑盒、端口、识别框、署名、文件链接和来源隔离；公开 PCell 源码单独测试。安装器逻辑沿用已验证版本。
-Public-file checks cover fixed rectangular blackboxes, interfaces, labels, links and source isolation; PCell source is checked separately. Installer logic is unchanged.
+[公开版原生逐器件结果](validation/native_public.json)。完整本地结果保存在授权安装的 evidence/v11 中。公开验证脚本为 tools/verify_public_pdk.py、tools/verify_pcell_library.py、tools/verify_authorized_gds.py 和 tools/verify_installer.py。
+
+Native KLayout and SiEPIC recognized all 55 devices and 216 optical pins in both editions, including rotation, mirroring, reloading, five overviews and 27 bilingual menu actions. All 55 interface pairs match, and the interface-only blackbox exporter reproduces the delivered geometry. Fixed-cell save/reopen, nine independent PCells and local authorized imports passed. Manufacturing contours remain local.
+
+原生 UI 复验脚本 tools/verify_native_ui.py 需在独立 KLayout 进程运行，并安装 SiEPIC；可通过 siepic_python 指定其 Python 目录，通过 report_path 指定结果。脚本退出该测试进程，不应在用户正在编辑的会话中运行。CI 使用独立 Python API 检查结构，不替代原生 UI 记录。
+
+MMI-10 为原 GDS 回退，上表面宽度未确认；MMI-11、PSR-03 的清单与源工程存在膜厚差异。四项参数和端面耦合器低台阶仍待处理，详见器件索引。结构验证不代表这些项已通过工艺或光学验收。

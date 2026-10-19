@@ -17,7 +17,7 @@ def verify():
     import tfln_pcells
     assert all(hasattr(tfln_pcells, name) for name in tfln_pcells.__all__)
     libraries = tfln_library.register_all()
-    assert len(libraries) == 5
+    assert len(libraries) == len(tfln_library.PROCESSES) + 1
     library = pya.Library.library_by_name(LIBRARY_NAME)
     assert library is not None
     assert list(library.layout().pcell_names()) == sorted(name for name, _ in FACTORIES)

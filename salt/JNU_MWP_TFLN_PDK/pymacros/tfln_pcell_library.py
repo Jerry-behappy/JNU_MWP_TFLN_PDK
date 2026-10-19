@@ -28,7 +28,8 @@ SOURCE_ROOT = str(Path(__file__).resolve().parents[1])
 class TFLNPCellLibrary(pya.Library):
     def __init__(self):
         super().__init__()
-        self.description = "JNU_MWP_TFLN_PDK V1.0 | 9 PCells | Waveguide 1/0, PinRec 1/10, DevRec 68/0"
+        from tfln_library import VERSION
+        self.description = "JNU_MWP_TFLN_PDK %s | 9 PCells | Waveguide 1/0, PinRec 1/10, DevRec 68/0" % VERSION
         self.source_root = SOURCE_ROOT
         self.layout().dbu = 0.0001
         for name, factory in FACTORIES:
