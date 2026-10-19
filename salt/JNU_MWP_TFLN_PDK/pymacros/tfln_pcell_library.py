@@ -28,20 +28,25 @@ SOURCE_ROOT = str(Path(__file__).resolve().parents[1])
 class TFLNPCellLibrary(pya.Library):
     def __init__(self):
         super().__init__()
-        self.description = "JNU_MWP_TFLN_PDK V1.0 | 9 PCells | Waveguide 1/0, PinRec 1/10, DevRec 68/0"
+        from tfln_library import VERSION, TECHNOLOGY_NAME
+        self.description = "JNU_MWP_TFLN_PDK %s | 9 PCells | Waveguide 1/0, PinRec 1/10, DevRec 68/0" % VERSION
         self.source_root = SOURCE_ROOT
         self.layout().dbu = 0.0001
+        self.add_technology(TECHNOLOGY_NAME)
         for name, factory in FACTORIES:
             self.layout().register_pcell(name, localize_pcell_declaration(factory()))
         self.register(LIBRARY_NAME)
 
 
 def register_pcell_library(force_reload=False):
-    existing = pya.Library.library_by_name(LIBRARY_NAME)
+    from tfln_library import TECHNOLOGY_NAME
+    existing = pya.Library.library_by_name(LIBRARY_NAME, TECHNOLOGY_NAME)
     if existing is not None:
         if getattr(existing, "source_root", None) != SOURCE_ROOT:
             raise RuntimeError("已有同名库来自不同位置: " + LIBRARY_NAME)
         if not force_reload:
+            existing.clear_technologies()
+            existing.add_technology(TECHNOLOGY_NAME)
             return existing
     library = TFLNPCellLibrary()
     _LIBRARIES.append(library)

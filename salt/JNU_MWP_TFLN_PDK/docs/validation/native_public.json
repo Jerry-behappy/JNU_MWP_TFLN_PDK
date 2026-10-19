@@ -1,0 +1,295 @@
+{
+  "status": "PASS",
+  "engine": "native KLayout + SiEPIC",
+  "edition": "public-blackbox",
+  "devices": [
+    {
+      "id": "EC-01",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-01",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-02",
+      "ports": 5,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-03",
+      "ports": 5,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-04",
+      "ports": 4,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-05",
+      "ports": 8,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-06",
+      "ports": 8,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "PDMC-01",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "PSR-01",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-02",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-02-TM",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-03",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-04",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-04-TM",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-05",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-06",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "CROSS-01",
+      "ports": 4,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "DC-01",
+      "ports": 4,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "GC-01",
+      "ports": 1,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "GC-02",
+      "ports": 1,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-07",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-08",
+      "ports": 5,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-09",
+      "ports": 5,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-10",
+      "ports": 4,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-11",
+      "ports": 4,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-12",
+      "ports": 8,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-13",
+      "ports": 8,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "PBS-01",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "PSR-02",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-07",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-14",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-15",
+      "ports": 5,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-16",
+      "ports": 5,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-17",
+      "ports": 8,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-18",
+      "ports": 8,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-08",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-09",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-19",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-19-TM",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-20",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-21",
+      "ports": 5,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-22",
+      "ports": 8,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-10",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-11",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-12",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-23",
+      "ports": 4,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-24",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-25",
+      "ports": 5,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-26",
+      "ports": 8,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "PSR-03",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "EC-13",
+      "ports": 2,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-28",
+      "ports": 3,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-29",
+      "ports": 5,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-30",
+      "ports": 4,
+      "recognition_rotation_mirror": "PASS"
+    },
+    {
+      "id": "MMI-31",
+      "ports": 8,
+      "recognition_rotation_mirror": "PASS"
+    }
+  ],
+  "ports": 216,
+  "libraries": 7,
+  "menus": 27,
+  "checks": [
+    "TFLN-only library filtering",
+    "independent blackbox library",
+    "five overviews",
+    "placement dialog",
+    "SiEPIC pins and components",
+    "rotation and mirror",
+    "reload",
+    "legacy blackbox color migration"
+  ]
+}

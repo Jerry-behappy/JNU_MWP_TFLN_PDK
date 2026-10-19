@@ -346,6 +346,10 @@ def _dynamic_attach_all_views(main_window):
     )
     for view in module._main_window_views(main_window):
         module.attach_view(view)
+        cv = view.active_cellview()
+        if cv.is_valid() and cv.technology == "JNU_MWP_TFLN_PDK":
+            from tfln_tools.blackbox_display import refresh_blackbox_display
+            refresh_blackbox_display(view)
 
 
 def _install_view_sync_timer(main_window):

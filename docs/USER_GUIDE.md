@@ -1,93 +1,35 @@
-# 使用说明 / User Guide
+# 使用说明 / User guide
 
-JNU_MWP_TFLN_PDK V1.0 · 2026-10-15
+## 器件与 Library / Devices
 
-<a id="installation"></a>
-## 安装 / Installation
+V1.1 提供五组固定 Library，数量为 1/2/1/49/2，独立 JNULib_TFLN_BlackBox 汇总同一批 55 个固定黑盒，JNULib_TFLN_pcell 提供九个公开 PCell。七个库仅在选择 JNU_MWP_TFLN_PDK Technology 时显示。菜单保留中英文并列，共 27 个动作。
+V1.1 provides five process libraries with 1/2/1/49/2 devices, an independent blackbox library aggregating the same 55 fixed devices, and nine PCells. All seven libraries are scoped to JNU_MWP_TFLN_PDK; the 27 menu actions show Chinese and English together.
 
-公开版使用 [安装宏](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/releases/download/installer-macro/Install_JNU_TFLN_PDK.lym)：拖入 KLayout → 运行安装宏 → 安装 / 更新 → 重启。Technology 为 `JNU_MWP_TFLN_PDK`，菜单为 `JNU_MWP_TFLN_PDK V1.0`。
-Drag the installer into KLayout, run it, choose Install / Update, then restart. Existing local edits and separately authorized geometry are preserved.
+通过 Instance 选择工艺 Library 和器件，或使用“插入 TFLN 器件 / Insert Device”。固定器件带 PinRec 1/10、DevRec 68/0 和框内作者署名。交叉器件包含四向端口；偏振器件的交错终端保留实际坐标。
+Place fixed cells from Instance or Insert Device. PinRec, DevRec, in-frame attribution and staggered/polarization interfaces are preserved.
 
-<a id="devices"></a>
-## 器件库 / Libraries
+## 公开黑盒与授权器件 / Blackboxes and local contours
 
-四个固定库分别包含 1、1、9、1 个器件；`JNULib_TFLN_pcell` 含 9 个可编辑 PCell。通过 Instance 选择 Library 和器件；固定器件也可用“插入 TFLN 器件 / Insert Device”。库说明不显示作者，固定 GDS 框内保留 `By Songliang Chen, 2026/10/13`。
-Four fixed libraries contain 1/1/9/1 devices; `JNULib_TFLN_pcell` provides nine editable PCells. Use Instance to select a library. Author text remains inside fixed-device frames and is omitted from Library descriptions.
+公开固定器件的主体为 998/0 BlackBox，1/0 只保留端口向内 0.2 µm 直段。黑盒不含内部制造轮廓。完整 GDS 在本地独立保管，可通过“安装／更新白盒器件库”导入；导入时验证全部水平和竖直 PinRec。
+Public fixed cells contain a 998/0 placeholder and 0.2 µm inward port stubs on 1/0. The SOI blackbox style is shared: orange diagonal hatching and a centered full cell name. Staggered facets use placeholder extensions so every original port still touches its straight. Authorized local contours can be imported independently after horizontal/vertical port validation.
 
-PCell 复制自 SOI 公开实现，不依赖 SOI 安装。保留默认尺寸和几何算法，TFLN 光学性能需另行验证。
-PCell geometry/defaults are copied from the public SOI implementation and run independently. Select dimensions and verify optical behavior for TFLN.
+黑盒显示与当前 SOI PDK 一致：998/0 橙色斜线，完整器件名居中，端口向内保留 0.2 µm。交错终端仅延伸占位主体以连接直段，保持端口坐标。原生 KLayout 使用 Basic TEXT；独立 Python 使用相同字体的矢量文字。旧默认配色在重载或打开视图时自动迁移，自定义配色保留。
 
-<a id="layout"></a>
-## 功能菜单 / Menu
+在全新目录重新导出 55 个独立黑盒：`python tools/export_blackboxes.py --output NEW_DIRECTORY`。脚本仅读取公开接口清单，不读取制造轮廓。五份总览由已交付的分组 GDS 提供。
 
-中英文同时显示，覆盖 JNU PDK 的波导、版图、DRC、更新和授权库安装功能，另保留 TFLN 工艺总览与参数查询。以下共 26 项。
-Chinese and English appear together. The menu includes JNU PDK waveguide, layout, DRC, update and authorized-library tools, plus TFLN overview and parameter tools (26 actions).
+## 版图工具 / Layout tools
 
-| 入口 / Action |
-|---|
-| 路径转波导 / Path to Waveguide |
-| 波导转路径 / Waveguide to Path |
-| 计算波导长度 / Calculate Waveguide Length |
-| 计算波导长度差 / Calculate Waveguide Length Difference |
-| 通过波导连接器件 / Cell Connect by Waveguide |
-| 为单元生成端口 / Make Pins for Cell |
-| 排除图层 / Layer Exclude |
-| 数字文本阵列 / Numerical text array |
-| 吸附器件 / Snap components |
-| 编辑 TFLN 设计规则 / JNU_MWP_TFLN_DRC |
-| 运行 TFLN 设计规则检查 / Run JNU_MWP_TFLN_DRC |
-| 新建 TFLN 版图 / New Layout |
-| 插入 TFLN 器件 / Insert Device… |
-| 应用 TFLN 技术与图层 / Apply Technology & Layers |
-| 器件参数与端口 / Device & Port Info |
-| 300/125 nm 总览 / Overview |
-| 400/200 nm 总览 / Overview |
-| 600/300 nm 总览 / Overview |
-| 600/600 nm 总览 / Overview |
-| 打开器件 GDS 文件夹 / Open GDS Folder |
-| 器件清单 / Device Index |
-| 使用说明 / User Guide |
-| 关于 / About |
-| 重新加载 TFLN PDK / Reload TFLN PDK |
-| 检查 PDK 更新 / Check for PDK Updates |
-| 安装／更新白盒器件库 / Install / Update Whitebox Library |
+波导互转、器件连接、端口生成、图层排除、数字文本阵列、吸附、长度及长度差功能保留。五组总览均从当前清单生成。结构 DRC 只检查连接和识别结构，不包含 foundry 线宽/间距规则。
+Waveguide conversion, connection, pin creation, layer exclusion, text arrays, snapping and length tools remain available. The DRC is structural, not a fabrication width/spacing deck.
 
-路径转波导：先绘制 Manhattan Path，再选择并运行。复合波导支持直段、弯曲段与 taper 参数。波导转路径恢复中心线。通过波导连接器件对两个选中实例的相向端口创建直波导或 S 弯。吸附器件先选移动组，再将鼠标悬停在固定参考器件上。
-For Path to Waveguide, select a Manhattan path; composite mode supports straight/bend widths and tapers. Waveguide to Path restores the centerline. Cell Connect joins facing ports of two selected instances. For Snap components, select the moving group and hover over the fixed component.
+## 图层与参数 / Layers and parameters
 
-DRC 使用原生 Macro Development 编辑和运行当前单元。当前仅提供 PinRec 与波导接触、波导在 DevRec 内的结构检查；尚无 TFLN 制造最小线宽/间距阈值，不能作为工艺签核。
-DRC uses the native macro editor and active-cell runner. Rules check PinRec contact and DevRec containment only; foundry width/spacing limits are not yet supplied.
+Waveguide 1/0 为上表面宽度；SiO2_Open 3/0；NiCr 4/0（200 nm）；Au 5/0（1 µm）；Dicing 7/0；Text 10/0；PinRec 1/10；DevRec 68/0；BlackBox 998/0。数据库单位为 0.0001 µm。低台阶待处理，不生成 2/0。
 
-“安装／更新白盒器件库”选择已获授权的本地 GDS 文件夹，按当前 Cell 名和端口匹配，复制到 KLayout 用户目录下独立私有目录。每次安装保留旧版本，不向 Git 仓库写入白盒。
-Install / Update Whitebox Library accepts an authorized local GDS folder, validates current cell names and ports, and stores a new version in a separate private user directory.
+PCell 的几何实现和默认尺寸沿用此前版本，TFLN 光学性能需按实际工艺验证。未知参数、原始 GDS 回退和膜厚差异均列于[当前器件索引](DEVICE_INDEX.md)。
+PCell geometry/defaults retain the previous implementation. The [device index](DEVICE_INDEX.md) lists unknown fields and source discrepancies.
 
-<a id="ports"></a>
-## 端口与识别 / Ports
+## 安装与更新 / Installation and updates
 
-固定库共 47 个光学端口；PinRec 在 1/10，方向短 Path 总长 20 nm，名称 opt1…；DevRec 在 68/0。PCell 自行生成相应端口和识别框。固定器件作者文字在框内。
-Fixed devices provide 47 optical ports. PinRec 1/10 uses 20 nm directional paths and opt1… labels; DevRec is 68/0. PCells generate their own ports and frames.
-
-<a id="layers"></a>
-## 图层 / Layers
-
-| Layer | Name | 定义 / Definition |
-|---|---|---|
-| 1/0 | Waveguide | 实际上表面宽度；红色 / Top-surface width; red |
-| 3/0 | SiO2_Open | SiO₂ 湿法刻蚀开窗、缓坡 / Wet-etch opening |
-| 4/0 | NiCr | 200 nm |
-| 5/0 | Au | 1 µm |
-| 7/0 | Dicing | 划片标记 / Dicing marks |
-| 10/0 | Text | 作者与器件文字 / Author and device text |
-| 1/10 | PinRec | 光学端口 / Optical ports |
-| 68/0 | DevRec | 器件框 / Device recognition |
-| 1/11 | PinRecM | 金属端口辅助定义 / Metal port definition |
-| 81/0 | FbrTgt | 光纤目标辅助定义 / Fiber target definition |
-
-DBU = 0.0001 µm。2/0 已删除；EC01–EC03 低台阶待处理。无设计的开窗、电极和划片层仅定义。
-Layer 2/0 is removed. Lower steps of EC01–EC03 remain deferred. Layers without design geometry are definitions only.
-
-<a id="index"></a>
-## 文件索引 / Files
-
-每个固定器件只有一个当前 [GDS 索引](DEVICE_INDEX.md)，包含完整参数；另有 4 个分组总览。EC01/EC02 的 MFD 仍为 `MFDUnknowum`。MMI07 不再注册。
-The device index links one current GDS per fixed device and four overviews. EC01/EC02 retain `MFDUnknowum`; MMI07 is no longer registered.
+稳定版 V1.1 通过 main 安装和更新，参见仓库 README；拖入式安装宏同样跟踪 main。后续开发分支为 V1.2，已有开发克隆的重命名及上游调整步骤见 README。更新前先保留本地修改，稳定版执行 git pull --ff-only origin main，开发版执行 git pull --ff-only origin V1.2，然后重启 KLayout。
+Install stable V1.1 from main as described in the README. The drag-in installer also follows main; development continues on V1.2. The README explains how to rename an existing development checkout and update its upstream. Preserve local changes before fast-forwarding the chosen branch and restarting KLayout.

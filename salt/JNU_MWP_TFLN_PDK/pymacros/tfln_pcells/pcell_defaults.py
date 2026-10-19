@@ -238,7 +238,7 @@ def _sync_registered_library_defaults(pcell_name, pcell_defaults):
 
     for library_name in REGISTERED_LIBRARY_NAMES:
         try:
-            library = pya.Library.library_by_name(library_name)
+            library = pya.Library.library_by_name(library_name, "JNU_MWP_TFLN_PDK")
         except Exception:
             library = None
         if library is None:

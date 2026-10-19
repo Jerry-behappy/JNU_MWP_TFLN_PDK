@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <salt-grain>
   <name>JNU_MWP_TFLN_PDK</name>
-  <version>1.0</version>
+  <version>1.1</version>
   <api-version>0.30</api-version>
-  <title>JNU_MWP_TFLN_PDK V1.0 — Public Blackbox</title>
-  <doc>Four TFLN process libraries, 12 fixed blackboxes and 9 independent PCells, 47 fixed optical ports and layout tools.</doc>
+  <title>JNU_MWP_TFLN_PDK V1.1 — Public Blackbox</title>
+  <doc>Five TFLN process libraries, 55 fixed blackboxes and 9 independent PCells, 216 fixed optical ports and bilingual layout tools.</doc>
   <doc-url>https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK</doc-url>
   <url>https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK</url>
   <license>MIT</license>

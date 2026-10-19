@@ -10,4 +10,5 @@
  <properties><frame-color>#004080</frame-color><fill-color>#004080</fill-color><dither-pattern>I1</dither-pattern><valid>true</valid><visible>true</visible><transparent>true</transparent><width>1</width><name>DevRec</name><source>68/0@*</source></properties>
  <properties><frame-color>#004080</frame-color><fill-color>#004080</fill-color><dither-pattern>I11</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><width>2</width><name>PinRecM</name><source>1/11@*</source></properties>
  <properties><frame-color>#004080</frame-color><fill-color>#004080</fill-color><dither-pattern>I9</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><name>FbrTgt</name><source>81/0@*</source></properties>
+ <properties><frame-color>#ffae00</frame-color><fill-color>#ffae00</fill-color><dither-pattern>I5</dither-pattern><valid>true</valid><visible>true</visible><transparent>false</transparent><width>1</width><name>BlackBox</name><source>998/0@*</source></properties>
 </layer-properties>

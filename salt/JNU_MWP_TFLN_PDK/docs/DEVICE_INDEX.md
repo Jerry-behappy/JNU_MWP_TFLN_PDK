@@ -1,52 +1,85 @@
-# TFLN 器件索引 / Device Index
+# 器件参数与文件索引 / Device index
 
-V1.0 · 2026-10-15 · 12 个固定器件 / fixed devices · 47 个固定端口 / fixed optical ports · 9 PCells。
+JNU_MWP_TFLN_PDK V1.1 · 2026-10-19
 
-公开固定 GDS 为矩形黑盒；PCell 另以可编辑参数化源码提供。 / Fixed GDS are blackboxes; PCells are editable source.
+按最新补录清单登记 55 个固定器件、216 个光学端口，分为五组工艺。TE/TM 独立工程按独立行登记。
+55 fixed devices and 216 optical ports in five process groups. Independent TE/TM designs remain separate records.
 
-| ID | 器件 / Device | 晶向 / Cut | 传播 / Prop. | 膜厚 / Thickness (nm) | 刻蚀 / Etch (nm) | 实际侧壁角 / Angle (°) | MFD (µm) | 包层 / Cladding | 偏振 / Pol. | Pins | 文件 / File |
-|---|---|---|---|---:|---:|---:|---|---|---|---:|---|
-| EC01 | 端面耦合器 EC | x切 | y传 | 300 | 125 | 70 | Unknow | SiO₂包层 | TE、TM | 2 | [GDS](../pymacros/tfln_blackbox_gds/300_125/EC_Xcut_Yprop_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFDUnknowum_SIO2_TE-TM.gds) |
-| EC02 | 端面耦合器 EC | x切 | y传 | 400 | 200 | 90 | Unknow | SiO₂包层 | TE、TM | 2 | [GDS](../pymacros/tfln_blackbox_gds/400_200/EC_Xcut_Yprop_thickness400nm_etchDepth200nm_sidewallAngle90deg_MFDUnknowum_SIO2_TE-TM.gds) |
-| EC03 | 端面耦合器 EC | x切 | y传 | 600 | 300 | 63 | 3.2 | 空气包层 | TE | 2 | [GDS](../pymacros/tfln_blackbox_gds/600_300/EC_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR_TE.gds) |
-| EC04 | 端面耦合器 EC | x切 | y传 | 600 | 600 | 63 | 3.2 | 空气包层 | TE、TM | 2 | [GDS](../pymacros/tfln_blackbox_gds/600_600/EC_Xcut_Yprop_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_AIR_TE-TM.gds) |
-| MMI01 | 1×2 MMI | x切 | y传 | 600 | 300 | 63 | — | 空气包层 | TE、TM | 3 | [GDS](../pymacros/tfln_blackbox_gds/600_300/MMI1x2_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM.gds) |
-| MMI02 | 2×2 MMI | x切 | y传 | 600 | 300 | 63 | — | 空气包层 | TE | 4 | [GDS](../pymacros/tfln_blackbox_gds/600_300/MMI2x2_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE.gds) |
-| MMI03 | 1×4 MMI | x切 | y传 | 600 | 300 | 63 | — | 空气包层 | TE | 5 | [GDS](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE.gds) |
-| MMI04 | 1×4 MMI | x切 | z传 | 600 | 300 | 63 | — | 空气包层 | TE | 5 | [GDS](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE.gds) |
-| MMI05 | 4×4 MMI | x切 | y传 | 600 | 300 | 63 | — | 空气包层 | TE | 8 | [GDS](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE.gds) |
-| MMI06 | 4×4 MMI | x切 | z传 | 600 | 300 | 63 | — | 空气包层 | TE、TM | 8 | [GDS](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM.gds) |
-| POL01 | PSR | x切 | z传 | 600 | 300 | 62 | — | 空气包层 | TE、TM | 3 | [GDS](../pymacros/tfln_blackbox_gds/600_300/PSR_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM.gds) |
-| POL02 | PDMC/DMPS | x切 | z传 | 600 | 300 | 62 | — | 空气包层 | TE、TM | 3 | [GDS](../pymacros/tfln_blackbox_gds/600_300/PDMC_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM.gds) |
+文件名使用 ASCII `x`、`thickness`、`etchDepth`、`sidewallAngle` 和 `MFD`；未知参数使用 `Unknow`。
+Names use ASCII x and the full parameter tokens. Unknown fields retain Unknow.
 
-四组固定库 / Fixed libraries：`JNULib_TFLN_300_125` (1)、`JNULib_TFLN_400_200` (1)、`JNULib_TFLN_600_300` (9)、`JNULib_TFLN_600_600` (1)。
+## 器件 / Devices
 
-MMI07 已从当前库和索引移除。EC01、EC02 保留 `MFDUnknowum`。EC01–EC03 低台阶待处理，不合并到波导层。
-MMI07 was removed. EC01/EC02 keep `MFDUnknowum`. Lower steps of EC01–EC03 remain deferred.
+| 编号 / ID | Library | 晶向/传播 | 厚度/刻蚀 nm | FSP角度 ° | MFD µm / 包层 | 偏振 | 端口 | GDS | 状态 |
+|---|---|---|---:|---:|---|---|---:|---|---|
+| EC-01 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | 3.2 / AIR | TE | 2 | [EC01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR_TE_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| MMI-01 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / AIR | TE、TM | 3 | [MMI1x2_01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x2_01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01.gds) | 已生成 / Generated |
+| MMI-02 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / AIR | TE | 5 | [MMI1x4_02_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_02_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01.gds) | 已生成 / Generated |
+| MMI-03 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 63 | — / AIR | TE | 5 | [MMI1x4_03_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_03_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01.gds) | 已生成 / Generated |
+| MMI-04 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / AIR | TE、TM（待确认） | 4 | [MMI2x2_04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_polUnknow_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI2x2_04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_polUnknow_v01.gds) | 清单参数仍有待确认字段 |
+| MMI-05 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / AIR | TE | 8 | [MMI4x4_05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01.gds) | 已生成 / Generated |
+| MMI-06 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 63 | — / AIR | TE、TM | 8 | [MMI4x4_06_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_06_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01.gds) | 已生成 / Generated |
+| PDMC-01 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 62 | — / AIR | TE、TM | 3 | [PDMC01_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/PDMC01_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM_v01.gds) | 已生成 / Generated |
+| PSR-01 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 62 | — / AIR | TE、TM | 3 | [PSR01_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/PSR01_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_AIR_TE-TM_v01.gds) | 已生成 / Generated |
+| EC-02 | `JNULib_TFLN_600_600` | x切/y传 | 600/600 | 63 | 3.2 / SiO₂ | TE | 2 | [EC02_Xcut_Yprop_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_600/EC02_Xcut_Yprop_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds) | 已生成 / Generated |
+| EC-02-TM | `JNULib_TFLN_600_600` | x切/y传 | 600/600 | 63 | 3.2 / SiO₂ | TM | 2 | [EC02TM_Xcut_Yprop_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_SIO2_TM_v01.gds](../pymacros/tfln_blackbox_gds/600_600/EC02TM_Xcut_Yprop_thickness600nm_etchDepth600nm_sidewallAngle63deg_MFD3.2um_SIO2_TM_v01.gds) | 已生成 / Generated |
+| EC-03 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | 3.2 / SiO₂ | TE | 2 | [EC03_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC03_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| EC-04 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | 3.2 / SiO₂ | TE | 2 | [EC04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| EC-04-TM | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | 3.2 / 待确认 | TM | 2 | [EC04TM_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_cladUnknow_TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC04TM_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_cladUnknow_TM_v01.gds) | 清单参数仍有待确认字段; 低台阶待处理 / lower step pending |
+| EC-05 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | 3.2 / SiO₂ | TE | 2 | [EC05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| EC-06 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | 10.4 / SiO₂ | TE | 2 | [EC06_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD10.4um_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC06_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD10.4um_SIO2_TE_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| CROSS-01 | `JNULib_TFLN_600_300` | —/— | 600/300 | 65 | — / SiO₂ | TE | 4 | [CROSS01_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle65deg_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/CROSS01_cutUnknow_propUnknow_thickness600nm_etchDepth300nm_sidewallAngle65deg_SIO2_TE_v01.gds) | 清单参数仍有待确认字段 |
+| DC-01 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 65 | — / SiO₂ | TE | 4 | [DC01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle65deg_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/DC01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle65deg_SIO2_TE_v01.gds) | 已生成 / Generated |
+| GC-01 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 65 | — / SiO₂ | TE | 1 | [GC01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle65deg_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/GC01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle65deg_SIO2_TE_v01.gds) | 已生成 / Generated |
+| GC-02 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 65 | — / AIR | TE | 1 | [GC02_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle65deg_AIR_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/GC02_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle65deg_AIR_TE_v01.gds) | 已生成 / Generated |
+| MMI-07 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / SiO₂ | TE、TM | 3 | [MMI1x2_07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x2_07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds) | 已生成 / Generated |
+| MMI-08 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / SiO₂ | TE | 5 | [MMI1x4_08_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_08_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01.gds) | 已生成 / Generated |
+| MMI-09 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 63 | — / SiO₂ | TE、TM | 5 | [MMI1x4_09_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_09_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds) | 已生成 / Generated |
+| MMI-10 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 62 | — / SiO₂ | TE | 4 | [MMI2x2_10_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI2x2_10_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle62deg_SIO2_TE_v01.gds) | FSP版本不兼容；暂用原GDS的1/0轮廓，上表面宽度待核验 |
+| MMI-11 | `JNULib_TFLN_300_300` | x切/y传 | 300/300 | 62 | — / SiO₂ | TM | 4 | [MMI2x2_11_Xcut_Yprop_thickness300nm_etchDepth300nm_sidewallAngle62deg_SIO2_TM_v01.gds](../pymacros/tfln_blackbox_gds/300_300/MMI2x2_11_Xcut_Yprop_thickness300nm_etchDepth300nm_sidewallAngle62deg_SIO2_TM_v01.gds) | 清单膜厚与工程LN实际厚度不同；保持源工程轮廓 |
+| MMI-12 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / SiO₂ | TE | 8 | [MMI4x4_12_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_12_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01.gds) | 已生成 / Generated |
+| MMI-13 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 63 | — / SiO₂ | TE、TM | 8 | [MMI4x4_13_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_13_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds) | 已生成 / Generated |
+| PBS-01 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 65 | — / SiO₂ | TM | 3 | [PBS01_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle65deg_SIO2_TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/PBS01_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle65deg_SIO2_TM_v01.gds) | 已生成 / Generated |
+| PSR-02 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 63 | — / SiO₂ | TE、TM | 3 | [PSR02_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/PSR02_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds) | 已生成 / Generated |
+| EC-07 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | 3.2 / SiON | TE | 2 | [EC07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SION_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SION_TE_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| MMI-14 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / SiON | TE、TM | 3 | [MMI1x2_14_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x2_14_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01.gds) | 已生成 / Generated |
+| MMI-15 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / SiON | TE | 5 | [MMI1x4_15_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_15_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01.gds) | 已生成 / Generated |
+| MMI-16 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 63 | — / SiON | TE、TM | 5 | [MMI1x4_16_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_16_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01.gds) | 已生成 / Generated |
+| MMI-17 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 63 | — / SiON | TE | 8 | [MMI4x4_17_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_17_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01.gds) | 已生成 / Generated |
+| MMI-18 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 63 | — / SiON | TE、TM | 8 | [MMI4x4_18_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_18_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01.gds) | 已生成 / Generated |
+| EC-08 | `JNULib_TFLN_300_125` | x切/y传 | 300/125 | 70 | 10.4 / SiO₂ | TE、TM | 2 | [EC08_Xcut_Yprop_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFD10.4um_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/300_125/EC08_Xcut_Yprop_thickness300nm_etchDepth125nm_sidewallAngle70deg_MFD10.4um_SIO2_TE-TM_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| EC-09 | `JNULib_TFLN_400_200` | x切/y传 | 400/200 | 65 | 3.2 / SiO₂ | TE | 2 | [EC09_Xcut_Yprop_thickness400nm_etchDepth200nm_sidewallAngle65deg_MFD3.2um_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/400_200/EC09_Xcut_Yprop_thickness400nm_etchDepth200nm_sidewallAngle65deg_MFD3.2um_SIO2_TE_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| MMI-19 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 75 | — / AIR | TE | 3 | [MMI1x2_19_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x2_19_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TE_v01.gds) | 已生成 / Generated |
+| MMI-19-TM | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 75 | — / AIR | TM | 3 | [MMI1x2_19TM_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x2_19TM_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TM_v01.gds) | 已生成 / Generated |
+| MMI-20 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 75 | — / AIR | TE | 3 | [MMI1x2_20_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x2_20_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TE_v01.gds) | 已生成 / Generated |
+| MMI-21 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 75 | — / AIR | TE、TM | 5 | [MMI1x4_21_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_21_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TE-TM_v01.gds) | 已生成 / Generated |
+| MMI-22 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 75 | — / AIR | TE、TM | 8 | [MMI4x4_22_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_22_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_AIR_TE-TM_v01.gds) | 已生成 / Generated |
+| EC-10 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 75 | 10.4 / SiO₂ | TE | 2 | [EC10_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_MFD10.4um_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC10_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_MFD10.4um_SIO2_TE_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| EC-11 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 61.8 | 3.2 / SiO₂ | TE（TM 扫描） | 2 | [EC11_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle61.8deg_MFD3.2um_SIO2_polUnknow_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC11_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle61.8deg_MFD3.2um_SIO2_polUnknow_v01.gds) | 清单参数仍有待确认字段; 低台阶待处理 / lower step pending |
+| EC-12 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 61.8 | 3.2 / SiO₂ | TE、TM | 2 | [EC12_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle61.8deg_MFD3.2um_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC12_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle61.8deg_MFD3.2um_SIO2_TE-TM_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| MMI-23 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 75 | — / SiO₂ | TE、TM | 4 | [MMI2x2_23_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI2x2_23_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE-TM_v01.gds) | 已生成 / Generated |
+| MMI-24 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 75 | — / SiO₂ | TE | 3 | [MMI1x2_24_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x2_24_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE_v01.gds) | 已生成 / Generated |
+| MMI-25 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 75 | — / SiO₂ | TE、TM | 5 | [MMI1x4_25_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_25_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE-TM_v01.gds) | 已生成 / Generated |
+| MMI-26 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 75 | — / SiO₂ | TE、TM | 8 | [MMI4x4_26_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_26_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE-TM_v01.gds) | 已生成 / Generated |
+| PSR-03 | `JNULib_TFLN_300_300` | x切/z传 | 300/300 | 75 | — / SiO₂ | TE、TM | 3 | [PSR03_Xcut_Zprop_thickness300nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/300_300/PSR03_Xcut_Zprop_thickness300nm_etchDepth300nm_sidewallAngle75deg_SIO2_TE-TM_v01.gds) | 清单膜厚与工程LN实际厚度不同；保持源工程轮廓 |
+| EC-13 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 75 | 3.2 / SiON | TE | 2 | [EC13_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_MFD3.2um_SION_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/EC13_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_MFD3.2um_SION_TE_v01.gds) | 已生成 / Generated; 低台阶待处理 / lower step pending |
+| MMI-28 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 75 | — / SiON | TE | 3 | [MMI1x2_28_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SION_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x2_28_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SION_TE_v01.gds) | 已生成 / Generated |
+| MMI-29 | `JNULib_TFLN_600_300` | x切/z传 | 600/300 | 75 | — / SiON | TE、TM | 5 | [MMI1x4_29_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SION_TE-TM_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI1x4_29_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SION_TE-TM_v01.gds) | 已生成 / Generated |
+| MMI-30 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 75 | — / SiON | TE | 4 | [MMI2x2_30_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SION_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI2x2_30_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SION_TE_v01.gds) | 已生成 / Generated |
+| MMI-31 | `JNULib_TFLN_600_300` | x切/y传 | 600/300 | 75 | — / SiON | TE | 8 | [MMI4x4_31_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SION_TE_v01.gds](../pymacros/tfln_blackbox_gds/600_300/MMI4x4_31_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle75deg_SION_TE_v01.gds) | 已生成 / Generated |
 
-命名 / Naming：`Xcut` 晶向；`Yprop` / `Zprop` 传播方向；`thickness` 薄膜厚度；`etchDepth` 刻蚀深度；`sidewallAngle` 侧壁角；`MFD` 模场直径。未知值使用 `Unknow`。
+## 待确认项 / Pending items
 
-侧壁角沿用代表工程实际上表面轮廓：EC01 70°、EC02 90°（工程集合有 65°/90°）、POL01/POL02 62°；目录名 63 表示目录侧壁角标记。MMI02 使用目录 63°，原始工程差异仍保留。
-Angles follow the selected geometry: EC01 70°, EC02 90° (source variants 65°/90°), POL01/POL02 62°. MMI02 retains the directory value 63°; discrepancies remain recorded.
+- MMI-04 偏振、EC-04-TM 包层、CROSS-01 晶向/传播方向、EC-11 偏振支持范围尚未确定。
+- MMI-10 的两个 FSP 与当前读取版本不兼容，暂用原 GDS 的 1/0；上表面宽度待核验。 / MMI-10 uses its existing GDS pending top-width verification.
+- MMI-11 和 PSR-03 按补录清单登记为 300/300 nm；所选源工程的 LN 总厚度为 600 nm。名称和归组采用清单，轮廓保留源工程并列出差异。 / These two records use the catalog's 300/300 grouping while preserving source contours; the source film thickness is 600 nm.
+- 端面耦合器只导出最高层上表面，低台阶轮廓尚未纳入；不创建或合并至 2/0。
+- 参数登记及端口检查不替代光学性能或工艺验收。
 
-## 参数化器件 / PCells
+## 工艺总览 / Process overviews
 
-`JNULib_TFLN_pcell` 独立包含 SOI PDK 的以下 9 个公开 PCell。几何算法和默认尺寸保留；TFLN 光学性能需另行设计验证。
-The independent library copies nine public SOI PCells, retaining geometry and default dimensions. TFLN optical performance requires separate validation.
-
-- `Pcell_Bend_90deg`
-- `Pcell_Microring_DoubleBus`
-- `Pcell_Archimedean_Spiral`
-- `Pcell_Paperclip_Spiral`
-- `Pcell_Paperclip_Spiral_with_Composite_Waveguide`
-- `Pcell_Taper`
-- `Pcell_S_Bend`
-- `Pcell_Straight_Waveguide`
-- `Pcell_Waveguide_Bump`
-
-## 分组总览 / Process overviews
-
-- 300_125：[GDS](../overviews/JNU_MWP_TFLN_PDK_300_125_V1.0_BLACKBOX.gds) · [预览 / Preview](../previews/300_125.png)
-- 400_200：[GDS](../overviews/JNU_MWP_TFLN_PDK_400_200_V1.0_BLACKBOX.gds) · [预览 / Preview](../previews/400_200.png)
-- 600_300：[GDS](../overviews/JNU_MWP_TFLN_PDK_600_300_V1.0_BLACKBOX.gds) · [预览 / Preview](../previews/600_300.png)
-- 600_600：[GDS](../overviews/JNU_MWP_TFLN_PDK_600_600_V1.0_BLACKBOX.gds) · [预览 / Preview](../previews/600_600.png)
+- [300_125 nm · 1 devices](../overviews/JNU_MWP_TFLN_PDK_300_125_V1.1.gds)
+- [300_300 nm · 2 devices](../overviews/JNU_MWP_TFLN_PDK_300_300_V1.1.gds)
+- [400_200 nm · 1 devices](../overviews/JNU_MWP_TFLN_PDK_400_200_V1.1.gds)
+- [600_300 nm · 49 devices](../overviews/JNU_MWP_TFLN_PDK_600_300_V1.1.gds)
+- [600_600 nm · 2 devices](../overviews/JNU_MWP_TFLN_PDK_600_600_V1.1.gds)

@@ -2,6 +2,7 @@
 # 时间: 2026-10
 """把用户提供的授权 GDS 安装到独立私有目录，不写入公开克隆。"""
 import json
+import math
 import os
 import shutil
 import tempfile
@@ -40,9 +41,10 @@ def validate_ports(layout, cell, record):
     actual = set()
     for path in paths:
         points = list(path.each_point())
-        assert len(points) == 2 and points[0].y == points[1].y
+        assert len(points) == 2 and (points[0].y == points[1].y or points[0].x == points[1].x)
+        direction = round(math.degrees(math.atan2(points[1].y - points[0].y, points[1].x - points[0].x))) % 360
         actual.add(((points[0].x + points[1].x) // 2, (points[0].y + points[1].y) // 2,
-                    path.width, 0 if points[1].x > points[0].x else 180))
+                    path.width, direction))
     wanted = {(*[round(v / layout.dbu) for v in pin["center_um"]], round(pin["width_um"] / layout.dbu), pin["direction_deg"]) for pin in expected}
     assert actual == wanted, "PinRec 坐标、宽度或朝向不匹配"
 

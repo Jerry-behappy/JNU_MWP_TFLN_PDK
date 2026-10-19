@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # 时间: 2026-10
-"""检查公开目录、矩形黑盒、真实库实例及保存重开的接口。"""
+"""验证清单对应库、黑盒主体、四向端口、保存重开及公开来源边界。"""
 import json
 import re
 import sys
@@ -14,73 +14,105 @@ PACKAGE = ROOT / "salt/JNU_MWP_TFLN_PDK"
 DATA = json.loads((PACKAGE / "manifest.json").read_text(encoding="utf-8"))
 sys.path.insert(0, str(PACKAGE / "pymacros"))
 import tfln_library
+from tfln_tools.authorized_gds import validate_ports
 
 
-def roots(layout):
-    return [layout.cell(c) if isinstance(c, int) else c for c in layout.each_top_cell()]
+def top_cell(layout):
+    item = list(layout.each_top_cell())[0]
+    return layout.cell(item) if isinstance(item, int) else item
+
+
+def expected_stubs(record, dbu):
+    output = pya.Region()
+    length = round(0.2 / dbu)
+    for pin in record["pins"]:
+        x, y = [round(v / dbu) for v in pin["center_um"]]
+        width = round(pin["width_um"] / dbu)
+        low, high = width // 2, width - width // 2
+        box = {180: (x, y - low, x + length, y + high), 0: (x - length, y - low, x, y + high),
+               270: (x - low, y, x + high, y + length), 90: (x - low, y - length, x + high, y)}[pin["direction_deg"]]
+        output.insert(pya.Box(*box))
+    return output.merged()
 
 
 def verify():
-    forbidden_suffixes = {".fsp", ".h5", ".mat", ".xlsx", ".zip"}
     for path in ROOT.rglob("*"):
         if not path.is_file() or ".git" in path.parts or "__pycache__" in path.parts:
             continue
         relative = path.relative_to(ROOT)
-        assert path.suffix.lower() not in forbidden_suffixes, "不允许发布原始工程或完整制品: " + str(relative)
+        assert path.suffix.lower() not in {".fsp", ".h5", ".mat", ".xlsx", ".zip"}, relative
         assert not any(part.lower() in ("gds", "evidence", "source_inventory") or "whitebox" in part.lower() for part in relative.parts), relative
         if path.suffix in (".py", ".json", ".md", ".lym", ".lyt", ".ps1", ".xml", ".yml"):
             content = path.read_text(encoding="utf-8")
-            assert not re.search(r"[A-Z]:[\\/]", content) and ("::model" + "::") not in content, "存在本地来源路径: " + str(relative)
+            assert not re.search(r"[A-Z]:[\\/]", content) and ("::model" + "::") not in content, relative
         if path.suffix == ".py":
             compile(path.read_text(encoding="utf-8"), str(path), "exec")
         if path.suffix == ".lym":
             compile(ET.parse(path).getroot().findtext("text"), str(path), "exec")
-    assert DATA["edition"] == "public-blackbox"
-    assert len(DATA["devices"]) == 12 and sum(len(d["pins"]) for d in DATA["devices"]) == 47
-    assert all(d["id"] != "MMI07" for d in DATA["devices"])
-    assert len(list(PACKAGE.rglob("*.gds"))) == 16
-    assert len(list((PACKAGE / "previews").glob("*.png"))) == 16
+    assert DATA["edition"] == "public-blackbox" and DATA["version"] == "V1.1"
+    style = next(p for p in ET.parse(PACKAGE / "layers.lyp").getroot().findall("properties")
+                 if p.findtext("source") == "998/0@*")
+    assert style.findtext("frame-color") == style.findtext("fill-color") == "#ffae00"
+    assert style.findtext("dither-pattern") == "I5" and style.findtext("transparent") == "false"
+    counts = {"300_125": 1, "300_300": 2, "400_200": 1, "600_300": 49, "600_600": 2}
+    assert len(DATA["devices"]) == 55 and sum(len(d["pins"]) for d in DATA["devices"]) == 216
+    assert len(list(PACKAGE.rglob("*.gds"))) == 60
+    assert len(list((PACKAGE / "previews").glob("*.png"))) == 60
+    assert len({d["cell_name"] for d in DATA["devices"]}) == 55
     tfln_library.register_all()
-    total = 0
-    for process, count in zip(tfln_library.PROCESSES, (1, 1, 9, 1)):
-        library = pya.Library.library_by_name("JNULib_TFLN_" + process)
-        assert library is not None and library.layout().cells() == count
+    for process, count in counts.items():
+        records = [d for d in DATA["devices"] if d["process"] == process]
+        assert len(records) == count
+        library = pya.Library.library_by_name("JNULib_TFLN_" + process, tfln_library.TECHNOLOGY_NAME)
+        assert library is not None and sum(1 for _ in library.layout().each_top_cell()) == count
         assert "By Songliang Chen" not in library.description
         layout = pya.Layout()
         layout.dbu = DATA["dbu_um"]
+        layout.technology_name = tfln_library.TECHNOLOGY_NAME
         top = layout.create_cell("PUBLIC_PLACEMENT_" + process)
-        records = [d for d in DATA["devices"] if d["process"] == process]
         for i, record in enumerate(records):
+            assert record["cell_name"].isascii() and len(record["cell_name"]) <= 256
             index = layout.add_lib_cell(library, library.layout().cell(record["cell_name"]).cell_index())
-            inst = top.insert(pya.CellInstArray(index, pya.Trans(i * 10000000, 0)))
-            assert inst.cell.is_library_cell()
-            cell = inst.cell
-            wave = pya.Region(cell.begin_shapes_rec(layout.layer(1, 0))).merged()
-            expected = pya.Box(*[round(v / layout.dbu) for v in record["physical_bbox_um"]])
-            assert wave.count() == 1 and (wave ^ pya.Region(expected)).is_empty(), "黑盒泄漏内部图形"
-            recs = list(cell.shapes(layout.layer(68, 0)).each())
-            assert len(recs) == 1 and recs[0].is_box()
-            rec = recs[0].box
-            assert rec.left == expected.left and rec.right == expected.right
-            assert (wave - pya.Region(rec)).is_empty()
-            labels = [s for s in cell.shapes(layout.layer(10, 0)).each() if s.is_text()]
-            authors = [s for s in labels if s.text.string == DATA["author"]]
-            assert len(authors) == 1 and authors[0].text_valign == int(pya.VAlign.VAlignTop)
-            author_box = pya.Box(*[round(v / layout.dbu) for v in record["author_layout"]["envelope_bbox_um"]])
-            assert (pya.Region(author_box) - pya.Region(rec)).is_empty()
-            assert (pya.Region(author_box) & wave).is_empty()
-            paths = [s.path for s in cell.shapes(layout.layer(1, 10)).each() if s.is_path()]
-            pins = [s.text for s in cell.shapes(layout.layer(1, 10)).each() if s.is_text()]
-            assert len(paths) == len(pins) == len(record["pins"])
-            for path, metadata in zip(paths, record["pins"]):
-                points = list(path.each_point())
-                center = pya.Point((points[0].x + points[1].x) // 2, (points[0].y + points[1].y) // 2)
-                assert center == pya.Point(*[round(v / layout.dbu) for v in metadata["center_um"]])
-                assert path.width == round(metadata["width_um"] / layout.dbu)
-                assert abs(points[1].x - points[0].x) == round(0.02 / layout.dbu)
-                assert (points[1].x > points[0].x) == (metadata["direction_deg"] == 0)
-                assert any(t.string == metadata["name"] and t.trans.disp == center for t in pins)
-            total += len(paths)
+            instance = top.insert(pya.CellInstArray(index, pya.Trans(i % 4, bool(i % 2), i * 10000000, 0)))
+            assert instance.cell.is_library_cell()
+            cell = instance.cell
+            body = pya.Region(cell.begin_shapes_rec(layout.layer(998, 0))).merged()
+            expected = pya.Box(*[round(v / layout.dbu) for v in record["blackbox_body_bbox_um"]])
+            assert body.count() == 1 and body.bbox() == expected, record["id"]
+            physical = pya.Region(cell.begin_shapes_rec(layout.layer(1, 0))).merged()
+            assert (physical ^ expected_stubs(record, layout.dbu)).is_empty(), "公开黑盒包含非端口制造轮廓: " + record["id"]
+            assert (physical & body).is_empty(), record["id"]
+            for stub in expected_stubs(record, layout.dbu).each():
+                assert (body + pya.Region(stub)).merged().count() == 1, "端口直段悬空: " + record["id"]
+            label_region = pya.Region(cell.begin_shapes_rec(layout.layer(10, 0)))
+            label_box = label_region.bbox()
+            target = pya.Box(*[round(v / layout.dbu) for v in record["blackbox_label_box_um"]])
+            placeholder = pya.Region(target)
+            for pin in record["pins"]:
+                x, y = [round(v / layout.dbu) for v in pin["center_um"]]
+                width = round(pin["width_um"] / layout.dbu)
+                lo, hi, length = width // 2, width - width // 2, round(0.2 / layout.dbu)
+                direction = pin["direction_deg"]
+                if direction == 0 and x - length > target.right:
+                    placeholder.insert(pya.Box(target.right, y - lo, x - length, y + hi))
+                elif direction == 180 and x + length < target.left:
+                    placeholder.insert(pya.Box(x + length, y - lo, target.left, y + hi))
+                elif direction == 90 and y - length > target.top:
+                    placeholder.insert(pya.Box(x - lo, target.top, x + hi, y - length))
+                elif direction == 270 and y + length < target.bottom:
+                    placeholder.insert(pya.Box(x - lo, y + length, x + hi, target.bottom))
+            assert (placeholder ^ body).is_empty(), "占位主体含非接口轮廓: " + record["id"]
+            assert not label_region.is_empty() and (label_region - pya.Region(target)).is_empty()
+            assert abs(label_box.center().x - target.center().x) <= 1
+            assert abs(label_box.center().y - target.center().y) <= 1
+            rec = pya.Region(cell.begin_shapes_rec(layout.layer(68, 0)))
+            assert rec.count() == 1 and (physical - rec).is_empty() and (body - rec).is_empty()
+            validate_ports(layout, cell, record)
+            labels = [shape for shape in cell.shapes(layout.layer(10, 0)).each() if shape.is_text()]
+            assert sum(shape.text.string == DATA["author"] for shape in labels) == 1
+            envelope = pya.Region(pya.Box(*[round(v / layout.dbu) for v in record["author_layout"]["envelope_bbox_um"]]))
+            assert (envelope - rec).is_empty() and (envelope & body).is_empty()
+            assert pya.Region(cell.begin_shapes_rec(layout.layer(2, 0))).is_empty()
         with tempfile.TemporaryDirectory() as temporary:
             target = str(Path(temporary) / "placement.gds")
             options = pya.SaveLayoutOptions()
@@ -88,32 +120,25 @@ def verify():
             layout.write(target, options)
             reopened = pya.Layout()
             reopened.read(target)
-            restored = roots(reopened)[0]
+            restored = top_cell(reopened)
             assert sum(1 for _ in restored.each_inst()) == count
-            for layer, datatype in ((1, 0), (1, 10), (68, 0)):
+            for layer, datatype in ((1, 0), (998, 0), (1, 10), (68, 0)):
                 before = pya.Region(top.begin_shapes_rec(layout.layer(layer, datatype)))
                 after = pya.Region(restored.begin_shapes_rec(reopened.layer(layer, datatype)))
-                assert (before ^ after).is_empty(), "保存重开改变了占位或接口"
+                assert (before ^ after).is_empty(), "变换或保存重开改变接口"
     for record in DATA["overviews"]:
         layout = pya.Layout()
         layout.read(str(PACKAGE / record["gds_relative"]))
-        assert sum(1 for _ in roots(layout)[0].each_inst()) == record["device_count"]
-        for cell in layout.each_cell():
-            wave = pya.Region(cell.shapes(layout.layer(1, 0)))
-            if not wave.is_empty():
-                assert (wave ^ pya.Region(wave.bbox())).is_empty(), "总览包含内部图形"
-    # 文档中的相对链接必须指向实际文件，外部 URL 与锚点由 GitHub 处理。
+        assert sum(1 for _ in top_cell(layout).each_inst()) == record["device_count"]
     for document in ROOT.rglob("*.md"):
-        text = document.read_text(encoding="utf-8")
-        links = re.findall(r'\]\(([^)]+)\)|(?:href|src)="([^"]+)"', text)
+        links = re.findall(r'\]\(([^)]+)\)|(?:href|src)="([^"]+)"', document.read_text(encoding="utf-8"))
         for entries in links:
             target = next(e for e in entries if e)
             if target.startswith(("http:", "https:", "#")):
                 continue
-            file = target.split("#", 1)[0]
-            assert (document.parent / file).exists(), "文档文件链接失效: " + str(document) + " -> " + file
-    assert len(pya.Library.library_by_name("JNULib_TFLN_pcell").layout().pcell_names()) == 9
-    print("PUBLIC_VERIFY_PASS: fixed libraries (1/1/9/1), 12 rectangles, 47 ports, 9 PCells, instances/save-reopen, 16 GDS; no fixed whitebox source")
+            assert (document.parent / target.split("#", 1)[0]).exists(), (document, target)
+    assert len(pya.Library.library_by_name("JNULib_TFLN_pcell", tfln_library.TECHNOLOGY_NAME).layout().pcell_names()) == 9
+    print("PUBLIC_VERIFY_PASS: 55 devices, 216 four-direction optical ports, fixed groups 1/2/1/49/2, 9 PCells; no internal contours")
 
 
 if __name__ == "__main__":

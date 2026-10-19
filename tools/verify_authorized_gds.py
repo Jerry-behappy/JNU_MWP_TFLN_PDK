@@ -14,7 +14,13 @@ from tfln_tools import authorized_gds as store
 
 
 def verify():
-    record = json.loads((PACKAGE / 'manifest.json').read_text(encoding='utf-8'))['devices'][0]
+    records = json.loads((PACKAGE / 'manifest.json').read_text(encoding='utf-8'))['devices']
+    record = records[0]
+    # 四向交叉器件的竖直端口也必须按实际方向验证，而不是隐式转为水平端口。
+    cross = next(item for item in records if item['id'] == 'CROSS-01')
+    cross_layout = pya.Layout()
+    cross_layout.read(str(PACKAGE / cross['gds_relative']))
+    store.validate_ports(cross_layout, cross_layout.cell(cross['cell_name']), cross)
     with tempfile.TemporaryDirectory() as temporary:
         base = Path(temporary)
         source, private = base / 'source', base / 'private'
