@@ -35,18 +35,4 @@ After a version branch merges into `main` through a PR, its minor number advance
 
 The public fixed library contains 998/0 placeholders, 0.2 µm port stubs, PinRec, DevRec and in-frame attribution. Manufacturing contours, FSPs and the completed source workbook stay local. MMI-10 uses its existing GDS pending top-width verification; MMI-11 and PSR-03 retain a catalog/source film-thickness discrepancy. Four records still contain Unknow fields. Lower edge-coupler steps remain deferred. See the device index for each record.
 
-By Songliang Chen, 2026/10/13 — GDS 框内署名 / in-frame GDS attribution.
-
-## 预览 / Previews
-
-![300_125 nm](salt/JNU_MWP_TFLN_PDK/previews/300_125.png)
-
-![300_300 nm](salt/JNU_MWP_TFLN_PDK/previews/300_300.png)
-
-![400_200 nm](salt/JNU_MWP_TFLN_PDK/previews/400_200.png)
-
-![600_300 nm](salt/JNU_MWP_TFLN_PDK/previews/600_300.png)
-
-![600_600 nm](salt/JNU_MWP_TFLN_PDK/previews/600_600.png)
-
 [许可证 / License](LICENSE.md) · [相关 SOI PDK](https://github.com/Jerry-behappy/JNU-MWP-SOI-PDK)
