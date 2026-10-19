@@ -35,18 +35,4 @@ powershell -ExecutionPolicy Bypass -File .\JNU_MWP_TFLN_PDK\Install_Cloned_PDK.p
 
 公开固定器件仅包含 998/0 占位主体、0.2 µm 端口直段、PinRec、DevRec 和框内署名。完整制造轮廓、FSP、补录源表留在本地。MMI-10 暂用原 GDS，上表面宽度待核验；MMI-11、PSR-03 保留清单与源工程膜厚差异。四条记录仍有 Unknow 字段，端面耦合器低台阶仍待处理。逐项状态见器件索引。
 
-By Songliang Chen, 2026/10/13 — GDS 框内署名 / in-frame GDS attribution.
-
-## 预览 / Previews
-
-![300_125 nm](salt/JNU_MWP_TFLN_PDK/previews/300_125.png)
-
-![300_300 nm](salt/JNU_MWP_TFLN_PDK/previews/300_300.png)
-
-![400_200 nm](salt/JNU_MWP_TFLN_PDK/previews/400_200.png)
-
-![600_300 nm](salt/JNU_MWP_TFLN_PDK/previews/600_300.png)
-
-![600_600 nm](salt/JNU_MWP_TFLN_PDK/previews/600_600.png)
-
 [许可证 / License](LICENSE.md) · [相关 SOI PDK](https://github.com/Jerry-behappy/JNU-MWP-SOI-PDK)

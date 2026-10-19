@@ -40,6 +40,9 @@ def verify():
         if not path.is_file() or ".git" in path.parts or "__pycache__" in path.parts:
             continue
         relative = path.relative_to(ROOT)
+        if path.name.lower().startswith("readme") and path.suffix.lower() in (".md", ".markdown", ".rst", ".txt", ""):
+            readme = path.read_text(encoding="utf-8")
+            assert not re.search(r"预览|\bpreviews?\b|By\s+Songliang\s+Chen", readme, re.IGNORECASE), "README 内容违反展示规则: " + str(relative)
         assert path.suffix.lower() not in {".fsp", ".h5", ".mat", ".xlsx", ".zip"}, relative
         assert not any(part.lower() in ("gds", "evidence", "source_inventory") or "whitebox" in part.lower() for part in relative.parts), relative
         if path.suffix in (".py", ".json", ".md", ".lym", ".lyt", ".ps1", ".xml", ".yml"):
