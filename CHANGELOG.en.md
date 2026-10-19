@@ -2,6 +2,7 @@
 
 ## 2026-10-19 — V1.1
 
+- Automatically advance the minor number of a version branch after merging it into main (for example, V1.4 to V1.5). CI matches all version branches; existing target branches and concurrent work are preserved. The internal PDK release version is unchanged.
 - Publish V1.1 to stable `main` and rename the development branch from `V1.1` to `V1.2`; update installation instructions and CI branch selection while retaining the V1.1 release version.
 - Add the independent `JNULib_TFLN_BlackBox` with all 55 fixed blackboxes, alongside the five process libraries and nine PCells. All seven libraries are scoped to `JNU_MWP_TFLN_PDK`; reload migrates old global associations.
 - Register 55 fixed devices and 216 optical ports from the completed catalog, with fixed groups 1/2/1/49/2 and nine independent PCells.
