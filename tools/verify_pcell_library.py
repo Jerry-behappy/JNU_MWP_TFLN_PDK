@@ -17,13 +17,14 @@ def verify():
     import tfln_pcells
     assert all(hasattr(tfln_pcells, name) for name in tfln_pcells.__all__)
     libraries = tfln_library.register_all()
-    assert len(libraries) == len(tfln_library.PROCESSES) + 1
-    library = pya.Library.library_by_name(LIBRARY_NAME)
+    assert len(libraries) == len(tfln_library.PROCESSES) + 2
+    library = pya.Library.library_by_name(LIBRARY_NAME, tfln_library.TECHNOLOGY_NAME)
     assert library is not None
     assert list(library.layout().pcell_names()) == sorted(name for name, _ in FACTORIES)
     assert not any(n == "JNU_MWP_pcells" or n == "JNU_MWP_tools" for n in sys.modules), "运行时依赖 SOI 安装"
     layout = pya.Layout()
     layout.dbu = 0.0001
+    layout.technology_name = tfln_library.TECHNOLOGY_NAME
     top = layout.create_cell("TFLN_PCELL_VERIFICATION")
     rows = []
     cells = []
@@ -61,6 +62,8 @@ def verify():
         options.gds2_write_file_properties = True
         layout.write(str(target), options)
         reopened = pya.Layout()
+        # 技术限定库要求在读取前选择相同 Technology，才能关联 PCell。
+        reopened.technology_name = tfln_library.TECHNOLOGY_NAME
         reopened.read(str(target))
         restored = reopened.cell(top.name)
         assert sum(1 for _ in restored.each_inst()) == 10

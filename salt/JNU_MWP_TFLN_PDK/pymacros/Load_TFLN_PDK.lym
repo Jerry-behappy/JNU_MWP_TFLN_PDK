@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <klayout-macro>
- <description>Load JNU_MWP_TFLN_PDK V1.0</description>
+ <description>Load JNU_MWP_TFLN_PDK V1.1</description>
  <category>pymacros</category>
  <autorun>false</autorun>
  <show-in-menu>true</show-in-menu>

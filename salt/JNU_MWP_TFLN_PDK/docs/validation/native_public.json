@@ -280,9 +280,11 @@
     }
   ],
   "ports": 216,
-  "libraries": 6,
+  "libraries": 7,
   "menus": 27,
   "checks": [
+    "TFLN-only library filtering",
+    "independent blackbox library",
     "five overviews",
     "placement dialog",
     "SiEPIC pins and components",

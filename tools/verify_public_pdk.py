@@ -63,11 +63,12 @@ def verify():
     for process, count in counts.items():
         records = [d for d in DATA["devices"] if d["process"] == process]
         assert len(records) == count
-        library = pya.Library.library_by_name("JNULib_TFLN_" + process)
+        library = pya.Library.library_by_name("JNULib_TFLN_" + process, tfln_library.TECHNOLOGY_NAME)
         assert library is not None and sum(1 for _ in library.layout().each_top_cell()) == count
         assert "By Songliang Chen" not in library.description
         layout = pya.Layout()
         layout.dbu = DATA["dbu_um"]
+        layout.technology_name = tfln_library.TECHNOLOGY_NAME
         top = layout.create_cell("PUBLIC_PLACEMENT_" + process)
         for i, record in enumerate(records):
             assert record["cell_name"].isascii() and len(record["cell_name"]) <= 256
@@ -136,7 +137,7 @@ def verify():
             if target.startswith(("http:", "https:", "#")):
                 continue
             assert (document.parent / target.split("#", 1)[0]).exists(), (document, target)
-    assert len(pya.Library.library_by_name("JNULib_TFLN_pcell").layout().pcell_names()) == 9
+    assert len(pya.Library.library_by_name("JNULib_TFLN_pcell", tfln_library.TECHNOLOGY_NAME).layout().pcell_names()) == 9
     print("PUBLIC_VERIFY_PASS: 55 devices, 216 four-direction optical ports, fixed groups 1/2/1/49/2, 9 PCells; no internal contours")
 
 

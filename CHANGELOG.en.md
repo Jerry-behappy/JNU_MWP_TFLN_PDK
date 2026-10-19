@@ -2,6 +2,7 @@
 
 ## 2026-10-19 — V1.1
 
+- Add the independent `JNULib_TFLN_BlackBox` with all 55 fixed blackboxes, alongside the five process libraries and nine PCells. All seven libraries are scoped to `JNU_MWP_TFLN_PDK`; reload migrates old global associations.
 - Register 55 fixed devices and 216 optical ports from the completed catalog, with fixed groups 1/2/1/49/2 and nine independent PCells.
 - Keep separate TE/TM designs, four-direction crossing ports and staggered polarization interfaces.
 - Publish 998/0 placeholders and 1/0 port stubs only; keep full contours local.

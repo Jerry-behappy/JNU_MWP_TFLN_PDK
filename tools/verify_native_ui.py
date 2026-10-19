@@ -34,7 +34,9 @@ try:
     data = actions.manifest()
     window = pya.Application.instance().main_window()
     assert window is not None
-    assert len(libraries) == 6 and len(menu._ACTIONS) == 27
+    assert len(libraries) == 7 and len(menu._ACTIONS) == 27
+    assert all(l.technologies() == [TECHNOLOGY_NAME] for l in libraries)
+    assert all(not l.is_for_technology(other) for l in libraries for other in ("", "JNU_MWP_SOI_PDK", "GSiP", "EBeam"))
     assert window.menu().action(menu.ROOT_MENU).title == "JNU_MWP_TFLN_PDK V1.1"
     key = menu.ROOT_MENU + ".layout.tfln_insert_device"
     menu._ACTIONS[key].shortcut = "Ctrl+Alt+T"
@@ -112,11 +114,11 @@ try:
     print("DISPLAY", hex(prop.fill_color), prop.dither_pattern, flush=True)
     assert (prop.fill_color & 0xffffff) == 0xffae00 and prop.dither_pattern == 5
     report = {"status": "PASS", "engine": "native KLayout + SiEPIC", "edition": data["edition"],
-              "devices": rows, "ports": total, "libraries": 6, "menus": 27,
-              "checks": ["five overviews", "placement dialog", "SiEPIC pins and components", "rotation and mirror", "reload", "legacy blackbox color migration"]}
+              "devices": rows, "ports": total, "libraries": 7, "menus": 27,
+              "checks": ["TFLN-only library filtering", "independent blackbox library", "five overviews", "placement dialog", "SiEPIC pins and components", "rotation and mirror", "reload", "legacy blackbox color migration"]}
     target = Path(globals().get("report_path", "native_ui_report.json"))
     target.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print("NATIVE_VERIFY_PASS", data["edition"], "55 devices, 216 pins, six libraries, 27 menus", flush=True)
+    print("NATIVE_VERIFY_PASS", data["edition"], "55 devices, 216 pins, seven libraries, 27 menus", flush=True)
     # Isolated verification layouts are intentionally unsaved; bypass save dialogs.
     os._exit(0)
 except Exception:

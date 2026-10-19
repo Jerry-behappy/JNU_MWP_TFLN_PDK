@@ -72,7 +72,7 @@ def open_overview(process):
 
 def insert_into(layout, cell, record, x=0.0, y=0.0):
     register_all()
-    library = pya.Library.library_by_name("JNULib_TFLN_" + record["process"])
+    library = pya.Library.library_by_name("JNULib_TFLN_" + record["process"], TECHNOLOGY_NAME)
     source = library.layout().cell(record["cell_name"])
     index = layout.add_lib_cell(library, source.cell_index())
     return cell.insert(pya.CellInstArray(index, pya.Trans(round(x / layout.dbu), round(y / layout.dbu))))
@@ -125,7 +125,7 @@ def insert_device():
     record = records[value(combo, "currentIndex")]
     # 库映射准备在事务外完成，事务内只插入可撤销的实例。
     register_all()
-    library = pya.Library.library_by_name("JNULib_TFLN_" + record["process"])
+    library = pya.Library.library_by_name("JNULib_TFLN_" + record["process"], TECHNOLOGY_NAME)
     index = layout.add_lib_cell(library, library.layout().cell(record["cell_name"]).cell_index())
     view.transaction("Insert TFLN " + record["id"])
     try:
@@ -171,7 +171,7 @@ def about():
     data = manifest()
     total = sum(len(r["pins"]) for r in data["devices"])
     groups = len({r["process"] for r in data["devices"]})
-    pya.MessageBox.info("JNU_MWP_TFLN_PDK " + data["version"], "%d Libraries / %d fixed devices / %d optical ports\nJNULib_TFLN_pcell: 9 PCells\nWaveguide: 1/0 (top width)\nPinRec: 1/10; DevRec: 68/0\n低台阶及待核验轮廓见器件清单 / See device index for geometry limits\nBy Songliang Chen, 2026/10/13" % (groups + 1, len(data["devices"]), total), pya.MessageBox.Ok)
+    pya.MessageBox.info("JNU_MWP_TFLN_PDK " + data["version"], "%d Libraries / %d fixed devices / %d optical ports\nJNULib_TFLN_BlackBox: 黑盒库 / Blackbox Library\nJNULib_TFLN_pcell: 9 PCells\nTechnology: JNU_MWP_TFLN_PDK only\nWaveguide: 1/0 (top width)\nPinRec: 1/10; DevRec: 68/0\n低台阶及待核验轮廓见器件清单 / See device index for geometry limits\nBy Songliang Chen, 2026/10/13" % (groups + 2, len(data["devices"]), total), pya.MessageBox.Ok)
 
 
 def reload_pdk():

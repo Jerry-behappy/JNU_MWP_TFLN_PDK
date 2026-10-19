@@ -128,7 +128,7 @@ def _choose_sbend_pin_pair(pins_a, pins_b):
 def _library_exists(library_name):
     """判断指定 PCell library 是否已经注册。"""
     try:
-        return pya.Library.library_by_name(library_name) is not None
+        return pya.Library.library_by_name(library_name, "JNU_MWP_TFLN_PDK") is not None
     except Exception:
         return False
 
