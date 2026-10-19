@@ -49,7 +49,7 @@
 | `JNULib_TFLN_400_200` | 400 / 200 | EC02 | 1 |
 | `JNULib_TFLN_600_300` | 600 / 300 | EC03、MMI01–06、POL01–02 | 9 |
 | `JNULib_TFLN_600_600` | 600 / 600 | EC04 | 1 |
-| `JNULib_TFLN_pcell` | 参数化 / Parametric | SOI 公开 PCell / Public SOI PCells | 9 |
+| `JNULib_TFLN_pcell` | 参数化 / Parametric | TFLN 公开 PCell / Public TFLN PCells | 9 |
 
 完整参数、端口和文件索引见 [器件清单](docs/DEVICE_INDEX.md)。EC01–EC03 的低台阶仍待处理；未知参数使用 `Unknow`，参数差异保留在公开清单中。
 
