@@ -49,7 +49,7 @@ Copy these prompts to an agent with local file and command access.
 | `JNULib_TFLN_400_200` | 400 / 200 | EC02 | 1 |
 | `JNULib_TFLN_600_300` | 600 / 300 | EC03, MMI01–06, POL01–02 | 9 |
 | `JNULib_TFLN_600_600` | 600 / 600 | EC04 | 1 |
-| `JNULib_TFLN_pcell` | 参数化 / Parametric | SOI 公开 PCell / Public SOI PCells | 9 |
+| `JNULib_TFLN_pcell` | 参数化 / Parametric | TFLN 公开 PCell / Public TFLN PCells | 9 |
 
 See the [device index](docs/DEVICE_INDEX.md) for parameters, ports and file links. Lower steps of EC01–EC03 remain pending. Unknown parameters use `Unknow`; discrepancies are retained in the public manifest.
 
