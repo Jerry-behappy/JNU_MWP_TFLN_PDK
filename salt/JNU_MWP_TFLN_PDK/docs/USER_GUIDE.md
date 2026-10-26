@@ -1,35 +1,39 @@
 # 使用说明 / User guide
 
-## 器件与 Library / Devices
+## 工艺与器件库 / Process and libraries
 
-V1.1 提供五组固定 Library，数量为 1/2/1/49/2，独立 JNULib_TFLN_BlackBox 汇总同一批 55 个固定黑盒，JNULib_TFLN_pcell 提供九个公开 PCell。七个库仅在选择 JNU_MWP_TFLN_PDK Technology 时显示。菜单保留中英文并列，共 27 个动作。
-V1.1 provides five process libraries with 1/2/1/49/2 devices, an independent blackbox library aggregating the same 55 fixed devices, and nine PCells. All seven libraries are scoped to JNU_MWP_TFLN_PDK; the 27 menu actions show Chinese and English together.
+固定器件工艺范围为膜厚 600 nm、刻蚀深度 300 nm、实际侧壁角 63°。共 24 个固定器件、108 个光学端口，包括 7 个端面耦合器、16 个 MMI 和 1 个 PSR；独立 TE/TM 工程保留独立记录。其他组合及角度的固定器件已退出本分支器件库。
+Only 600 nm film, 300 nm etch and an actual 63° sidewall angle are retained: 24 fixed devices and 108 optical ports, comprising seven edge couplers, sixteen MMIs and one PSR. Independent TE/TM designs retain separate records.
 
-通过 Instance 选择工艺 Library 和器件，或使用“插入 TFLN 器件 / Insert Device”。固定器件带 PinRec 1/10、DevRec 68/0 和框内作者署名。交叉器件包含四向端口；偏振器件的交错终端保留实际坐标。
-Place fixed cells from Instance or Insert Device. PinRec, DevRec, in-frame attribution and staggered/polarization interfaces are preserved.
+- JNULib_TFLN_600_300：24 个固定器件，600/300 nm，侧壁角 63°。
+- JNULib_TFLN_BlackBox：同一批 24 个固定器件的独立黑盒汇总库。
+- JNULib_TFLN_pcell：九个公开参数化器件，几何实现和默认尺寸保持不变。
 
-## 公开黑盒与授权器件 / Blackboxes and local contours
+三个 Library 仅在选择 JNU_MWP_TFLN_PDK Technology 时显示。更新后保存当前工作并重启 KLayout，清除旧会话缓存的其他工艺库。菜单保留中英文并列，共 23 项动作，只有一个工艺总览入口。
+All three libraries are scoped to JNU_MWP_TFLN_PDK. Save work and restart KLayout after updating to clear old process libraries cached in the session. The 23 menu actions remain bilingual and offer one process overview.
 
-公开固定器件的主体为 998/0 BlackBox，1/0 只保留端口向内 0.2 µm 直段。黑盒不含内部制造轮廓。完整 GDS 在本地独立保管，可通过“安装／更新白盒器件库”导入；导入时验证全部水平和竖直 PinRec。
-Public fixed cells contain a 998/0 placeholder and 0.2 µm inward port stubs on 1/0. The SOI blackbox style is shared: orange diagonal hatching and a centered full cell name. Staggered facets use placeholder extensions so every original port still touches its straight. Authorized local contours can be imported independently after horizontal/vertical port validation.
+## 放置与端口 / Placement and ports
 
-黑盒显示与当前 SOI PDK 一致：998/0 橙色斜线，完整器件名居中，端口向内保留 0.2 µm。交错终端仅延伸占位主体以连接直段，保持端口坐标。原生 KLayout 使用 Basic TEXT；独立 Python 使用相同字体的矢量文字。旧默认配色在重载或打开视图时自动迁移，自定义配色保留。
+通过 Instance 选择相应 Library，或使用“插入 TFLN 器件 / Insert Device”。保留器件的上表面轮廓、文件名、顶层 Cell、PinRec、DevRec、端口坐标/方向/宽度及框内作者文字均不改变。PSR 交错终端保留实际位置。旋转及镜像随实例变换。
+Place cells through Instance or Insert Device. Retained geometry, names, PinRec/DevRec, port positions, directions and widths are unchanged. Staggered PSR facets retain their coordinates.
 
-在全新目录重新导出 55 个独立黑盒：`python tools/export_blackboxes.py --output NEW_DIRECTORY`。脚本仅读取公开接口清单，不读取制造轮廓。五份总览由已交付的分组 GDS 提供。
+## 黑盒与授权完整器件 / Blackboxes and authorized contours
 
-## 版图工具 / Layout tools
+公开包的主体为 998/0 BlackBox，橙色斜线填充，完整器件名居中；1/0 只保留端口向内 0.2 µm 直段。制造轮廓、FSP 和源表留在本地。授权导入只匹配当前清单中的 24 个器件；导入验证水平和竖直 PinRec。
+Public cells contain 998/0 placeholders and 0.2 µm inward port straights on 1/0. Manufacturing contours and source files remain local. Authorized imports match the current catalog and validate horizontal/vertical ports.
 
-波导互转、器件连接、端口生成、图层排除、数字文本阵列、吸附、长度及长度差功能保留。五组总览均从当前清单生成。结构 DRC 只检查连接和识别结构，不包含 foundry 线宽/间距规则。
-Waveguide conversion, connection, pin creation, layer exclusion, text arrays, snapping and length tools remain available. The DRC is structural, not a fabrication width/spacing deck.
+通过 `python tools/export_blackboxes.py --output NEW_DIRECTORY` 可在新目录重新导出当前 24 个独立黑盒，输入仅为公开接口清单。当前包另含一份 600/300 nm、63° 总览 GDS。
 
-## 图层与参数 / Layers and parameters
+## 版图工具与图层 / Tools and layers
 
-Waveguide 1/0 为上表面宽度；SiO2_Open 3/0；NiCr 4/0（200 nm）；Au 5/0（1 µm）；Dicing 7/0；Text 10/0；PinRec 1/10；DevRec 68/0；BlackBox 998/0。数据库单位为 0.0001 µm。低台阶待处理，不生成 2/0。
+波导互转、器件连接、端口生成、图层排除、数字文本阵列、吸附、长度及长度差功能保留。结构 DRC 检查连接和识别结构，不包含 foundry 线宽/间距规则。
+Waveguide conversion, connection, pin creation, layer exclusion, numerical text, snapping and length tools remain available. DRC is structural rather than a foundry rule deck.
 
-PCell 的几何实现和默认尺寸沿用此前版本，TFLN 光学性能需按实际工艺验证。未知参数、原始 GDS 回退和膜厚差异均列于[当前器件索引](DEVICE_INDEX.md)。
-PCell geometry/defaults retain the previous implementation. The [device index](DEVICE_INDEX.md) lists unknown fields and source discrepancies.
+Waveguide 1/0 使用上表面宽度；SiO2_Open 3/0；NiCr 4/0（200 nm）；Au 5/0（1 µm）；Dicing 7/0；Text 10/0；PinRec 1/10；DevRec 68/0；BlackBox 998/0。数据库单位为 0.0001 µm。不生成 2/0，端面耦合器低台阶仍待处理。
+
+MMI-04 偏振和 EC-04-TM 包层待确认，详见[器件索引](DEVICE_INDEX.md)。PCell 和固定器件仍需按实际工艺进行光学性能验证。
 
 ## 安装与更新 / Installation and updates
 
-稳定版 V1.1 通过 main 安装和更新，参见仓库 README；拖入式安装宏同样跟踪 main。版本开发分支每次合入 main 后自动递增小版本号，当前名称及本地重命名、上游调整步骤见 README。更新前先保留本地修改，稳定版执行 git pull --ff-only origin main，开发版更新当前版本分支，然后重启 KLayout。
-Install stable V1.1 from main as described in the README. The drag-in installer also follows main. Version branches advance their minor number automatically after merging into main; the README explains how to find the current branch, rename a local checkout and update its upstream. Preserve local changes before fast-forwarding the chosen branch and restarting KLayout.
+本次工艺精简位于开发分支 V1.2，使用该分支安装本次器件集合。稳定 main 在发布合并后获取更新。安装流程及当前开发分支见仓库 README；版本开发分支每次合入 main 后自动递增小版本号。更新前保留本地修改，更新完成后重启 KLayout。
+This process-scope update is on development branch V1.2. Install that branch for this device set; stable main receives it after a release merge. See the repository README for installation and branch tracking. Preserve local changes and restart KLayout after updating.

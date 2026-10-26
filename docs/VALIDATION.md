@@ -1,19 +1,16 @@
 # 验证记录 / Validation
 
-2026-10-19 · V1.1
+2026-10-26 · 固定器件：600/300 nm、实际侧壁角 63°
 
-- 55 个固定器件、216 个光学端口，五组数量 1/2/1/49/2，另有九个独立 PCell。
-- 新增独立 `JNULib_TFLN_BlackBox`，共七个 Library。原生 KLayout 验证全部库仅匹配 TFLN Technology；默认、SOI、GSiP 和 EBeam 技术均不匹配。55 个黑盒实例与磁盘 GDS 的全部相关图层一致，旧全局关联可迁移；PCell 在读取前选用 TFLN 技术时保存重开正常。复验脚本为 `tools/verify_library_scope.py`。
-- 原生 KLayout 0.30.9 与 SiEPIC 实测本地完整器件和公开黑盒：端口及 DevRec 识别、旋转/镜像、五组总览、55 项插入选择、27 项中英菜单、快捷键保留及库重载均通过。
-- 黑盒显示同步当前 SOI：998/0 橙色斜线、完整器件名居中、端口向内 0.2 µm。交错终端的占位主体延伸至直段，端口保持原位。旧默认配色迁移通过。
-- 55 组本地/公开接口一致。公开导出脚本重新生成的全部几何与交付 GDS 一致；实例化后保存重开保持接口与主体。
-- 独立 PCell 参数编辑、端口及保存重开、授权 GDS 导入与无效端口拒绝、安装器保护检查通过。55 个独立 GDS 和五个总览均已原生渲染预览。
-- 公开文件检查拒绝 FSP、源表、白盒目录和内部制造轮廓。
+- 当前清单仅包含 24 个固定器件、108 个光学端口；工艺记录全部满足膜厚 600 nm、刻蚀深度 300 nm、sidewall_angle_deg=63。
+- 工艺分组库、独立黑盒库和九个 PCell 构成三个 TFLN Technology 限定的 Library。其他工艺库在新启动的原生 KLayout 中不注册；更新后的旧会话需重启以清除缓存库。
+- 原生 KLayout 与 SiEPIC 对公开黑盒和本地完整器件分别通过 24 个器件、108 个端口的识别、旋转/镜像、重载、24 项插入选择及 23 项中英菜单检查。旧工艺总览菜单的清理通过。
+- 对照本地保存的上一版，24 个保留器件的独立 GDS 文件内容未改变，轮廓、端口及文字保持原样。工艺总览重新生成，只引用这 24 个器件；其原生图像已核对。
+- 公开包只包含当前 24 个独立黑盒和一份工艺总览，共 25 个 GDS；31 个不符合工艺范围的器件及四份其他工艺总览从活动包移除。公开包检查逐文件核对清单和目录，防止遗留资源重新进入发行包。
+- 独立 PCell 参数编辑及保存重开通过；授权 GDS 导入继续覆盖旋转为竖直方向的真实端口、无效端口拒绝和本地目录边界。
 
-[公开版原生逐器件结果](validation/native_public.json)。完整本地结果保存在授权安装的 evidence/v11 中。公开验证脚本为 tools/verify_public_pdk.py、tools/verify_pcell_library.py、tools/verify_authorized_gds.py 和 tools/verify_installer.py。
+[公开版原生逐器件结果](validation/native_public.json)。本地完整器件报告和旧版本备份保留在本地，未随公开仓库分发。
 
-Native KLayout and SiEPIC recognized all 55 devices and 216 optical pins in both editions, including rotation, mirroring, reloading, five overviews and 27 bilingual menu actions. All 55 interface pairs match, and the interface-only blackbox exporter reproduces the delivered geometry. Fixed-cell save/reopen, nine independent PCells and local authorized imports passed. Manufacturing contours remain local.
+Only 600 nm film / 300 nm etch / actual 63-degree sidewalls remain: 24 fixed devices, 108 optical ports, three libraries, 23 menu actions and one overview. Native KLayout/SiEPIC checks passed for both editions. Every retained individual GDS is unchanged from its previous version. Public files match the selected catalog; full contours and original projects remain local.
 
-原生 UI 复验脚本 tools/verify_native_ui.py 需在独立 KLayout 进程运行，并安装 SiEPIC；可通过 siepic_python 指定其 Python 目录，通过 report_path 指定结果。脚本退出该测试进程，不应在用户正在编辑的会话中运行。CI 使用独立 Python API 检查结构，不替代原生 UI 记录。
-
-MMI-10 为原 GDS 回退，上表面宽度未确认；MMI-11、PSR-03 的清单与源工程存在膜厚差异。四项参数和端面耦合器低台阶仍待处理，详见器件索引。结构验证不代表这些项已通过工艺或光学验收。
+MMI-04 偏振、EC-04-TM 包层仍待确认；端面耦合器低台阶仍待处理。结构与文件检查不代替光学性能或工艺验收。

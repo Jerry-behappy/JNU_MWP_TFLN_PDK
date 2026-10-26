@@ -2,7 +2,9 @@
 
 # JNU_MWP_TFLN_PDK V1.1
 
-暨南大学光电混合集成实验室 KLayout 薄膜铌酸锂 PDK。本分支按最新清单登记 55 个固定黑盒、216 个光学端口、五组膜厚/刻蚀 Library，以及九个独立 PCell。
+暨南大学光电混合集成实验室 KLayout 薄膜铌酸锂 PDK。本分支仅保留膜厚 600 nm、刻蚀深度 300 nm、实际侧壁角 63° 的 24 个固定黑盒，共 108 个光学端口，另有九个独立 PCell。
+
+本次工艺范围调整位于开发分支 `V1.2`。使用本次器件集合时，克隆命令选择 `--branch V1.2`；稳定版 `main` 在合并发布后获取这些调整。
 
 [English](README.en.md) · [器件参数与文件索引](docs/DEVICE_INDEX.md) · [使用说明](docs/USER_GUIDE.md) · [更新说明](CHANGELOG.md)
 
@@ -23,16 +25,12 @@ powershell -ExecutionPolicy Bypass -File .\JNU_MWP_TFLN_PDK\Install_Cloned_PDK.p
 
 | Library | 膜厚/刻蚀 nm | 器件 / Devices | 数量 |
 |---|---:|---|---:|
-| `JNULib_TFLN_300_125` | 300/125 | EC-08 | 1 |
-| `JNULib_TFLN_300_300` | 300/300 | MMI-11, PSR-03 | 2 |
-| `JNULib_TFLN_400_200` | 400/200 | EC-09 | 1 |
-| `JNULib_TFLN_600_300` | 600/300 | EC / MMI / PSR / PDMC / PBS / DC / CROSS / GC | 49 |
-| `JNULib_TFLN_600_600` | 600/600 | EC-02, EC-02-TM | 2 |
-| `JNULib_TFLN_BlackBox` | 全部工艺 / All processes | 上述 55 个固定黑盒的汇总库 | 55 |
+| `JNULib_TFLN_600_300` | 600/300，侧壁角 63° | EC / MMI / PSR | 24 |
+| `JNULib_TFLN_BlackBox` | 600/300，侧壁角 63° | 上述同一批固定黑盒的汇总库 | 24 |
 | `JNULib_TFLN_pcell` | 参数化 / Parametric | TFLN 公开 PCell / Public TFLN PCells | 9 |
 
 ## 轮廓和待核对项
 
-公开固定器件仅包含 998/0 占位主体、0.2 µm 端口直段、PinRec、DevRec 和框内署名。完整制造轮廓、FSP、补录源表留在本地。MMI-10 暂用原 GDS，上表面宽度待核验；MMI-11、PSR-03 保留清单与源工程膜厚差异。四条记录仍有 Unknow 字段，端面耦合器低台阶仍待处理。逐项状态见器件索引。
+公开固定器件仅包含 998/0 占位主体、0.2 µm 端口直段、PinRec、DevRec 和框内署名。完整制造轮廓、FSP、补录源表留在本地。MMI-04 偏振和 EC-04-TM 包层仍待确认，端面耦合器低台阶仍待处理。逐项状态见器件索引。
 
 [许可证 / License](LICENSE.md) · [相关 SOI PDK](https://github.com/Jerry-behappy/JNU-MWP-SOI-PDK)

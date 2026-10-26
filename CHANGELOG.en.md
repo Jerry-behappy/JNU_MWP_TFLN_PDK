@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-26 — Fixed-device process scope
+
+- Retain only 600 nm film / 300 nm etch / actual 63-degree sidewall designs: 24 fixed devices and 108 optical ports. Remove unsupported process/angle resources.
+- Align the process library, independent blackbox library and single overview; keep nine PCells across three TFLN-scoped libraries.
+- Retained geometry, names, interfaces and in-frame text are unchanged. Keep source projects/backups local and update the device index, bilingual documentation, 23 menu actions and checks.
+
 ## 2026-10-19 — V1.1
 
 - Remove device image sections and personal attribution lines from both READMEs; enforce the presentation policy through repository guidance and CI.

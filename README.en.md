@@ -2,7 +2,9 @@
 
 # JNU_MWP_TFLN_PDK V1.1
 
-KLayout thin-film lithium-niobate PDK. This branch registers 55 fixed blackboxes, 216 optical ports, five film/etch libraries and nine independent PCells.
+KLayout thin-film lithium-niobate PDK. This branch retains only 600 nm film thickness, 300 nm etch depth and an actual sidewall angle of 63 degrees: 24 fixed blackboxes, 108 optical ports and nine independent PCells.
+
+This process-scope update is on development branch `V1.2`. To install this device set, use `--branch V1.2` in the clone command; stable `main` receives the update after release merging.
 
 [简体中文](README.md) · [Device index](docs/DEVICE_INDEX.md) · [User guide](docs/USER_GUIDE.md) · [Changes](CHANGELOG.en.md)
 
@@ -23,16 +25,12 @@ After a version branch merges into `main` through a PR, its minor number advance
 
 | Library | 膜厚/刻蚀 nm | 器件 / Devices | 数量 |
 |---|---:|---|---:|
-| `JNULib_TFLN_300_125` | 300/125 | EC-08 | 1 |
-| `JNULib_TFLN_300_300` | 300/300 | MMI-11, PSR-03 | 2 |
-| `JNULib_TFLN_400_200` | 400/200 | EC-09 | 1 |
-| `JNULib_TFLN_600_300` | 600/300 | EC / MMI / PSR / PDMC / PBS / DC / CROSS / GC | 49 |
-| `JNULib_TFLN_600_600` | 600/600 | EC-02, EC-02-TM | 2 |
-| `JNULib_TFLN_BlackBox` | 全部工艺 / All processes | Aggregate of the same 55 fixed blackboxes | 55 |
+| `JNULib_TFLN_600_300` | 600/300, sidewall 63° | EC / MMI / PSR | 24 |
+| `JNULib_TFLN_BlackBox` | 600/300, sidewall 63° | Aggregate of the same fixed blackboxes | 24 |
 | `JNULib_TFLN_pcell` | 参数化 / Parametric | TFLN 公开 PCell / Public TFLN PCells | 9 |
 
 ## Geometry and pending fields
 
-The public fixed library contains 998/0 placeholders, 0.2 µm port stubs, PinRec, DevRec and in-frame attribution. Manufacturing contours, FSPs and the completed source workbook stay local. MMI-10 uses its existing GDS pending top-width verification; MMI-11 and PSR-03 retain a catalog/source film-thickness discrepancy. Four records still contain Unknow fields. Lower edge-coupler steps remain deferred. See the device index for each record.
+The public fixed library contains 998/0 placeholders, 0.2 µm port stubs, PinRec, DevRec and in-frame attribution. Manufacturing contours, FSPs and the completed source workbook stay local. MMI-04 polarization and EC-04-TM cladding remain unconfirmed. Lower edge-coupler steps remain deferred. See the device index for each record.
 
 [许可证 / License](LICENSE.md) · [相关 SOI PDK](https://github.com/Jerry-behappy/JNU-MWP-SOI-PDK)
