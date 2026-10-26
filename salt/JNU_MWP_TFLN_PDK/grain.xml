@@ -4,7 +4,7 @@
   <version>1.1</version>
   <api-version>0.30</api-version>
   <title>JNU_MWP_TFLN_PDK V1.1 — Public Blackbox</title>
-  <doc>Five TFLN process libraries, 55 fixed blackboxes and 9 independent PCells, 216 fixed optical ports and bilingual layout tools.</doc>
+  <doc>600 nm film / 300 nm etch / actual 63 degree sidewalls only: 24 fixed blackboxes, 108 optical ports, three libraries including 9 independent PCells, and bilingual layout tools.</doc>
   <doc-url>https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK</doc-url>
   <url>https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK</url>
   <license>MIT</license>

@@ -44,13 +44,14 @@ class FixedTFLNLibrary(pya.Library):
         super().__init__()
         kind = "黑盒库 / Blackbox Library" if _MANIFEST.get("edition") == "public-blackbox" else "授权器件库 / Authorized Device Library"
         self.description = "%s | JNU_MWP_TFLN_PDK %s | thickness/etch %s nm | %d devices" % (kind, VERSION, process.replace("_", "/"), len(records))
+        self.description += " | sidewall 63 deg"
         self.layout().dbu = 0.0001
         self.add_technology(TECHNOLOGY_NAME)
         self.source_root = str(PDK_ROOT)
         for record in records:
             from tfln_tools.authorized_gds import private_source
             copy_gds(self, record, private_source(record) or PDK_ROOT / record["gds_relative"])
-        # 固定库按当前清单的工艺组合注册，兼容新增的膜厚/刻蚀组合。
+        # 仅按筛选后清单注册受支持的工艺组合。
         self.register("JNULib_TFLN_" + process)
 
 
@@ -58,6 +59,7 @@ class BlackboxTFLNLibrary(pya.Library):
     def __init__(self, records):
         super().__init__()
         self.description = "黑盒库 / Blackbox Library | JNU_MWP_TFLN_PDK %s | %d devices" % (VERSION, len(records))
+        self.description += " | 600/300 nm | sidewall 63 deg"
         self.layout().dbu = 0.0001
         self.source_root = str(PDK_ROOT)
         self.add_technology(TECHNOLOGY_NAME)

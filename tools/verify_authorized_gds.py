@@ -16,11 +16,17 @@ from tfln_tools import authorized_gds as store
 def verify():
     records = json.loads((PACKAGE / 'manifest.json').read_text(encoding='utf-8'))['devices']
     record = records[0]
-    # 四向交叉器件的竖直端口也必须按实际方向验证，而不是隐式转为水平端口。
-    cross = next(item for item in records if item['id'] == 'CROSS-01')
-    cross_layout = pya.Layout()
-    cross_layout.read(str(PACKAGE / cross['gds_relative']))
-    store.validate_ports(cross_layout, cross_layout.cell(cross['cell_name']), cross)
+    # 用保留器件的真实端口整体旋转，继续覆盖竖直端口验证。
+    rotated = json.loads(json.dumps(record))
+    rotated_layout = pya.Layout()
+    rotated_layout.read(str(PACKAGE / record['gds_relative']))
+    transform = pya.Trans(pya.Trans.R90)
+    rotated_layout.cell(record['cell_name']).transform(transform)
+    for pin in rotated['pins']:
+        x, y = pin['center_um']
+        pin['center_um'] = [-y, x]
+        pin['direction_deg'] = (pin['direction_deg'] + 90) % 360
+    store.validate_ports(rotated_layout, rotated_layout.cell(record['cell_name']), rotated)
     with tempfile.TemporaryDirectory() as temporary:
         base = Path(temporary)
         source, private = base / 'source', base / 'private'

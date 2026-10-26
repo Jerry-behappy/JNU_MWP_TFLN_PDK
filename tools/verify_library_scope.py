@@ -15,7 +15,10 @@ def verify():
     data = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
     libraries = tfln_library.register_all()
     names = ["JNULib_TFLN_" + p for p in data["processes"]] + [tfln_library.BLACKBOX_LIBRARY_NAME, "JNULib_TFLN_pcell"]
-    assert len(libraries) == len(names) == 7
+    assert data["processes"] == ["600_300"]
+    assert len(libraries) == len(names) == 3
+    for retired in ("300_125", "300_300", "400_200", "600_600"):
+        assert pya.Library.library_by_name("JNULib_TFLN_" + retired, tfln_library.TECHNOLOGY_NAME) is None
     for library in libraries:
         assert library.technologies() == [tfln_library.TECHNOLOGY_NAME]
         assert library.is_for_technology(tfln_library.TECHNOLOGY_NAME)
@@ -24,7 +27,7 @@ def verify():
             assert pya.Library.library_by_name(library.name(), other) is None
     blackbox = pya.Library.library_by_name(tfln_library.BLACKBOX_LIBRARY_NAME, tfln_library.TECHNOLOGY_NAME)
     assert "黑盒库 / Blackbox Library" in blackbox.description
-    assert sum(1 for _ in blackbox.layout().each_top_cell()) == len(data["devices"]) == 55
+    assert sum(1 for _ in blackbox.layout().each_top_cell()) == len(data["devices"]) == 24
     placed = pya.Layout()
     placed.dbu = data["dbu_um"]
     placed.technology_name = tfln_library.TECHNOLOGY_NAME
@@ -44,8 +47,8 @@ def verify():
     for library in libraries:
         library.clear_technologies()
     migrated = tfln_library.register_all()
-    assert len(migrated) == 7 and all(l.technologies() == [tfln_library.TECHNOLOGY_NAME] for l in migrated)
-    print("LIBRARY_SCOPE_PASS: seven TFLN-only libraries; independent blackbox has 55 unchanged devices; default/SOI/GSiP/EBeam excluded")
+    assert len(migrated) == 3 and all(l.technologies() == [tfln_library.TECHNOLOGY_NAME] for l in migrated)
+    print("LIBRARY_SCOPE_PASS: three TFLN-only libraries; 24 unchanged blackboxes; unsupported process libraries absent")
 
 
 if __name__ == "__main__":

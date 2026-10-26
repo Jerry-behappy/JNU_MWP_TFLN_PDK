@@ -57,11 +57,16 @@ def verify():
                  if p.findtext("source") == "998/0@*")
     assert style.findtext("frame-color") == style.findtext("fill-color") == "#ffae00"
     assert style.findtext("dither-pattern") == "I5" and style.findtext("transparent") == "false"
-    counts = {"300_125": 1, "300_300": 2, "400_200": 1, "600_300": 49, "600_600": 2}
-    assert len(DATA["devices"]) == 55 and sum(len(d["pins"]) for d in DATA["devices"]) == 216
-    assert len(list(PACKAGE.rglob("*.gds"))) == 60
-    assert len(list((PACKAGE / "previews").glob("*.png"))) == 60
-    assert len({d["cell_name"] for d in DATA["devices"]}) == 55
+    counts = {"600_300": 24}
+    assert DATA["processes"] == ["600_300"]
+    assert DATA["process_scope"] == dict(film_thickness_nm=600, etch_depth_nm=300, sidewall_angle_deg=63)
+    assert all(tuple(d["parameters"].get(k) for k in ("film_thickness_nm", "etch_depth_nm", "sidewall_angle_deg")) == (600, 300, 63) for d in DATA["devices"])
+    assert len(DATA["devices"]) == 24 and sum(len(d["pins"]) for d in DATA["devices"]) == 108
+    assert len(list(PACKAGE.rglob("*.gds"))) == 25
+    assert len(list((PACKAGE / "previews").glob("*.png"))) == 25
+    assert len({d["cell_name"] for d in DATA["devices"]}) == 24
+    expected_files = {d["gds_relative"] for d in DATA["devices"] + DATA["overviews"]}
+    assert {p.relative_to(PACKAGE).as_posix() for p in PACKAGE.rglob("*.gds")} == expected_files
     tfln_library.register_all()
     for process, count in counts.items():
         records = [d for d in DATA["devices"] if d["process"] == process]
@@ -141,7 +146,7 @@ def verify():
                 continue
             assert (document.parent / target.split("#", 1)[0]).exists(), (document, target)
     assert len(pya.Library.library_by_name("JNULib_TFLN_pcell", tfln_library.TECHNOLOGY_NAME).layout().pcell_names()) == 9
-    print("PUBLIC_VERIFY_PASS: 55 devices, 216 four-direction optical ports, fixed groups 1/2/1/49/2, 9 PCells; no internal contours")
+    print("PUBLIC_VERIFY_PASS: 24 fixed devices, 108 optical ports, 600/300 nm and 63 deg only; 9 PCells; no internal contours")
 
 
 if __name__ == "__main__":

@@ -71,6 +71,15 @@ def register_menu():
                   ("", "reload", "重新加载 TFLN PDK / Reload TFLN PDK", actions.schedule_reload),
                   ("", "update", "检查 PDK 更新 / Check for PDK Updates", update_pdk),
                   ("", "install_whitebox", "安装／更新白盒器件库 / Install / Update Whitebox Library", install_whitebox)])
+    # 重载旧会话时清理已退出工艺范围的总览菜单。
+    active_keys = {ROOT_MENU + ("." + parent if parent else "") + ".tfln_" + name for parent, name, _, _ in specs}
+    for key in list(_ACTIONS):
+        if key not in active_keys:
+            try:
+                menu.delete_item(key)
+            except Exception:
+                pass
+            _ACTIONS.pop(key)
     for parent, name, title, callback in specs:
         path = ROOT_MENU + ("." + parent if parent else "")
         key = path + ".tfln_" + name
