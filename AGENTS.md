@@ -11,6 +11,7 @@
 
 - 用户明确要求：所有 README（包括中英文及安装包副本）不得出现器件预览区块、preview/previews 图片链接和个人作者署名行。
 - 维护或重新生成 README 时遵守此规则，运行公开包检查；不将器件 GDS 内的标注带回 README。
+- README 需列出 LN 芯片层栈参数，包括 LN 厚度、刻蚀、slab、BOX 和 Top cladding。参考加工需求中的 BOX 为 2 µm、SiO₂ 沉积层为 1 µm；区分参考工艺和 AIR/SiO₂/SiON 器件版本，未确认的材料或厚度不得推定。
 
 # 固定器件工艺范围
 
