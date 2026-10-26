@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-26 — Waveguide output-layer selection
+
+- Add a shared output-layer dropdown to Path to Waveguide for single-width, composite-width and user-defined modes. It lists technology and custom layout layers and defaults to 1/0.
+- Store the layer in the actual PCell and recovery metadata, preserve it after GDS reopen and distinguish variants on different layers. Waveguide to Path restores each instance to its waveguide layer; legacy data defaults to 1/0.
+
 ## 2026-10-26 — Fixed-device process scope
 
 - Publish the V1.2 process-scope and chip-parameter updates to main. After merging, automation advances the development branch to V1.3 without changing the internal PDK version.

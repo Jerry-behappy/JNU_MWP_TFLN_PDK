@@ -3,7 +3,7 @@
 # 时间: 2026-10
 
 # JNU_MWP_PDK Waveguide to Path 功能。
-# 将波导 instance 还原为 Si 层原始 Manhattan Path，便于再次执行 Path to Waveguide。
+# 将波导 instance 还原为对应波导层的原始 Manhattan Path，便于再次转换。
 
 import json
 
@@ -368,7 +368,7 @@ def _current_cell_conversion_message(instance_count):
     """生成未选中 Waveguide 时的批量转换确认文案。"""
     return (
         "未选中 Waveguide 实例。\n\n"
-        "当前页面中找到 %d 个 Waveguide。继续将把它们全部转换为 Si 层 Manhattan Path，"
+        "当前页面中找到 %d 个 Waveguide。继续将把它们全部转换为各自波导层的 Manhattan Path，"
         "并删除对应的 Waveguide 实例。\n\n"
         "是否继续？" % int(instance_count)
     )
@@ -405,8 +405,31 @@ def _cleanup_empty_waveguide_containers(layout, parent_cell, cleanup_cell_indice
     return removed
 
 
+def _waveguide_output_layer(cell, instance=None):
+    """优先读取 PCell 图层，展开的旧 GDS 通过恢复属性找回；缺省仍为 1/0。"""
+    from .path_to_waveguide import _parse_waveguide_layer
+
+    try:
+        value = cell.pcell_parameters_by_name().get("waveguide_layer")
+        if value is not None:
+            return _parse_waveguide_layer(value)
+    except Exception:
+        pass
+    for target in (instance, cell):
+        if target is None:
+            continue
+        try:
+            text = _property_value(target, RAW_PATH_PROPERTY, RAW_PATH_GDS_PROPERTY)
+            value = json.loads(text).get("waveguide_layer") if text else None
+            if value is not None:
+                return _parse_waveguide_layer(value)
+        except (TypeError, ValueError):
+            continue
+    return SI_LAYER
+
+
 def waveguide_to_path():
-    """把选中的 Waveguide PCell 反转换为 Si 层原始 Manhattan Path。
+    """把选中的 Waveguide PCell 反转换为对应波导层的原始 Manhattan Path。
 
     从 PCell 参数中读取并恢复原始 Manhattan path，避免从圆角实体反推而丢失拐点。
     若未选中任何波导，先提示用户确认，再扫描并转换当前 cell 中所有 Waveguide 实例。
@@ -427,10 +450,6 @@ def waveguide_to_path():
 
         view.transaction("JNU Waveguide to Path")
         transaction_started = True
-
-        si_layer_index = layout.layer(SI_LAYER)
-        if si_layer_index is None:
-            raise RuntimeError("布局中没有 Si 层。")
 
         converted_count = 0
         skipped_arrays = 0
@@ -453,8 +472,9 @@ def waveguide_to_path():
                     skipped_missing_path += 1
                     continue
 
-                # 将子 cell 坐标变换到当前父 cell 坐标后写回 Si 层，便于再次 Path to Waveguide。
-                cell.shapes(si_layer_index).insert(new_path.transformed(trans))
+                # 将子 cell 坐标变换到父 cell，恢复到该实例使用的实体层。
+                output_layer = layout.layer(_waveguide_output_layer(wg_cell, inst))
+                cell.shapes(output_layer).insert(new_path.transformed(trans))
 
                 # 删除原 PCell 实例；Instance.delete() 才是删除 cell instance 的正确接口。
                 cleanup_cell_indices.append(wg_cell.cell_index())

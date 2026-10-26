@@ -69,6 +69,7 @@ def set_next_language(language):
 
 # 这里只改变界面说明文字；PCell 参数键、选择值和器件注册名保持英文。
 PARAMETER_LABELS_ZH = {
+    "Waveguide layer": "波导图层",
     "Bend arc length": "弯曲弧长",
     "Actual incremental length": "实际增量长度",
     "Bend points per 90 deg": "每 90° 弯曲采样点数",

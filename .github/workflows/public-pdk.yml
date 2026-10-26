@@ -23,6 +23,8 @@ jobs:
         run: python tools/verify_public_pdk.py
       - name: Verify independent PCells
         run: python tools/verify_pcell_library.py
+      - name: Verify waveguide output-layer selection
+        run: python tools/verify_waveguide_output_layer.py
       - name: Verify technology-scoped libraries and blackbox selection
         run: python tools/verify_library_scope.py
       - name: Verify local authorized-library import
