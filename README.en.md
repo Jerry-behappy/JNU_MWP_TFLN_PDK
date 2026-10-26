@@ -4,7 +4,7 @@
 
 KLayout thin-film lithium-niobate PDK. This branch retains only 600 nm film thickness, 300 nm etch depth and an actual sidewall angle of 63 degrees: 24 fixed blackboxes, 108 optical ports and nine independent PCells.
 
-This process-scope update is on development branch `V1.2`. To install this device set, use `--branch V1.2` in the clone command; stable `main` receives the update after release merging.
+Stable `main` provides the current 600/300 nm, 63-degree device set and the chip-stack parameters listed below.
 
 [简体中文](README.md) · [Device index](docs/DEVICE_INDEX.md) · [User guide](docs/USER_GUIDE.md) · [Changes](CHANGELOG.en.md)
 
@@ -50,7 +50,7 @@ Restart KLayout and select JNU_MWP_TFLN_PDK. The installer preserves an existing
 
 After a version branch merges into `main` through a PR, its minor number advances automatically, for example `V1.4 → V1.5` or `V1.9 → V1.10`. Find the current development branch in the [branch list](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/branches). Preserve local changes, run `git fetch origin --prune`, then use the actual names in `git branch -m OLD_BRANCH NEW_BRANCH` and `git branch --set-upstream-to=origin/NEW_BRANCH NEW_BRANCH`. New development checkouts use the current name with `--branch`.
 
-[Stable branch commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/main) · [V1.2 development commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/V1.2)
+[Stable branch commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/main) · [V1.3 development commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/V1.3)
 
 ## Libraries
 

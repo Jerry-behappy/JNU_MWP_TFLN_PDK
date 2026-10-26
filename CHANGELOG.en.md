@@ -2,6 +2,7 @@
 
 ## 2026-10-26 — Fixed-device process scope
 
+- Publish the V1.2 process-scope and chip-parameter updates to main. After merging, automation advances the development branch to V1.3 without changing the internal PDK version.
 - Document the reference chip stack in both READMEs and the package README: 600 nm LN, 300 nm etch/slab, 2 µm BOX, 1 µm deposited SiO₂ and electrode thicknesses. Distinguish AIR/SiO₂/SiON design tags and retain unconfirmed substrate/die-size fields.
 - Retain only 600 nm film / 300 nm etch / actual 63-degree sidewall designs: 24 fixed devices and 108 optical ports. Remove unsupported process/angle resources.
 - Align the process library, independent blackbox library and single overview; keep nine PCells across three TFLN-scoped libraries.

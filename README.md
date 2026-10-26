@@ -4,7 +4,7 @@
 
 暨南大学光电混合集成实验室 KLayout 薄膜铌酸锂 PDK。本分支仅保留膜厚 600 nm、刻蚀深度 300 nm、实际侧壁角 63° 的 24 个固定黑盒，共 108 个光学端口，另有九个独立 PCell。
 
-本次工艺范围调整位于开发分支 `V1.2`。使用本次器件集合时，克隆命令选择 `--branch V1.2`；稳定版 `main` 在合并发布后获取这些调整。
+稳定版 `main` 提供当前 600/300 nm、63° 器件集合及以下芯片层栈参数。
 
 [English](README.en.md) · [器件参数与文件索引](docs/DEVICE_INDEX.md) · [使用说明](docs/USER_GUIDE.md) · [更新说明](CHANGELOG.md)
 
@@ -50,7 +50,7 @@ powershell -ExecutionPolicy Bypass -File .\JNU_MWP_TFLN_PDK\Install_Cloned_PDK.p
 
 版本开发分支每次通过 PR 合入 `main` 后，小版本号自动加一，例如 `V1.4 → V1.5`、`V1.9 → V1.10`。当前版本分支见[分支列表](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/branches)。已有开发克隆先保留本地修改，再执行 `git fetch origin --prune`，按实际新旧名称执行 `git branch -m 旧分支 新分支` 和 `git branch --set-upstream-to=origin/新分支 新分支`。新开发克隆的 `--branch` 使用分支列表中的当前名称。
 
-[稳定分支完整提交记录](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/main) · [V1.2 开发分支完整提交记录](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/V1.2)
+[稳定分支完整提交记录](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/main) · [V1.3 开发分支完整提交记录](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/V1.3)
 
 ## 器件库
 

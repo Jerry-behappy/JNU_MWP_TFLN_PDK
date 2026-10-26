@@ -35,5 +35,5 @@ MMI-04 偏振和 EC-04-TM 包层待确认，详见[器件索引](DEVICE_INDEX.md
 
 ## 安装与更新 / Installation and updates
 
-本次工艺精简位于开发分支 V1.2，使用该分支安装本次器件集合。稳定 main 在发布合并后获取更新。安装流程及当前开发分支见仓库 README；版本开发分支每次合入 main 后自动递增小版本号。更新前保留本地修改，更新完成后重启 KLayout。
-This process-scope update is on development branch V1.2. Install that branch for this device set; stable main receives it after a release merge. See the repository README for installation and branch tracking. Preserve local changes and restart KLayout after updating.
+稳定 main 已包含当前 600/300 nm、63° 器件集合和芯片层栈说明，按仓库 README 安装。版本开发分支每次合入 main 后自动递增小版本号，当前开发分支见分支列表。更新前保留本地修改，更新完成后重启 KLayout。
+Stable main includes the current 600/300 nm, 63-degree device set and chip-stack documentation. Follow the repository README for installation. Version development branches advance after merging into main; use the branch list to find the current name. Preserve local changes and restart KLayout after updating.
