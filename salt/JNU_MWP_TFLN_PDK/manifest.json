@@ -13,7 +13,7 @@
       "id": "EC-01",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "EC01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR_TE_v01",
+      "cell_name": "EC_Xcut_Yprop_MFD3.2um_AIR_TE",
       "parameters": {
         "category": "端面耦合器 EC（airnew 版）",
         "crystal_cut": "x切",
@@ -88,7 +88,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_Xcut_Yprop_MFD3.2um_AIR_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -24.0824,
@@ -101,13 +101,16 @@
         -0.7000000000000001,
         24.0824,
         0.7000000000000001
+      ],
+      "legacy_cell_names": [
+        "EC01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_AIR_TE_v01"
       ]
     },
     {
       "id": "MMI-01",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI1x2_01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01",
+      "cell_name": "MMI1x2_Xcut_Yprop_AIR_TE-TM",
       "parameters": {
         "category": "1×2 MMI",
         "crystal_cut": "x切",
@@ -194,7 +197,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x2_01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x2_Xcut_Yprop_AIR_TE-TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -21.8,
@@ -207,13 +210,16 @@
         -1.9000000000000001,
         21.8,
         1.9000000000000001
+      ],
+      "legacy_cell_names": [
+        "MMI1x2_01_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01"
       ]
     },
     {
       "id": "MMI-02",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI1x4_02_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01",
+      "cell_name": "MMI1x4_Xcut_Yprop_AIR_TE",
       "parameters": {
         "category": "1×4 MMI",
         "crystal_cut": "x切",
@@ -324,7 +330,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_02_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Yprop_AIR_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -49.300000000000004,
@@ -337,13 +343,16 @@
         -6.7586,
         49.300000000000004,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI1x4_02_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01"
       ]
     },
     {
       "id": "MMI-03",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI1x4_03_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01",
+      "cell_name": "MMI1x4_Xcut_Zprop_AIR_TE",
       "parameters": {
         "category": "1×4 MMI",
         "crystal_cut": "x切",
@@ -454,7 +463,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_03_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Zprop_AIR_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -46.800000000000004,
@@ -467,13 +476,16 @@
         -6.7586,
         46.800000000000004,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI1x4_03_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01"
       ]
     },
     {
       "id": "MMI-04",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI2x2_04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_polUnknow_v01",
+      "cell_name": "MMI2x2_Xcut_Yprop_AIR_polUnknow",
       "parameters": {
         "category": "2×2 MMI",
         "crystal_cut": "x切",
@@ -574,7 +586,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI2x2_04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_polUnknow_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI2x2_Xcut_Yprop_AIR_polUnknow.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -67.05,
@@ -587,13 +599,16 @@
         -2.9000000000000004,
         67.05,
         2.9000000000000004
+      ],
+      "legacy_cell_names": [
+        "MMI2x2_04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_polUnknow_v01"
       ]
     },
     {
       "id": "MMI-05",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI4x4_05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01",
+      "cell_name": "MMI4x4_Xcut_Yprop_AIR_TE",
       "parameters": {
         "category": "4×4 MMI",
         "crystal_cut": "x切",
@@ -740,7 +755,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Yprop_AIR_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -145.8,
@@ -753,13 +768,16 @@
         -6.7586,
         145.8,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI4x4_05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE_v01"
       ]
     },
     {
       "id": "MMI-06",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI4x4_06_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01",
+      "cell_name": "MMI4x4_Xcut_Zprop_AIR_TE-TM",
       "parameters": {
         "category": "4×4 MMI",
         "crystal_cut": "x切",
@@ -906,7 +924,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_06_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Zprop_AIR_TE-TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -131.8,
@@ -919,13 +937,16 @@
         -6.7586,
         131.8,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI4x4_06_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_AIR_TE-TM_v01"
       ]
     },
     {
       "id": "EC-03",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "EC03_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01",
+      "cell_name": "EC_L120um_Xcut_Yprop_MFD3.2um_SIO2_TE",
       "parameters": {
         "category": "端面耦合器 EC（LN EC 基础版）",
         "crystal_cut": "x切",
@@ -1000,7 +1021,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC03_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_L120um_Xcut_Yprop_MFD3.2um_SIO2_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -59.800000000000004,
@@ -1013,13 +1034,16 @@
         -0.7000000000000001,
         59.800000000000004,
         0.7000000000000001
+      ],
+      "legacy_cell_names": [
+        "EC03_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01"
       ]
     },
     {
       "id": "EC-04",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "EC04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01",
+      "cell_name": "EC_L130um_Xcut_Yprop_MFD3.2um_SIO2_TE",
       "parameters": {
         "category": "端面耦合器 EC（four-taper 四锥·TE）",
         "crystal_cut": "x切",
@@ -1094,7 +1118,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_L130um_Xcut_Yprop_MFD3.2um_SIO2_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -64.8,
@@ -1107,13 +1131,16 @@
         -0.7000000000000001,
         64.8,
         0.7000000000000001
+      ],
+      "legacy_cell_names": [
+        "EC04_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01"
       ]
     },
     {
       "id": "EC-04-TM",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "EC04TM_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_cladUnknow_TM_v01",
+      "cell_name": "EC_Xcut_Yprop_MFD3.2um_cladUnknow_TM",
       "parameters": {
         "category": "端面耦合器 EC（four-taper 四锥·TM）",
         "crystal_cut": "x切",
@@ -1190,7 +1217,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC04TM_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_cladUnknow_TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_Xcut_Yprop_MFD3.2um_cladUnknow_TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -64.8,
@@ -1203,13 +1230,16 @@
         -0.7000000000000001,
         64.8,
         0.7000000000000001
+      ],
+      "legacy_cell_names": [
+        "EC04TM_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_cladUnknow_TM_v01"
       ]
     },
     {
       "id": "EC-05",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "EC05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01",
+      "cell_name": "EC_L48.9647um_Xcut_Yprop_MFD3.2um_SIO2_TE",
       "parameters": {
         "category": "端面耦合器 EC（balance 平衡版）",
         "crystal_cut": "x切",
@@ -1284,7 +1314,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_L48.9647um_Xcut_Yprop_MFD3.2um_SIO2_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -24.282400000000003,
@@ -1297,13 +1327,16 @@
         -0.7000000000000001,
         24.282300000000003,
         0.7000000000000001
+      ],
+      "legacy_cell_names": [
+        "EC05_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SIO2_TE_v01"
       ]
     },
     {
       "id": "EC-06",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "EC06_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD10.4um_SIO2_TE_v01",
+      "cell_name": "EC_Xcut_Yprop_MFD10.4um_SIO2_TE",
       "parameters": {
         "category": "端面耦合器 EC（大模斑 10.4µm）",
         "crystal_cut": "x切",
@@ -1378,7 +1411,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC06_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD10.4um_SIO2_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_Xcut_Yprop_MFD10.4um_SIO2_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -43.300000000000004,
@@ -1391,13 +1424,16 @@
         -1.998,
         43.300000000000004,
         1.998
+      ],
+      "legacy_cell_names": [
+        "EC06_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD10.4um_SIO2_TE_v01"
       ]
     },
     {
       "id": "MMI-07",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI1x2_07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01",
+      "cell_name": "MMI1x2_Xcut_Yprop_SIO2_TE-TM",
       "parameters": {
         "category": "1×2 MMI",
         "crystal_cut": "x切",
@@ -1484,7 +1520,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x2_07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x2_Xcut_Yprop_SIO2_TE-TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -21.3,
@@ -1497,13 +1533,16 @@
         -1.9000000000000001,
         21.3,
         1.9000000000000001
+      ],
+      "legacy_cell_names": [
+        "MMI1x2_07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01"
       ]
     },
     {
       "id": "MMI-08",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI1x4_08_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01",
+      "cell_name": "MMI1x4_Xcut_Yprop_SIO2_TE",
       "parameters": {
         "category": "1×4 MMI",
         "crystal_cut": "x切",
@@ -1614,7 +1653,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_08_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Yprop_SIO2_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -49.550000000000004,
@@ -1627,13 +1666,16 @@
         -6.7586,
         49.550000000000004,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI1x4_08_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01"
       ]
     },
     {
       "id": "MMI-09",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI1x4_09_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01",
+      "cell_name": "MMI1x4_Xcut_Zprop_SIO2_TE-TM",
       "parameters": {
         "category": "1×4 MMI",
         "crystal_cut": "x切",
@@ -1744,7 +1786,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_09_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Zprop_SIO2_TE-TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -46.800000000000004,
@@ -1757,13 +1799,16 @@
         -6.7586,
         46.800000000000004,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI1x4_09_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01"
       ]
     },
     {
       "id": "MMI-12",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI4x4_12_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01",
+      "cell_name": "MMI4x4_Xcut_Yprop_SIO2_TE",
       "parameters": {
         "category": "4×4 MMI",
         "crystal_cut": "x切",
@@ -1910,7 +1955,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_12_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Yprop_SIO2_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -148.8,
@@ -1923,13 +1968,16 @@
         -6.7586,
         148.8,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI4x4_12_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE_v01"
       ]
     },
     {
       "id": "MMI-13",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI4x4_13_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01",
+      "cell_name": "MMI4x4_Xcut_Zprop_SIO2_TE-TM",
       "parameters": {
         "category": "4×4 MMI",
         "crystal_cut": "x切",
@@ -2076,7 +2124,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_13_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Zprop_SIO2_TE-TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -135.3,
@@ -2089,13 +2137,16 @@
         -6.7586,
         135.3,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI4x4_13_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01"
       ]
     },
     {
       "id": "PSR-02",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "PSR02_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01",
+      "cell_name": "PSR_Xcut_Zprop_SIO2_TE-TM",
       "parameters": {
         "category": "PSR 偏振分束旋转器",
         "crystal_cut": "x切",
@@ -2182,7 +2233,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/PSR02_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/PSR_Xcut_Zprop_SIO2_TE-TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -246.3,
@@ -2195,13 +2246,16 @@
         -3.2345,
         171.3,
         3.2345
+      ],
+      "legacy_cell_names": [
+        "PSR02_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SIO2_TE-TM_v01"
       ]
     },
     {
       "id": "EC-07",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "EC07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SION_TE_v01",
+      "cell_name": "EC_Xcut_Yprop_MFD3.2um_SION_TE",
       "parameters": {
         "category": "端面耦合器 EC（balance SiON）",
         "crystal_cut": "x切",
@@ -2276,7 +2330,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SION_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/EC_Xcut_Yprop_MFD3.2um_SION_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -15.9907,
@@ -2289,13 +2343,16 @@
         -0.7000000000000001,
         15.9907,
         0.7000000000000001
+      ],
+      "legacy_cell_names": [
+        "EC07_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_MFD3.2um_SION_TE_v01"
       ]
     },
     {
       "id": "MMI-14",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI1x2_14_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01",
+      "cell_name": "MMI1x2_Xcut_Yprop_SION_TE-TM",
       "parameters": {
         "category": "1×2 MMI",
         "crystal_cut": "x切",
@@ -2382,7 +2439,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x2_14_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x2_Xcut_Yprop_SION_TE-TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -25.3,
@@ -2395,13 +2452,16 @@
         -1.9000000000000001,
         25.3,
         1.9000000000000001
+      ],
+      "legacy_cell_names": [
+        "MMI1x2_14_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01"
       ]
     },
     {
       "id": "MMI-15",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI1x4_15_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01",
+      "cell_name": "MMI1x4_Xcut_Yprop_SION_TE",
       "parameters": {
         "category": "1×4 MMI",
         "crystal_cut": "x切",
@@ -2512,7 +2572,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_15_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Yprop_SION_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -49.800000000000004,
@@ -2525,13 +2585,16 @@
         -6.7586,
         49.800000000000004,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI1x4_15_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01"
       ]
     },
     {
       "id": "MMI-16",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI1x4_16_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01",
+      "cell_name": "MMI1x4_Xcut_Zprop_SION_TE-TM",
       "parameters": {
         "category": "1×4 MMI",
         "crystal_cut": "x切",
@@ -2642,7 +2705,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_16_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI1x4_Xcut_Zprop_SION_TE-TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -47.300000000000004,
@@ -2655,13 +2718,16 @@
         -6.7586,
         47.300000000000004,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI1x4_16_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01"
       ]
     },
     {
       "id": "MMI-17",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI4x4_17_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01",
+      "cell_name": "MMI4x4_Xcut_Yprop_SION_TE",
       "parameters": {
         "category": "4×4 MMI",
         "crystal_cut": "x切",
@@ -2808,7 +2874,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_17_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Yprop_SION_TE.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -148.8,
@@ -2821,13 +2887,16 @@
         -6.7586,
         148.8,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI4x4_17_Xcut_Yprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE_v01"
       ]
     },
     {
       "id": "MMI-18",
       "process": "600_300",
       "library": "JNULib_TFLN_600_300",
-      "cell_name": "MMI4x4_18_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01",
+      "cell_name": "MMI4x4_Xcut_Zprop_SION_TE-TM",
       "parameters": {
         "category": "4×4 MMI",
         "crystal_cut": "x切",
@@ -2974,7 +3043,7 @@
       "port_geometry_status": "实际上表面终端；保留交错输出位置",
       "contour_origin": "fsp_top_surface",
       "representation": "blackbox",
-      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_18_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01.gds",
+      "gds_relative": "pymacros/tfln_blackbox_gds/600_300/MMI4x4_Xcut_Zprop_SION_TE-TM.gds",
       "source_film_thickness_nm": 600.0,
       "blackbox_body_bbox_um": [
         -137.05,
@@ -2987,6 +3056,9 @@
         -6.7586,
         137.05,
         6.7586
+      ],
+      "legacy_cell_names": [
+        "MMI4x4_18_Xcut_Zprop_thickness600nm_etchDepth300nm_sidewallAngle63deg_SION_TE-TM_v01"
       ]
     }
   ],

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-27 — Short device names
+
+- Use short names consistently for fixed-library cells, individual GDS files, blackbox labels, overviews and file indices. Remove film/etch/sidewall fields, revision suffixes and serial numbers from names while retaining process parameters and traceability IDs in the manifest.
+- Distinguish the three otherwise identical SiO₂ edge-coupler names by physical length. Retain legacy-name mappings for authorized GDS imports without changing source projects.
+
 ## 2026-10-26 — Waveguide output-layer selection
 
 - Add a shared output-layer dropdown to Path to Waveguide for single-width, composite-width and user-defined modes. It lists technology and custom layout layers and defaults to 1/0.

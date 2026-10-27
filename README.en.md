@@ -10,7 +10,7 @@ Stable `main` provides the current 600/300 nm, 63-degree device set and the chip
 
 ## LN chip parameters
 
-The reference stack follows the user-supplied fabrication requirements dated 2026-09-14. Crystal orientation, propagation directions and sidewall angle follow the current PDK catalog. Deposited process layers and device simulation-cladding tags are listed separately.
+Crystal orientation, propagation directions and sidewall angle follow the current PDK catalog. Deposited process layers and device simulation-cladding tags are listed separately.
 
 | Parameter | Specification | Basis / scope |
 |---|---|---|

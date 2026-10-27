@@ -42,6 +42,35 @@ def verify():
             assert store.install_directory(source, [record]) == 1
             second = store.private_source(record)
             assert first != second and first.is_file() and second.is_file()
+            # 旧名授权文件仍能导入；仅安装副本改用简名，源文件保持旧名。
+            if record.get('legacy_cell_names'):
+                legacy_name = record['legacy_cell_names'][0]
+                legacy_folder = base / 'legacy'
+                legacy_folder.mkdir()
+                legacy_file = legacy_folder / 'device.gds'
+                legacy = pya.Layout()
+                legacy.read(str(candidate))
+                legacy.top_cell().name = legacy_name
+                options = pya.SaveLayoutOptions()
+                options.gds2_max_cellname_length = 256
+                legacy.write(str(legacy_file), options)
+                assert store.install_directory(legacy_folder, [record]) == 1
+                installed = store.private_source(record)
+                reread = pya.Layout()
+                reread.read(str(installed))
+                assert reread.top_cell().name == record['cell_name']
+                reread = pya.Layout()
+                reread.read(str(legacy_file))
+                assert reread.top_cell().name == legacy_name
+                from tfln_library import copy_gds
+                library = pya.Library()
+                copy_gds(library, record, legacy_file)
+                assert library.layout().cell(record['cell_name']) is not None
+                assert library.layout().cell(legacy_name) is None
+                mapping = json.loads((private / 'active.json').read_text(encoding='utf-8'))
+                mapping[legacy_name] = mapping.pop(record['cell_name'])
+                (private / 'active.json').write_text(json.dumps(mapping), encoding='utf-8')
+                assert store.private_source(record) == installed
             active = (private / 'active.json').read_text(encoding='utf-8')
             # 已知端口整体偏移必须拒绝，拒绝后保留当前映射和两个版本。
             layout = pya.Layout()

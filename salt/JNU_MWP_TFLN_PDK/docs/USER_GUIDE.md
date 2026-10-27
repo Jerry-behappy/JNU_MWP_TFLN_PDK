@@ -14,8 +14,8 @@ All three libraries are scoped to JNU_MWP_TFLN_PDK. Save work and restart KLayou
 
 ## 放置与端口 / Placement and ports
 
-通过 Instance 选择相应 Library，或使用“插入 TFLN 器件 / Insert Device”。保留器件的上表面轮廓、文件名、顶层 Cell、PinRec、DevRec、端口坐标/方向/宽度及框内作者文字均不改变。PSR 交错终端保留实际位置。旋转及镜像随实例变换。
-Place cells through Instance or Insert Device. Retained geometry, names, PinRec/DevRec, port positions, directions and widths are unchanged. Staggered PSR facets retain their coordinates.
+通过 Instance 选择相应 Library，或使用“插入 TFLN 器件 / Insert Device”。器件与文件采用简名，工艺参数及追溯编号保留在清单中；上表面轮廓、PinRec、DevRec、端口坐标/方向/宽度及框内作者文字不改变。PSR 交错终端保留实际位置。旋转及镜像随实例变换。
+Place cells through Instance or Insert Device. Cell and file names are shortened; process parameters and traceability IDs remain in the catalog. Geometry, PinRec/DevRec, port positions, directions and widths are unchanged. Staggered PSR facets retain their coordinates.
 
 ## 黑盒与授权完整器件 / Blackboxes and authorized contours
 
