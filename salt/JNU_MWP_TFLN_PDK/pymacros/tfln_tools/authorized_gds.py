@@ -24,7 +24,9 @@ def private_source(record):
         mapping = json.loads((root / "active.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return None
-    relative = mapping.get(record["cell_name"])
+    # 简名发布后继续接受本机已安装的旧名索引，不改写原始授权文件。
+    relative = next((mapping[name] for name in
+                     [record["cell_name"]] + record.get("legacy_cell_names", []) if mapping.get(name)), None)
     if not relative:
         return None
     path = (root / relative).resolve()
@@ -51,7 +53,8 @@ def validate_ports(layout, cell, record):
 
 def install_directory(directory, records):
     directory = Path(directory).resolve()
-    by_name = {r["cell_name"]: r for r in records}
+    by_name = {name: r for r in records for name in
+               [r["cell_name"]] + r.get("legacy_cell_names", [])}
     accepted = {}
     for path in directory.rglob("*.gds"):
         layout = pya.Layout()
@@ -62,10 +65,12 @@ def install_directory(directory, records):
         cell = layout.cell(tops[0]) if isinstance(tops[0], int) else tops[0]
         if cell.name not in by_name:
             continue
-        assert cell.name not in accepted, "同一器件存在多个候选文件: " + cell.name
+        record = by_name[cell.name]
+        name = record["cell_name"]
+        assert name not in accepted, "同一器件存在多个候选文件: " + name
         assert not pya.Region(cell.begin_shapes_rec(layout.layer(1, 0))).is_empty()
-        validate_ports(layout, cell, by_name[cell.name])
-        accepted[cell.name] = path
+        validate_ports(layout, cell, record)
+        accepted[name] = path
     if not accepted:
         raise RuntimeError("未找到与当前名称和端口相符的器件 GDS / No matching device GDS found")
     root = private_root()
@@ -76,7 +81,18 @@ def install_directory(directory, records):
     previous = json.loads(current.read_text(encoding="utf-8")) if current.exists() else {}
     for name, source in accepted.items():
         target = destination / (name + ".gds")
-        shutil.copy2(source, target)
+        layout = pya.Layout()
+        layout.read(str(source))
+        tops = list(layout.each_top_cell())
+        cell = layout.cell(tops[0]) if isinstance(tops[0], int) else tops[0]
+        if cell.name == name:
+            shutil.copy2(source, target)
+        else:
+            # 仅在新的安装副本内统一顶层名，来源文件和旧版本保持原样。
+            cell.name = name
+            options = pya.SaveLayoutOptions()
+            options.gds2_max_cellname_length = 256
+            layout.write(str(target), options)
         previous[name] = target.relative_to(root).as_posix()
     temporary = root / "active.tmp.json"
     temporary.write_text(json.dumps(previous, ensure_ascii=False, indent=2), encoding="utf-8")

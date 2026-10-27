@@ -65,6 +65,8 @@ def verify():
     assert len(list(PACKAGE.rglob("*.gds"))) == 25
     assert len(list((PACKAGE / "previews").glob("*.png"))) == 25
     assert len({d["cell_name"] for d in DATA["devices"]}) == 24
+    for record in DATA["devices"]:
+        assert not re.search(r"thickness|etchDepth|sidewallAngle|_v\d+$|^MMI\dx\d_\d+_|^(?:EC|PSR)\d", record["cell_name"]), record["id"]
     expected_files = {d["gds_relative"] for d in DATA["devices"] + DATA["overviews"]}
     assert {p.relative_to(PACKAGE).as_posix() for p in PACKAGE.rglob("*.gds")} == expected_files
     tfln_library.register_all()

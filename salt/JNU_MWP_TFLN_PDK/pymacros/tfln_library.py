@@ -31,7 +31,8 @@ def copy_gds(library, record, path):
     source = pya.Layout()
     source.read(str(path))
     roots = [source.cell(t) if isinstance(t, int) else t for t in source.each_top_cell()]
-    if len(roots) != 1 or roots[0].name != record["cell_name"]:
+    accepted_names = [record["cell_name"]] + record.get("legacy_cell_names", [])
+    if len(roots) != 1 or roots[0].name not in accepted_names:
         raise RuntimeError("器件顶层与清单不一致: " + record["id"])
     if library.layout().cell(record["cell_name"]) is not None:
         raise RuntimeError("器件名称重复: " + record["cell_name"])
