@@ -21,3 +21,5 @@
 [参数与文件索引](docs/DEVICE_INDEX.md) · [使用说明](docs/USER_GUIDE.md)
 
 MMI-04 偏振、EC-04-TM 包层及端面耦合器低台阶待确认或处理。
+
+组织成员白盒安装：在“安装／更新白盒器件库 / Install / Update Whitebox Library”中从[组织私有仓库](https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_Library)克隆或更新，也可使用“本地导入 / Import local folder”。Git 负责认证，白盒保存于独立私有目录。

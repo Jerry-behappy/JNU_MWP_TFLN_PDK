@@ -42,15 +42,17 @@ Crystal orientation, propagation directions and sidewall angle follow the curren
 ## Install stable V1.1
 
 ```powershell
-git clone --branch main https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git JNU_MWP_TFLN_PDK
+git clone --branch main https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_PDK.git JNU_MWP_TFLN_PDK
 powershell -ExecutionPolicy Bypass -File .\JNU_MWP_TFLN_PDK\Install_Cloned_PDK.ps1
 ```
 
 Restart KLayout and select JNU_MWP_TFLN_PDK. The installer preserves an existing installation instead of replacing it. Both stable installs and the drag-in macro follow `main`. To update a clean stable checkout, run `git pull --ff-only origin main`.
 
-After a version branch merges into `main` through a PR, its minor number advances automatically, for example `V1.4 → V1.5` or `V1.9 → V1.10`. Find the current development branch in the [branch list](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/branches). Preserve local changes, run `git fetch origin --prune`, then use the actual names in `git branch -m OLD_BRANCH NEW_BRANCH` and `git branch --set-upstream-to=origin/NEW_BRANCH NEW_BRANCH`. New development checkouts use the current name with `--branch`.
+Organization members can use **Install / Update Whitebox Library** to clone or update the [private whitebox repository](https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_Library) through their local Git authentication. **Import local folder** remains available. Whiteboxes stay in a separate local private directory.
 
-[Stable branch commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/main) · [V1.3 development commit history](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/V1.3)
+After a version branch merges into `main` through a PR, its minor number advances automatically, for example `V1.4 → V1.5` or `V1.9 → V1.10`. Find the current development branch in the [branch list](https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_PDK/branches). Preserve local changes, run `git fetch origin --prune`, then use the actual names in `git branch -m OLD_BRANCH NEW_BRANCH` and `git branch --set-upstream-to=origin/NEW_BRANCH NEW_BRANCH`. New development checkouts use the current name with `--branch`.
+
+[Stable branch commit history](https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_PDK/commits/main) · [Development branches](https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_PDK/branches)
 
 ## Libraries
 

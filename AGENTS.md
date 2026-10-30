@@ -19,6 +19,7 @@
 - 仅保留膜厚 600 nm、刻蚀深度 300 nm、实际侧壁角 63° 的固定器件。按清单 `sidewall_angle_deg` 筛选，不以目录标称角度替代。
 - 分组库为 `JNULib_TFLN_600_300`，独立黑盒库只汇总同一批器件；九个独立 PCell 保留。其他工艺和角度的 GDS、总览、图示和库入口不得重新加入当前发行包。
 - 固定器件名称省略 thickness、etchDepth、sidewallAngle 整段参数、v01 版本尾缀及流水编号；工艺参数和追溯编号留在清单。同名端面耦合器按实际器件长度区分，旧名称仅用于授权文件兼容。
+- 白盒规范源为组织私有仓库 `Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_Library`，仅组织成员可访问；公开 PDK 只包含接口与黑盒。安装器使用组织地址，旧个人地址仅用于受控迁移。
 
 # 适度验证
 
