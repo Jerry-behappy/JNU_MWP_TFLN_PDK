@@ -42,15 +42,17 @@
 ## 安装稳定版 V1.1
 
 ```powershell
-git clone --branch main https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git JNU_MWP_TFLN_PDK
+git clone --branch main https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_PDK.git JNU_MWP_TFLN_PDK
 powershell -ExecutionPolicy Bypass -File .\JNU_MWP_TFLN_PDK\Install_Cloned_PDK.ps1
 ```
 
 完成后重启 KLayout，选择 JNU_MWP_TFLN_PDK。若已有安装，脚本会保留原目录并提示。稳定版及拖入式安装宏均跟踪 `main`；干净的稳定版克隆可执行 `git pull --ff-only origin main` 更新。
 
-版本开发分支每次通过 PR 合入 `main` 后，小版本号自动加一，例如 `V1.4 → V1.5`、`V1.9 → V1.10`。当前版本分支见[分支列表](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/branches)。已有开发克隆先保留本地修改，再执行 `git fetch origin --prune`，按实际新旧名称执行 `git branch -m 旧分支 新分支` 和 `git branch --set-upstream-to=origin/新分支 新分支`。新开发克隆的 `--branch` 使用分支列表中的当前名称。
+组织成员可通过“安装／更新白盒器件库 / Install / Update Whitebox Library”克隆或更新组织的[私有白盒库](https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_Library)。认证使用本机 Git；也可选择“本地导入 / Import local folder”导入已下载的器件目录。白盒独立保存在用户私有目录。
 
-[稳定分支完整提交记录](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/main) · [V1.3 开发分支完整提交记录](https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK/commits/V1.3)
+版本开发分支每次通过 PR 合入 `main` 后，小版本号自动加一，例如 `V1.4 → V1.5`、`V1.9 → V1.10`。当前版本分支见[分支列表](https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_PDK/branches)。已有开发克隆先保留本地修改，再执行 `git fetch origin --prune`，按实际新旧名称执行 `git branch -m 旧分支 新分支` 和 `git branch --set-upstream-to=origin/新分支 新分支`。新开发克隆的 `--branch` 使用分支列表中的当前名称。
+
+[稳定分支完整提交记录](https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_PDK/commits/main) · [开发分支列表](https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_PDK/branches)
 
 ## 器件库
 

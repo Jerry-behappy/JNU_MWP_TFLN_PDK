@@ -29,8 +29,8 @@ def update_pdk():
 
 
 def install_whitebox():
-    from .authorized_gds import install_whitebox_dialog
-    return install_whitebox_dialog()
+    from .install_pdk import show_installer
+    return show_installer(mode="private")
 
 
 def register_menu():

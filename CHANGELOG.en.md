@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-30 — Organization whitebox repository and installer
+
+- Transfer the whitebox library to Jinan-Photonics-Integration-Center, retaining private visibility and organization-member access.
+- Use organization URLs for public and whitebox installation. Add private Git cloning and guarded fast-forward updates while retaining local-folder import.
+- Run Git in a worker and validate the complete device catalog on the main thread before activating versioned private copies. Migrate former personal URLs while preserving edited, non-main and ahead checkouts.
+
 ## 2026-10-27 — Short device names
 
 - Use short names consistently for fixed-library cells, individual GDS files, blackbox labels, overviews and file indices. Remove film/etch/sidewall fields, revision suffixes and serial numbers from names while retaining process parameters and traceability IDs in the manifest.

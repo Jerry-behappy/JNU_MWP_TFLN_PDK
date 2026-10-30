@@ -2,6 +2,8 @@
 # 创建者: Junyi Zhang
 # 时间: 2026-10
 """KLayout 拖入安装宏的唯一逻辑源；Git 在后台运行，Qt 由主线程更新。"""
+import importlib.util
+import json
 import os
 from pathlib import Path
 import queue
@@ -9,8 +11,13 @@ import shutil
 import subprocess
 import threading
 
-PUBLIC_URL = "https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK.git"
+PUBLIC_URL = "https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_PDK.git"
+PRIVATE_URL = "https://github.com/Jinan-Photonics-Integration-Center/JNU_MWP_TFLN_Library.git"
 PDK_RELATIVE = Path("salt/JNU_MWP_TFLN_PDK")
+_TRANSFERRED_REPOSITORIES = {
+    "https://github.com/Jerry-behappy/JNU_MWP_TFLN_PDK": PUBLIC_URL.removesuffix(".git"),
+    "https://github.com/Jerry-behappy/JNU_MWP_TFLN_Library": PRIVATE_URL.removesuffix(".git"),
+}
 
 
 def find_git():
@@ -44,7 +51,8 @@ def _git(git, directory, *arguments):
 
 
 def _repo_identity(url):
-    return url.strip().removesuffix(".git").replace("git@github.com:", "https://github.com/").rstrip("/")
+    identity = url.strip().rstrip("/").removesuffix(".git").replace("git@github.com:", "https://github.com/")
+    return _TRANSFERRED_REPOSITORIES.get(identity, identity)
 
 
 def check_checkout(git, directory, url):
@@ -76,6 +84,14 @@ def checkout(git, directory, url, notify):
         else:
             notify("正在快进更新……")
             _git(git, directory, "merge", "--ff-only", "refs/remotes/origin/main")
+        origin = _git(git, directory, "remote", "get-url", "origin")
+        old_identity = origin.strip().removesuffix(".git").replace("git@github.com:", "https://github.com/").rstrip("/")
+        if old_identity in _TRANSFERRED_REPOSITORIES:
+            # 仓库转移后更新旧 origin；已有 SSH 克隆继续使用 SSH 认证。
+            canonical = _TRANSFERRED_REPOSITORIES[old_identity]
+            replacement = canonical.replace("https://github.com/", "git@github.com:") if origin.startswith("git@github.com:") else canonical
+            _git(git, directory, "remote", "set-url", "origin", replacement + ".git")
+            notify("已更新为组织仓库地址。")
     else:
         directory.parent.mkdir(parents=True, exist_ok=True)
         notify("正在克隆 TFLN 仓库，请稍候……")
@@ -134,10 +150,59 @@ def install_public(home, notify=lambda _message: None):
     return "安装/更新完成。请保存版图并重启 KLayout。\n源码：%s" % repository
 
 
-def show_installer(execute=True, auto_start=False):
+def install_private(home, notify=lambda _message: None):
+    """后台只执行 Git 和文件检查，GDS 验证及激活留给主线程。"""
+    repository = checkout(find_git(), Path(home).resolve() / "jnu_repositories/JNU_MWP_TFLN_Library", PRIVATE_URL, notify)
+    manifest_path = repository / "manifest.json"
+    if not manifest_path.is_file():
+        raise RuntimeError("组织白盒仓库缺少 manifest.json，已有安装已保留。")
+    catalog = json.loads(manifest_path.read_text(encoding="utf-8"))
+    records = catalog.get("devices", [])
+    if catalog.get("edition") != "private-whitebox" or not records:
+        raise RuntimeError("组织仓库不是有效的 TFLN 白盒器件库。")
+    for record in records:
+        path = (repository / record["gds_relative"]).resolve()
+        if (not path.is_relative_to(repository.resolve()) or
+                not path.is_relative_to((repository / "JNU_MWP_TFLN_gds").resolve()) or not path.is_file()):
+            raise RuntimeError("组织白盒仓库文件索引无效，已有安装已保留。")
+    return str(repository)
+
+
+def activate_private(home, repository):
+    """在主线程按当前 PDK 端口验证白盒，写入独立且保留版本的私有目录。"""
+    package = Path(home).resolve() / PDK_RELATIVE
+    source = package / "pymacros/tfln_tools/authorized_gds.py"
+    if not source.is_file() or not (package / "manifest.json").is_file():
+        raise RuntimeError("请先安装 TFLN PDK；白盒克隆及已有文件已保留。")
+    records = json.loads((package / "manifest.json").read_text(encoding="utf-8"))["devices"]
+    catalog = json.loads((Path(repository) / "manifest.json").read_text(encoding="utf-8"))
+    if {r["cell_name"] for r in records} != {r["cell_name"] for r in catalog["devices"]}:
+        raise RuntimeError("PDK 与白盒器件清单不匹配，请先更新 PDK；已有安装已保留。")
+    spec = importlib.util.spec_from_file_location("_tfln_authorized_installer", source)
+    store = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(store)
+    store.private_root = lambda: Path(home).resolve() / "jnu_private/JNU_MWP_TFLN_PDK"
+    expected = {r["cell_name"]: r for r in records}
     import pya
+    for record in catalog["devices"]:
+        layout = pya.Layout()
+        layout.read(str(Path(repository) / record["gds_relative"]))
+        tops = list(layout.each_top_cell())
+        cell = (layout.cell(tops[0]) if isinstance(tops[0], int) else tops[0]) if len(tops) == 1 else None
+        if cell is None or cell.name != record["cell_name"]:
+            raise RuntimeError("白盒顶层与清单不符，已有安装已保留。")
+        store.validate_ports(layout, cell, expected[cell.name])
+    count = store.install_directory(Path(repository) / "JNU_MWP_TFLN_gds", records)
+    return "白盒器件库安装/更新完成：%d 个器件。请重载 PDK 或重启 KLayout。" % count
+
+
+def show_installer(execute=True, auto_start=False, mode="install"):
+    import pya
+    if mode not in ("install", "private"):
+        raise ValueError("Unknown TFLN installer mode")
     app = pya.Application.instance()
     home = str(app.application_data_path())
+    task = install_private if mode == "private" else install_public
 
     class InstallerDialog(pya.QDialog):
         def __init__(self):
@@ -147,27 +212,40 @@ def show_installer(execute=True, auto_start=False):
             self.setWindowTitle("Install JNU TFLN PDK")
             self.resize(680, 350)
             layout = pya.QVBoxLayout(self)
-            layout.addWidget(pya.QLabel("安装 / 更新 JNU_MWP_TFLN_PDK", self))
+            layout.addWidget(pya.QLabel("安装 / 更新 TFLN 白盒器件库" if mode == "private" else "安装 / 更新 JNU_MWP_TFLN_PDK", self))
             location = pya.QLineEdit(home, self)
             location.setReadOnly(True)
             layout.addWidget(location)
             self.output = pya.QPlainTextEdit(self)
             self.output.setReadOnly(True)
-            self.output.setPlainText("自动使用当前 KLayout 用户目录。公开版包含黑盒器件；保留已有安装和白盒。")
+            self.output.setPlainText(
+                "仅限组织成员访问私有仓库。认证由 Git / Git Credential Manager 完成；安装器不接收或保存凭据。"
+                if mode == "private" else "自动使用当前 KLayout 用户目录。公开版包含黑盒器件；保留已有安装和白盒。")
             layout.addWidget(self.output)
             row = pya.QHBoxLayout()
             self.start_button = pya.QPushButton("安装 / 更新", self)
             self.close_button = pya.QPushButton("关闭", self)
+            self.local_button = pya.QPushButton("本地导入 / Import local folder", self) if mode == "private" else None
             git_button = pya.QPushButton("Install Git", self)
             git_button.clicked(lambda _checked=False: pya.QDesktopServices.openUrl(pya.QUrl("https://git-scm.com/downloads")))
             self.start_button.clicked(lambda _checked=False: self.start())
             self.close_button.clicked(lambda _checked=False: self.reject())
             for button in (git_button, self.start_button, self.close_button):
                 row.addWidget(button)
+            if self.local_button is not None:
+                self.local_button.clicked(lambda _checked=False: self.import_local())
+                row.addWidget(self.local_button)
             layout.addLayout(row)
             self.timer = pya.QTimer(self)
             self.timer.setInterval(100)
             self.timer.timeout(self.poll)
+
+        def import_local(self):
+            try:
+                from tfln_tools.authorized_gds import install_whitebox_dialog
+                install_whitebox_dialog()
+            except Exception as error:
+                self.output.appendPlainText(str(error))
 
         def reject(self):
             if not self.busy:
@@ -185,12 +263,14 @@ def show_installer(execute=True, auto_start=False):
             self.busy = True
             self.start_button.setEnabled(False)
             self.close_button.setEnabled(False)
+            if self.local_button is not None:
+                self.local_button.setEnabled(False)
             self.output.setPlainText("正在检查安装环境……")
             events = self.events
 
             def worker():
                 try:
-                    result = install_public(home, lambda message: events.put(("progress", message)))
+                    result = task(home, lambda message: events.put(("progress", message)))
                     events.put(("done", result))
                 except Exception as error:
                     events.put(("error", str(error)))
@@ -202,11 +282,18 @@ def show_installer(execute=True, auto_start=False):
         def poll(self):
             while not self.events.empty():
                 kind, message = self.events.get_nowait()
+                if kind == "done" and mode == "private":
+                    try:
+                        message = activate_private(home, message)
+                    except Exception as error:
+                        kind, message = "error", str(error)
                 self.output.appendPlainText(message)
                 if kind != "progress":
                     self.timer.stop()
                     self.busy = False
                     self.close_button.setEnabled(True)
+                    if self.local_button is not None:
+                        self.local_button.setEnabled(True)
                     self.start_button.setEnabled(kind == "error")
 
     dialog = InstallerDialog()
