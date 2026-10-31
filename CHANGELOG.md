@@ -1,5 +1,9 @@
 # 更新说明
 
+## 2026-10-31 — DRC 深槽图层
+
+- 明确 TFLN DRC 深槽层映射为 `LayerDeepTrench = input(201, 0)`。
+
 ## 2026-10-30 — 组织白盒仓库与安装器
 
 - 白盒器件库转移至 Jinan-Photonics-Integration-Center 组织并保持私有，仅向组织成员开放。

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-31 — DRC deep-trench layer
+
+- Map the TFLN DRC deep-trench input to `LayerDeepTrench = input(201, 0)`.
+
 ## 2026-10-30 — Organization whitebox repository and installer
 
 - Transfer the whitebox library to Jinan-Photonics-Integration-Center, retaining private visibility and organization-member access.

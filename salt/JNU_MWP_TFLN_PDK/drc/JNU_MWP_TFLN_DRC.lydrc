@@ -13,6 +13,7 @@ SiO2_Open = input(3, 0)   # SiO₂ 开窗 / Oxide opening
 NiCr = input(4, 0)        # NiCr 电极 200 nm / Electrode
 Au = input(5, 0)          # Au 电极 1 µm / Electrode
 Dicing = input(7, 0)      # 划片 / Dicing
+LayerDeepTrench = input(201, 0) # 深槽 / Deep trench
 Text = input(10, 0)       # 文字 / Annotation
 PinRec = input(1, 10)     # 光学端口 / Optical ports
 DevRec = input(68, 0)     # 器件识别 / Device recognition
